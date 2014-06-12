@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS3 Animate动画</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+
+
+
+    <h1>CSS3 Animate动画</h1>
+    <div class="w inform">
+        <div class="col_05 col_left">
+            <h3>keyframes的定义</h3>
+            <pre><span class="f_pink">@-webkit-keyframes round</span> {
+<span class="f_pink">0%</span> {
+    margin-left: 100px;
+    background: green;
+}
+<span class="f_pink">40%</span> {
+    margin-left: 150px;
+    background: orange;
+}
+<span class="f_pink">60% </span>{
+    margin-left: 75px;
+    background: blue;
+}
+<span class="f_pink">100%</span> {
+    margin-left: 100px;
+    background: red;
+}
+}
+<span class="f_pink">@-moz-keyframes round</span>{
+...
+}
+<span class="f_pink">@-o-keyframes round</span>{
+...
+}
+<span class="f_pink">@keyframes round</span>{
+...
+}
+</pre>
+        </div>
+        <div class="col_05">
+            <h3>样式中引用animate动画</h3>
+            <pre>
+<span class="f_pink">.movediv</span>{
+    -webkit-animation-name:round;
+    -webkit-animation-duration:0.7s;
+    -webkit-animation-timing-function:linear;
+    -moz-animation-name:round;
+    -moz-animation-duration:0.7s;
+    -moz-animation-timing-function:linear;
+    -o-animation-name:round;
+    -o-animation-duration:0.7s;
+    -o-animation-timing-function:linear;
+    animation-name:round;
+    animation-duration:0.7s; 
+    animation-timing-function:linear;
+    -webkit-animation-delay:0s;
+    -moz-animation-delay:0s;
+    -o-animation-delay:0s;
+    animation-delay:0;
+    -webkit-animation-direction: normal;<s>/*定义动画方式*/</s>
+    -moz-animation-direction: normal;
+    -o-animation-direction: normal;
+    animation-direction: normal;
+    
+    -webkit-animation-iteration-count:infinite;	<s>/*定义动画执行的遍数*/</s>
+    -moz-animation-iteration-count:infinite;
+    -o-animation-iteration-count:infinite;
+    animation-iteration-count:infinite;
+}
+            </pre>
+            
+        </div>
+        
+        <div class="clr"></div>
+        
+        <div style="margin-top:10px; padding-top:10px; border-top:1px dashed #aaa; color:#bd2d8c;">
+            <h3>Animate的属性取值</h3>
+            animation-name: none | IDENT[,none | IDENT]*; <s>/*引用的动画*/</s><br />
+             animation-duration: &lt;time&gt;[,&lt;time&gt;]* <s>/*动画持续时间,一般为1s,2s,5s*/</s><br />
+             animation-timing-function:ease | linear | ease-in | ease-out | ease-in-out | cubic-bezier(&lt;number&gt;, &lt;number&gt;, &lt;number&gt;, &lt;number&gt;) [, ease | linear | ease-in | ease-out | ease-in-out | cubic-bezier(&lt;number&gt;, &lt;number&gt;, &lt;number&gt;, &lt;number&gt;)]* <s>/*动画的过渡曲线*/</s><br /> 
+             animation-direction:normal|alternate<br />
+             alternate:则动画会在奇数次数（1、3、5 等等）正常播放，而在偶数次数（2、4、6 等等）向后播放;
+            
+        </div>
+    </div>
+    
+	
+	<div class="example">
+    	<h2 class="mb_20" style="border-bottom:1px solid #ccc;">实例1：方形变圆形(鼠标经过时变化)</h2>
+    	<style>
+			.example .box{width:80px; height:80px; margin:0 auto; border:1px solid #f00; overflow:hidden; background:#f66;}
+			.example .box:hover{
+				-webkit-animation-name:round;
+				-webkit-animation-duration:0.7s;
+				-webkit-animation-timing-function:linear;
+				-moz-animation-name:round;
+				-moz-animation-duration:0.7s;
+				-moz-animation-timing-function:linear;
+				-o-animation-name:round;
+				-o-animation-duration:0.7s;
+				-o-animation-timing-function:linear;
+				animation-name:round;
+				animation-duration:0.7s; 
+				animation-timing-function:linear;
+				-webkit-animation-delay:0s;
+				-moz-animation-delay:0s;
+				-o-animation-delay:0s;
+				animation-delay:0;
+				-webkit-animation-direction: normal;/*定义动画方式*/
+				-moz-animation-direction: normal;
+				-o-animation-direction: normal;
+				animation-direction: normal;
+				/*定义了下面两条，这样动画执行完就不会回到原始状态了*/
+				border-radius:50px;
+				background:#ff6;
+				
+			}
+			
+			@keyframes round{
+				from{
+					border-radius:10px;
+					background:#f66;
+				}
+				50%{
+					border-radius:30px;
+					background:#fa6;
+				}
+				to{
+					border-radius:50px;
+					background:#ff6;
+				}
+			}
+			@-webkit-keyframes round{
+				from{
+					border-radius:10px;
+					background:#f66;
+				}
+				50%{
+					border-radius:30px;
+					background:#fa6;
+				}
+				to{
+					border-radius:50px;
+					background:#ff6;
+				}
+			}
+			@-moz-keyframes round{
+				from{
+					border-radius:10px;
+					background:#f66;
+				}
+				50%{
+					border-radius:30px;
+					background:#fa6;
+				}
+				to{
+					border-radius:50px;
+					background:#ff6;
+				}
+			}
+			@-o-keyframes round{
+				from{
+					border-radius:10px;
+					background:#f66;
+				}
+				50%{
+					border-radius:30px;
+					background:#fa6;
+				}
+				to{
+					border-radius:50px;
+					background:#ff6;
+				}
+			}
+		</style>
+        <div class="box">
+        	d
+        </div>
+    </div>
+    
+    <div class="example" style="height:300px;">
+    	<h2 class="mb_20" style="border-bottom:1px solid #ccc;">实例2：方块无限矩形移动</h2>
+    	<style>
+			.example .box02{width:80px; height:80px; margin:0 auto; border:1px solid #f00; overflow:hidden; background:#f66;}
+			.example .box02{
+				-webkit-animation-name:roundmove;
+				-webkit-animation-duration:2s;
+				-webkit-animation-timing-function:ease-in-out;
+				-moz-animation-name:roundmove;
+				-moz-animation-duration:2s;
+				-moz-animation-timing-function:ease-in-out;
+				-o-animation-name:roundmove;
+				-o-animation-duration:2s;
+				-o-animation-timing-function:ease-in-out;
+				animation-name:roundmove;
+				animation-duration:2s; 
+				animation-timing-function:ease-in-out;
+				-webkit-animation-delay:0s;
+				-moz-animation-delay:0s;
+				-o-animation-delay:0s;
+				animation-delay:0;
+				-webkit-animation-direction: normal;/*定义动画方式*/
+				-moz-animation-direction: normal;
+				-o-animation-direction: normal;
+				animation-direction: normal;
+				-webkit-animation-iteration-count:infinite;
+				-moz-animation-iteration-count:infinite;
+				-o-animation-iteration-count:infinite;
+				animation-iteration-count:infinite;
+				
+			}
+			
+			@keyframes roundmove{
+				from{
+					-webkit-transform:translate(0,0);
+					-moz-transform:translate(0,0);
+					-o-transform:translate(0,0);
+					transform:translate(0,0);
+				}
+				25%{
+					-webkit-transform:translate(100px,0);
+					-moz-transform:translate(100px,0);
+					-o-transform:translate(100px,0);
+					transform:translate(100px,0);
+				}
+				50%{
+					-webkit-transform:translate(100px,100px);
+					-moz-transform:translate(100px,100px);
+					-o-transform:translate(100px,100px);
+					transform:translate(100px,100px);
+				}
+				75%{
+					-webkit-transform:translate(0,100px);
+					-moz-transform:translate(0,100px);
+					-o-transform:translate(0,100px);
+					transform:translate(0,100px);
+				}
+				to{
+					-webkit-transform:translate(0,0);
+					-moz-transform:translate(0,0);
+					-o-transform:translate(0,0);
+					transform:translate(0,0);
+				}
+			}
+			@-webkit-keyframes roundmove{
+				from{
+					-webkit-transform:translate(0,0);
+					-moz-transform:translate(0,0);
+					-o-transform:translate(0,0);
+					transform:translate(0,0);
+				}
+				25%{
+					-webkit-transform:translate(100px,0);
+					-moz-transform:translate(100px,0);
+					-o-transform:translate(100px,0);
+					transform:translate(100px,0);
+				}
+				50%{
+					-webkit-transform:translate(100px,100px);
+					-moz-transform:translate(100px,100px);
+					-o-transform:translate(100px,100px);
+					transform:translate(100px,100px);
+				}
+				75%{
+					-webkit-transform:translate(0,100px);
+					-moz-transform:translate(0,100px);
+					-o-transform:translate(0,100px);
+					transform:translate(0,100px);
+				}
+				to{
+					-webkit-transform:translate(0,0);
+					-moz-transform:translate(0,0);
+					-o-transform:translate(0,0);
+					transform:translate(0,0);
+				}
+			}
+			@-moz-keyframes roundmove{
+				from{
+					-webkit-transform:translate(0,0);
+					-moz-transform:translate(0,0);
+					-o-transform:translate(0,0);
+					transform:translate(0,0);
+				}
+				25%{
+					-webkit-transform:translate(100px,0);
+					-moz-transform:translate(100px,0);
+					-o-transform:translate(100px,0);
+					transform:translate(100px,0);
+				}
+				50%{
+					-webkit-transform:translate(100px,100px);
+					-moz-transform:translate(100px,100px);
+					-o-transform:translate(100px,100px);
+					transform:translate(100px,100px);
+				}
+				75%{
+					-webkit-transform:translate(0,100px);
+					-moz-transform:translate(0,100px);
+					-o-transform:translate(0,100px);
+					transform:translate(0,100px);
+				}
+				to{
+					-webkit-transform:translate(0,0);
+					-moz-transform:translate(0,0);
+					-o-transform:translate(0,0);
+					transform:translate(0,0);
+				}
+			}
+			@-o-keyframes roundmove{
+				from{
+					-webkit-transform:translate(0,0);
+					-moz-transform:translate(0,0);
+					-o-transform:translate(0,0);
+					transform:translate(0,0);
+				}
+				25%{
+					-webkit-transform:translate(100px,0);
+					-moz-transform:translate(100px,0);
+					-o-transform:translate(100px,0);
+					transform:translate(100px,0);
+				}
+				50%{
+					-webkit-transform:translate(100px,100px);
+					-moz-transform:translate(100px,100px);
+					-o-transform:translate(100px,100px);
+					transform:translate(100px,100px);
+				}
+				75%{
+					-webkit-transform:translate(0,100px);
+					-moz-transform:translate(0,100px);
+					-o-transform:translate(0,100px);
+					transform:translate(0,100px);
+				}
+				to{
+					-webkit-transform:translate(0,0);
+					-moz-transform:translate(0,0);
+					-o-transform:translate(0,0);
+					transform:translate(0,0);
+				}
+			}
+		</style>
+        <div class="box02">
+        	d
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+
+
+</script>
+
+</body>
+</html>

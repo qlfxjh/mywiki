@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>创建条件样式</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1 class="pt_20">CSS 2</h1>
+<div class="inform">
+	<p>样式中的透明设置：filter:alpha(opacity=50);opacity:0.5;</p>
+    <p>样式中的透明设置：filter:alpha(opacity=50);opacity:0.5;</p>
+    <h4 class="f_darkred">兼容IE6的min-height:</h4>
+    <p class="f_pink">min-height:300px;overflow:auto; <br />
+    _height:expression(eval(document.compatMode && document.compatMode==\'CSS1Compat\') ? (this.offsetHeight>300?300:auto):(this.clientHeight>300?300:auto));</p>
+    <h4>区分浏览器</h4>
+    <pre>
+    	body{
+       		padding-top:20px;
+            padding-top:30px/9; /*IE6/IE8/IE9/IE10*/
+            _padding-top:40px; /*IE6*/
+            *padding-top:50px; /*IE7*/
+       }
+    </pre>
+    
+    <h4>避免文字被选中</h4>
+    <pre>
+-ms-user-select: none;
+-o-user-select: none;
+-moz-user-select: none;
+-webkit-user-select: none;
+user-select: none;
+    </pre>
+</div>
+    
+</body>
+</html>

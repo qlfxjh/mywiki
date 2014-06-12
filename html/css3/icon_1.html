@@ -1,0 +1,580 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>纯CSS制作的图形效果</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<style>
+
+.icon_draw{ font-size:14px;}
+section{ float:left; width:200px;}
+.icons li{ position:relative; z-index:1; overflow:hidden; padding:0; margin-left:0.25em; margin-bottom:5px; font:1em/1.4 Cambria, Georgia; line-height:22px;}
+.icons li a{ display:block; padding-left:28px; color:#c55500;}
+.icons li a:hover{ color:#730800; text-decoration:none;}
+.icons li:before, .icons li:after, .icons li a:before, .icons li a:after{ position:absolute; top:50%; left:0; content:"";}
+.icons li a:before, .icons li a:after{ margin:-8px 0 0; background:#c55500;}
+
+.icons .search a:before{width:6px; height:6px; border:3px solid #c55500; border-radius:12px; background:transparent;}
+/*before为一个空心圆*/
+.icons .search a:after{left:10px;top:18px; width:3px; height:8px; overflow:hidden; -webkit-transform:rotate(-45deg); transform:rotate(-45deg);}
+/*after为放大镜的手柄*/
+
+.icons .comment a:before{width:12px; height:6px; border:2px solid #c55500; border-radius:2px; background:#c55500;}
+/*before为方块*/
+.icons .comment a:after{left:8px; border:2px solid transparent; margin-top:2px; background:transparent;border-top-color:#c55500; border-left-color:#c55500;}
+/*after为下面的箭头: 用宽高为0的容器，设边框为2,然后相临两条边框有颜色，另两条没有颜色。就等于把一个4*4的正方形切掉一半，形成一个三角形*/
+
+.icons .like a:before{left:4px;width:13px; height:8px; border:1px solid #c55500; border-radius:5px 5px 5px 0; overflow:hidden; background:#c55500; -webkit-transform:rotate(-45deg); transform:rotate(-45deg);}
+/*before心形的一半*/
+.icons .like a:after{width:13px; height:8px; border:1px solid #c55500; border-radius:5px 5px 0 5px; overflow:hidden; background:#c55500; -webkit-transform:rotate(45deg); transform:rotate(45deg);}
+/*after为心形的一半*/
+
+.icons .add a:before{border:8px solid #c55500; border-radius:16px; overflow:hidden;}
+.icons .add a:after{left:3px; top:18px; width:10px; height:2px; overflow:hidden; background:#fff; z-index:10;}
+.icons .add:after{ z-index:11; left:7px; top:6px; width:2px; height:10px; overflow:hidden; background:#fff;}
+
+
+.icons .remove a:before{border:8px solid #c55500; border-radius:16px; overflow:hidden;}
+.icons .remove a:after{left:3px; top:18px; width:10px; height:2px; overflow:hidden; background:#fff; z-index:10;}
+
+.icons .delete a:before{border:8px solid #c55500; border-radius:16px; overflow:hidden;}
+.icons .delete a:after{left:3px; top:18px; width:10px; height:2px; overflow:hidden; background:#fff; z-index:10; transform:rotate(45deg); -webkit-transform:rotate(45deg);}
+.icons .delete:after{ z-index:11; left:3px; top:10px; width:10px; height:2px; overflow:hidden; background:#fff; transform:rotate(-45deg); -webkit-transform:rotate(-45deg);}
+
+.icons .add-alt a:before{width:5px; height:15px; left:5px; overflow:hidden;}
+.icons .add-alt a:after{ top:17px; width:15px; height:5px; overflow:hidden;}
+
+.icons .remove-alt a:before{top:16px; width:15px; height:5px; overflow:hidden;}
+
+.icons .delete-alt a:before{top:16px;width:15px; height:5px; overflow:hidden; transform:rotate(45deg); -webkit-transform:rotate(45deg);}
+.icons .delete-alt a:after{top:16px;width:15px; height:5px; overflow:hidden; transform:rotate(-45deg); -webkit-transform:rotate(-45deg);}
+
+
+.icons .report a:before{left:3px; margin-top:-5px; width:7px; height:7px; overflow:hidden; border-color:#c55500; border-style:solid; border-width:7px 0 0 2px; background:transparent; transform:SkewY(-6deg);}
+/*旗子的杠子是这个的左边框。旗子的上半部分是before的上边框*/
+.icons .report a:after{left:10px; margin-top:-3px; width:6px; height:7px; overflow:hidden; transform:rotate(-7deg); -webkit-transform:rotate(-7deg);
+    -moz-transform:rotate(-7deg);
+    -ms-transform:rotate(-7deg);
+    -o-transform:rotate(-7deg);}
+/*旗子的下半部分*/
+
+
+.icons .trash a:before{left:3px; margin-top:-5px; width:9px; height:11px; border:2px solid #c55500; overflow:hidden; background:transparent; }
+/*画大的长方形*/
+.icons .trash a:after{left:6px; margin-top:-8px; width:3px; height:1px; border:2px solid #c55500; border-radius:2px 2px 0 0; overflow:hidden; background:transparent;}
+/*旗子的下半部分*/
+.icons .trash:after{left:7px; margin-top:-1px; width:1px; height:7px; overflow:hidden; border-left:1px solid #c55500; border-right:3px double #c55500; z-index:11;}
+/*用于画中间的三条线*/
+
+
+.icons .lock a:before{left:3px; margin-top:-2px; width:13px; height:10px; overflow:hidden;}
+/*大锁的方块，中间有竖线*/
+.icons .lock a:after{left:5px; margin-top:-9px; width:5px; height:5px; border:2px solid #c55500; border-bottom:0; border-radius:5px 5px 0 0; overflow:hidden; background:transparent;}
+/*旗子的下半部分*/
+.icons .lock:before{left:8px; margin-top:0px; width:3px; height:3px; border-radius:2px; background:#fff; z-index:11;}
+.icons .lock:after{left:9px; margin-top:2px; width:1px; height:4px; background:#fff; z-index:11;}
+/*用于画中间的三条线*/
+
+
+.icons .unlock a:before{left:3px; margin-top:-2px; width:13px; height:10px; overflow:hidden;}
+/*大锁的方块，中间有竖线*/
+.icons .unlock a:after{left:12px; margin-top:-9px; width:5px; height:5px; border:2px solid #c55500; border-bottom:0; border-radius:5px 5px 0 0; overflow:hidden; background:transparent;}
+/*旗子的下半部分*/
+.icons .unlock:before{left:8px; margin-top:0px; width:3px; height:3px; border-radius:2px; background:#fff; z-index:11;}
+.icons .unlock:after{left:9px; margin-top:2px; width:1px; height:4px; background:#fff; z-index:11;}
+/*用于画中间的三条线*/
+
+.icons .update-status a:before{left:3px; margin-top:-5px; width:10px; height:10px; border:2px solid #c55500; border-radius:3px; overflow:hidden; background:transparent;}
+.icons .update-status a:after{left:8px; margin-top:-1px; border-style:solid; border-color:#c55500; border-width:2px 0 2px 2px; background:#c55500;}
+.icons .update-status:after{left:7px; margin-top:-5px; width:10px; height:3px; border:1px solid #fff; border-left-width:1px; overflow:hidden;-webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg); z-index:11; background:#c55500;}
+
+.icons .retweet:before{ left:3px; margin-top:-3px; width:10px; height:6px; border:3px solid #c55500; background:transparent;}	
+.icons .retweet a:before{ left:-1px; margin-top:-4px; border-width:0 5px 5px; border-color:transparent; border-style:solid; border-right-color:#fff; border-bottom-color:#c55500; background:transparent;}
+/*箭头*/
+.icons .retweet a:after{ left:13px; margin-top:4px; border-width:5px 5px 0; border-color:transparent; border-style:solid; border-left-color:#fff; border-top-color:#c55500; background:transparent;}
+
+.icons .save:before, .icons .save a:before{left:6px; margin-top:-6px; border-style:solid; border-width:10px 0 10px 8px; border-color:transparent #c55500; background:transparent; -webkit-transform:rotate(22.5deg);
+    -moz-transform:rotate(22.5deg);
+    -ms-transform:rotate(22.5deg);
+    -o-transform:rotate(22.5deg);
+    transform:rotate(22.5deg);}	
+.icons .save a:before{-webkit-transform:rotate(157deg);
+    -moz-transform:rotate(157deg);
+    -ms-transform:rotate(157deg);
+    -o-transform:rotate(157deg);
+    transform:rotate(157deg);}
+/*箭头*/
+.icons .save a:after{margin-top:0px; border-width:8px 10px 0 10px; border-style:solid; border-color:transparent; border-top-color:#c55500; background:transparent;}
+
+.icons .edit a:before{left:5px; margin-top:-4px; width:12px; height:5px;-webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg); }
+.icons .edit a:after{margin-top:3px; left:2px; border-width:3px 3px 0 3px; border-style:solid; border-color:transparent; border-top-color:#c55500; background:transparent; -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg); }
+
+.icons .download a:before{margin-top:-4px; width:14px; height:8px; border:3px solid #c55500; border-top:0; background:transparent;}
+.icons .download a:after{ left:5px; margin-top:-4px; border-width:5px 5px 0 5px; border-style:solid; border-color:transparent; border-top-color:#c55500; background:transparent;}
+
+.icons .forward:before{margin-top:-6px; left:2px; width:14px; height:14px; border:1px solid #c55500; overflow:hidden; border-radius:15px; background:#c55500;}
+.icons .forward a:before{left:5px; margin-top:0px; width:5px; height:4px; background:#fff;}
+.icons .forward a:after{left:10px; margin-top:-3px; border-width:5px 0 5px 5px; border-style:solid; border-color:transparent; border-left-color:#fff; background:transparent;}
+
+.icons .back:before{margin-top:-6px; left:2px; width:14px; height:14px; border:1px solid #c55500; overflow:hidden; border-radius:15px; background:#c55500;}
+.icons .back a:before{left:10px; margin-top:0px; width:5px; height:4px; background:#fff;}
+.icons .back a:after{left:5px; margin-top:-3px; border-width:5px 5px 5px 0; border-style:solid; border-color:transparent; border-right-color:#fff; background:transparent;}
+
+.icons .up:before{margin-top:-6px; left:2px; width:14px; height:14px; border:1px solid #c55500; overflow:hidden; border-radius:15px; background:#c55500;}
+.icons .up a:before{left:8px; margin-top:2px; width:4px; height:5px; background:#fff;}
+.icons .up a:after{left:5px; margin-top:-3px; border-width:0 5px 5px 5px; border-style:solid; border-color:transparent; border-bottom-color:#fff; background:transparent;}
+
+.icons .down:before{margin-top:-6px; left:2px; width:14px; height:14px; border:1px solid #c55500; overflow:hidden; border-radius:15px; background:#c55500;}
+.icons .down a:before{left:8px; margin-top:-3px; width:4px; height:5px; background:#fff;}
+.icons .down a:after{left:5px; margin-top:2px; border-width:5px 5px 0 5px; border-style:solid; border-color:transparent; border-top-color:#fff; background:transparent;}
+
+.icons .forward-alt a:before{left:2px; width:8px; height:6px; margin-top:-2px; }
+.icons .forward-alt a:after{left:10px; margin-top:-6px; border-width:7px 0 7px 7px; border-style:solid; border-color:transparent; border-left-color:#c55500; background:transparent;}
+
+.icons .back-alt a:before{left:9px; width:8px; height:6px; margin-top:-2px; }
+.icons .back-alt a:after{left:2px; margin-top:-6px; border-width:7px 7px 7px 0; border-style:solid; border-color:transparent; border-right-color:#c55500; background:transparent;}
+
+
+.icons .up-alt a:before{left:8px; margin-top:1px; width:6px; height:8px; background:#c55500;}
+.icons .up-alt a:after{left:4px; margin-top:-6px; border-width:0 7px 7px 7px; border-style:solid; border-color:transparent; border-bottom-color:#c55500; background:transparent;}
+
+.icons .down-alt a:before{left:8px; margin-top:-5px; width:6px; height:8px; background:#c55500;}
+.icons .down-alt a:after{left:4px; margin-top:3px; border-width:7px 7px 0 7px; border-style:solid; border-color:transparent; border-top-color:#c55500; background:transparent;}
+
+.icons .forward-alt2 a:before{left:4px; margin-top:-2px; width:12px; height:4px; overflow:hidden;}
+.icons .forward-alt2 a:after{left:7px; margin-top:-5px; width:7px; height:7px; border:3px solid #c55500; border-width:0 3px 3px 0; background:transparent; -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg); }
+	
+.icons .back-alt2 a:before{left:5px; margin-top:-2px; width:12px; height:4px; overflow:hidden;}
+.icons .back-alt2 a:after{left:4px; margin-top:-5px; width:7px; height:7px; border:3px solid #c55500; border-width:3px 0 0 3px; background:transparent; -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg); }
+	
+.icons .up-alt2 a:before{left:8px; margin-top:-5px; width:4px; height:12px; overflow:hidden;}
+.icons .up-alt2 a:after{left:5px; margin-top:-6px; width:7px; height:7px; border:3px solid #c55500; border-width:3px 3px 0 0; background:transparent; -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg); }
+
+.icons .down-alt2 a:before{left:8px; margin-top:-5px; width:4px; height:12px; overflow:hidden;}
+.icons .down-alt2 a:after{left:5px; margin-top:-2px; width:7px; height:7px; border:3px solid #c55500; border-width:0 0 3px 3px; background:transparent; -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg); }
+	
+.icons .home a:before{left:5px; margin-top:0px; width:2px; height:4px; overflow:hidden; border:1px solid #c55500; border-width:3px 4px 0 4px; background:transparent;}
+.icons .home a:after{left:3px; margin-top:-7px; border-width:0 7px 7px 7px; border-style:solid; border-color:transparent; border-bottom-color:#c55500; background:transparent;}
+
+.icons .photo a:before{left:2px; margin-top:-4px; width:16px; height:12px; overflow:hidden; }
+.icons .photo a:after{left:6px; margin-top:-6px; width:8px; height:2px; overflow:hidden;}
+.icons .photo:after{ left:6px; margin-top:-2px; width:6px; height:6px; overflow:hidden; border:1px solid #fff; border-radius:6px; background:#fff;}
+
+.icons .video a:before{left:2px; margin-top:-4px; width:12px; height:10px; border:1px solid #c55500; overflow:hidden; border-radius:2px;}
+.icons .video a:after{left:14px; margin-top:-3px; border-width:5px 6px 5px 0; border-style:solid; border-color:transparent; border-right-color:#c55500; background:transparent;}
+
+.icons .music a:before{left:8px; margin-top:-6px; width:6px; height:10px; border:1px solid #c55500; border-width:2px 1px 0 2px; overflow:hidden; border-top-right-radius:10px; background:transparent;}
+.icons .music a:after{left:3px; margin-top:2px; width:5px; height:4px; border:1px solid #c55500; border-radius:5px;}
+
+.icons .call a:before{left:8px; margin-top:-6px; width:4px; height:8px; border:1px solid #c55500; border-width:5px 0 5px 2px; overflow:hidden; -webkit-border-top-left-radius:3px 5px;
+    -webkit-border-bottom-left-radius:3px 5px;
+    -moz-border-radius-topleft:3px 5px;
+    -moz-border-radius-bottomleft:3px 5px;
+    border-top-left-radius:3px 5px;
+    border-bottom-left-radius:3px 5px; background:transparent; -webkit-transform:rotate(-30deg);
+    -moz-transform:rotate(-30deg);
+    -ms-transform:rotate(-30deg);
+    -o-transform:rotate(-30deg);
+    transform:rotate(-30deg);}
+.icons .call a:after{}
+
+
+.icons .call-on a:before{left:8px; margin-top:-6px; width:4px; height:8px; border:1px solid #c55500; border-width:5px 0 5px 2px; overflow:hidden; -webkit-border-top-left-radius:3px 5px;
+    -webkit-border-bottom-left-radius:3px 5px;
+    -moz-border-radius-topleft:3px 5px;
+    -moz-border-radius-bottomleft:3px 5px;
+    border-top-left-radius:3px 5px;
+    border-bottom-left-radius:3px 5px; background:transparent; -webkit-transform:rotate(-30deg);
+    -moz-transform:rotate(-30deg);
+    -ms-transform:rotate(-30deg);
+    -o-transform:rotate(-30deg);
+    transform:rotate(-30deg);}
+.icons .call-on a:after{left:12px; margin-top:-6px;width:7px; height:7px; border-top:3px double #c55500; border-right:3px double #c55500; border-top-right-radius:14px 16px; background:transparent;-webkit-transform:rotate(10deg);
+    -moz-transform:rotate(10deg);
+    -ms-transform:rotate(10deg);
+    -o-transform:rotate(10deg);
+    transform:rotate(10deg);}
+
+.icons .tags a:before{left:6px; margin-top:-6px; width:7px; height:13px; border:1px solid #c55500; border-radius:4px 4px 1px 1px; -webkit-transform:rotate(-30deg);
+    -moz-transform:rotate(-30deg);
+    -ms-transform:rotate(-30deg);
+    -o-transform:rotate(-30deg);
+    transform:rotate(-30deg);}
+.icons .tags a:after{left:7px; margin-top:-3px; width:1px; height:1px; border:1px solid #fff; border-radius:1px; background:#fff;}
+
+
+.icons .rss a:before{left:6px; margin-top:1px; width:3px; height:3px; border:1px solid #c55500; border-radius:4px;}
+.icons .rss a:after{left:7px; margin-top:-6px;width:7px; height:7px; border-top:5px double #c55500; border-right:5px double #c55500; border-top-right-radius:14px 16px; background:transparent;}
+
+.icons .email a:before{left:2px; margin-top:-5px; width:6px; border:6px solid #c55500; border-bottom-color:transparent; overflow:hidden; background:transparent;}
+.icons .email a:after{left:3px; margin-top:0px; border-width:0 8px 8px; border-style:solid; border-color:transparent; border-bottom-color:#c55500; background:transparent;}
+
+.icons .email:after{left:4px; margin-top:-11px; width:12px; height:12px; border:1px solid #fff; border-width:0 0 1px 1px; background:transparent;-webkit-transform:rotate(-39deg) skew(12deg);
+    -moz-transform:rotate(-39deg) skew(12deg);
+    -ms-transform:rotate(-39deg) skew(12deg);
+    -o-transform:rotate(-39deg) skew(12deg);
+    transform:rotate(-39deg) skew(12deg);}
+
+.icons .profile a:before{left:2px; margin-top:2px; width:15px; border-top:5px solid #c55500; border-top-left-radius:12px 15px; border-top-right-radius:12px 15px; background:#c55500;}
+.icons .profile a:after{left:7px; margin-top:-6px; width:4px; height:6px; border:1px solid #c55500; border-radius:3px;}
+
+.icons .file a:before{left:4px; margin-top:-6px;  width:8px; height:12px; border:2px solid #c55500; background:transparent;}
+.icons .file a:after{left:3px; margin-top:-7px; border-width:3px; border-style:solid; border-color:#fff; border-right-color:#c55500; border-bottom-color:#c55500;}
+
+
+.icons .folder a:before{left:2px; margin-top:-5px;  width:14px; height:10px; border:1px solid #c55500; border-radius:0 0 2px 2px;}
+.icons .folder a:after{left:4px; margin-top:-7px; width:4px; height:1px; border:1px solid #c55500; border-radius:2px 2px 0 0;}
+
+.icons .list a:before, .icons .list a:after{margin-top:-6px; left:5px; width:12px; height:2px; border:6px double #c55500; border-width:6px 0; background:transparent;}
+.icons .list a:after{left:2px; width:2px;}
+
+.icons .permalink a:before, .icons .permalink a:after, .icons .permalink:after{margin-top:-5px; left:2px; width:6px; height:3px; border:2px solid #c55500; border-radius:3px; background:transparent; 
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg);}
+.icons .permalink a:after{left:10px; margin-top:3px;}
+.icons .permalink:after{left:5px; width:10px; margin-top:0px; height:2px; border-width:1px; border-color:#fff; background:#c55500;}
+
+.icons .history a:before{left:2px; width:13px; height:13px; border:2px solid #c55500; border-radius:13px; background:transparent;}
+.icons .history a:after{left:9px; margin-top:-5px; width:4px; height:5px; border:2px solid #c55500; border-width:0 0 2px 2px; background:transparent;}
+
+
+.icons .tools a:before{left:2px; margin-top:0px; width:9px; height:2px; border:1px solid #c55500; border-radius:1px; 
+    -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg);}
+.icons .tools a:after{left:10px; margin-top:-8px; width:4px; height:3px; border:2px solid #c55500; border-width:2px 0 2px 4px;border-radius:2px; background:transparent;
+ -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg);}
+	
+.icons .player a:before{left:2px; width:9px; height:6px; border:2px solid #555; border-bottom-width:11px; border-radius:2px; background:transparent;}
+.icons .player a:after{left:5px; margin-top:2px; width:3px; height:3px; border:2px solid #fff; border-radius:4px; background:transparent;}
+
+.icons .headphone a:before{left:2px; width:12px; height:10px; border:2px solid #555; border-bottom:0; border-radius:12px 12px 0 0; background:transparent;}
+.icons .headphone a:after{left:5px; margin-top:0px; width:4px; height:6px; border:3px solid #555; border-width:0 3px; background:transparent;}
+
+.icons .ribbon a:before{left:4px; width:10px; height:16px; background:#f0a1d1;}
+.icons .ribbon a:after{left:4px; margin-top:3px; border-style:solid; border-color:transparent; border-width:0 5px 5px;  border-bottom-color:#fff; background:transparent;}
+
+.icons .views a:before{left:3px; width:12px; height:12px; border:1px solid #555; border-top-left-radius:10px 10px; border-top-right-radius:10px 10px; border-bottom-right-radius:10px 10px; border-radius:12px 0 12px 0; background:#555;
+-webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+.icons .views a:after{left:6px; margin-top:-5px; width:4px; height:4px; border:2px solid #fff; border-radius:4px; background:transparent;}
+
+.icons .location a:before{left:6px; width:2px; height:2px; border:3px solid #555; border-radius:5px; background:transparent;}
+.icons .location a:after{left:6px; margin-top:-3px; border-style:solid; border-color:transparent; border-width:12px 4px 0; border-top-color:#555; background:transparent;}
+
+.icons .info a:before{left:2px; width:14px; height:14px; border:1px solid #2385ba; border-radius:15px; background:#2385ba;}
+.icons .info a:after{left:2px; width:14px; text-align:center; margin-top:-12px; content:"i"; font-style:italic; color:#fff; background:transparent;}
+
+.icons .help a:before{left:2px; width:14px; height:14px; border:1px solid #2385ba; border-radius:15px; background:#2385ba;}
+.icons .help a:after{left:2px; width:14px; text-align:center; margin-top:-12px; content:"?"; color:#fff; background:transparent;}
+
+.icons .pie a:before{left:2px; width:14px; height:14px; border:1px solid #9d2ca3; border-radius:15px; background:#9d2ca3;}
+.icons .pie a:after{left:9px; width:7px; height:7px; border:2px solid #fff; border-width:0 0 2px 2px; background:transparent;}
+
+.icons .success a:before{left:2px; width:14px; height:14px; border:1px solid #05b51a; border-radius:15px; background:#05b51a;}
+.icons .success a:after{left:7px; margin-top:-6px; width:4px; height:8px; border:2px solid #fff; border-width:0 2px 2px 0; background:transparent;
+-webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg);}
+	
+.icons .success-alt a:after{left:7px; margin-top:-6px; width:6px; height:10px; border:4px solid #05b51a; border-width:0 4px 4px 0; background:transparent;
+-webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg);}
+	
+.icons .warning a:before{left:0px; border-color:transparent; border-style:solid; border-width:0 11px 18px 11px; border-bottom-color:#f8d201; background:transparent;}
+.icons .warning a:after{left:0px; width:22px; text-align:center; content:"!"; color:#000; background:transparent;}
+
+.icons .denied a:before{left:3px; width:10px; height:10px; border:3px solid #c00; border-radius:14px; background:transparent;}
+.icons .denied a:after{left:5px; margin-top:-1px; width:11px; height:3px; background:#c00;
+ -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg);}
+	
+.icons .power a:before{left:3px; width:12px; height:12px; border:2px solid #c55500; border-radius:14px; background:transparent;}
+.icons .power a:after{left:9px; margin-top:-10px; width:2px; height:7px; border:1px solid #fff;}
+
+
+.icons .play a:before{left:2px; width:14px; height:14px; border:1px solid #c55500; border-radius:15px;}
+.icons .play a:after{left:8px; margin-top:-4px;border-color:transparent; border-style:solid; border-width:4px 0 4px 4px; border-left-color:#fff; background:transparent;}
+
+.icons .stop a:before{left:2px; width:14px; height:14px; border:1px solid #c55500; border-radius:15px;}
+.icons .stop a:after{left:7px; margin-top:-3px; width:6px; height:6px; background:#fff;}
+
+.icons .pause a:before{left:2px; width:14px; height:14px; border:1px solid #c55500; border-radius:15px;}
+.icons .pause a:after{left:7px; margin-top:-4px; width:2px; height:8px; border:2px solid #fff; border-width:0 2px; background:transparent;}
+
+.icons .play-alt a:before{left:4px; border-width:8px 0 8px 12px; border-style:solid; border-color:transparent; border-left-color:#c55500; background:transparent;}
+
+.icons .stop-alt a:before{left:4px; margin-top:-6px; width:14px; height:14px;}
+
+.icons .pause-alt a:before{left:4px; margin-top:-6px; width:4px; height:14px; border:4px solid #c55500; border-width:0 4px; background:transparent;}
+
+.icons .volume:before{left:5px; margin-top:-2px; width:4px; height:6px; background:#c55500;}
+.icons .volume a:before{left:6px; margin-top:-6px; border-width:7px 7px 7px 0; border-style:solid; border-color:transparent; border-right-color:#c55500; background:transparent;}
+
+.icons .volume-on:before{left:5px; margin-top:-2px; width:4px; height:6px; background:#c55500;}
+.icons .volume-on a:before{left:6px; margin-top:-6px; border-width:7px 7px 7px 0; border-style:solid; border-color:transparent; border-right-color:#c55500; background:transparent;}
+.icons .volume-on a:after{left:3px; margin-top:-8px; width:10px; height:10px; border:4px double transparent; border-right-color:#c55500; border-radius:15px; background:transparent;}
+
+.icons .mute:before{left:5px; margin-top:-2px; width:4px; height:6px; background:#c55500;}
+.icons .mute a:before{left:6px; margin-top:-6px; border-width:7px 7px 7px 0; border-style:solid; border-color:transparent; border-right-color:#c55500; background:transparent;}
+.icons .mute a:after{left:1px; margin-top:-8px; width:16px; height:16px; border:1px solid #c55500; border-radius:18px; background:transparent;}
+.icons .mute:after{left:2px; margin-top:1px; width:16px; height:1px; background:#c55500;
+ -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg);}
+	
+.icons .volume-up:before{left:5px; margin-top:-2px; width:4px; height:6px; background:#c55500;}
+.icons .volume-up a:before{left:6px; margin-top:-6px; border-width:7px 7px 7px 0; border-style:solid; border-color:transparent; border-right-color:#c55500; background:transparent;}
+.icons .volume-up a:after{left:14px; margin-top:0px; width:8px; height:2px;}
+.icons .volume-up:after{left:17px; margin-top:-3px; width:2px; height:8px; background:#c55500;}
+
+.icons .volume-down:before{left:5px; margin-top:-2px; width:4px; height:6px; background:#c55500;}
+.icons .volume-down a:before{left:6px; margin-top:-6px; border-width:7px 7px 7px 0; border-style:solid; border-color:transparent; border-right-color:#c55500; background:transparent;}
+.icons .volume-down a:after{left:14px; margin-top:0px; width:8px; height:2px;}
+
+.icons .mic:before{left:4px; width:9px; margin-top:-3px; height:5px; border:1px solid #c55500; border-width:1px; border-radius:0 0 5px 5px; border-top-color:transparent; background:transparent;}
+.icons .mic a:before{left:6px; margin-top:-10px; width:5px; height:10px; border:1px solid #c55500; border-radius:5px;}
+.icons .mic a:after{left:9px; margin-top:4px; width:1px; height:2px; background:#c55500;}
+.icons .mic:after{left:6px; margin-top:6px; width:7px; height:1px; background:#c55500;}
+
+.icons .fforward a:before, .icons .fforward a:after{left:6px; margin-top:-4px; border-color:transparent; border-style:solid; border-width:5px 0 5px 7px; border-left-color:#c55500; background:transparent;}
+.icons .fforward a:after{left:12px;}
+
+.icons .frewind a:before, .icons .frewind a:after{left:6px; margin-top:-4px; border-color:transparent; border-style:solid; border-width:5px 7px 5px 0; border-right-color:#c55500; background:transparent;}
+.icons .frewind a:after{left:12px;}
+
+.icons .next a:before{left:8px; margin-top:-4px; border-color:transparent; border-style:solid; border-width:5px 0 5px 7px; border-left-color:#c55500; background:transparent;}
+.icons .next a:after{left:15px; margin-top:-4px; width:2px; height:10px; overflow:hidden;}
+
+.icons .prev a:before{left:10px; margin-top:-4px; border-color:transparent; border-style:solid; border-width:5px 7px 5px 0; border-right-color:#c55500; background:transparent;}
+.icons .prev a:after{left:8px; margin-top:-4px; width:2px; height:10px; overflow:hidden;}
+
+.icons .repeat a:before{left:4px; width:9px; height:9px; border:3px solid #c55500; border-top-color:transparent; border-radius:9px; background:transparent;
+ -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg);}
+.icons .repeat a:after{left:11px; margin-top:-11px; border:5px solid transparent; border-left-color:#c55500; background:transparent;}
+
+.icons .expand:before{left:5px; margin-top:-4px; width:7px; height:7px; border:3px solid #c55500; border-width:3px 0 0 3px;}
+.icons .expand a:before{left:14px; margin-top:-8px; border:5px solid transparent; border-width:5px 0 5px 5px; border-left-color:#c55500; background:transparent;}
+.icons .expand a:after{left:2px; margin-top:6px; border:5px solid transparent; border-width:5px 5px 0 5px; border-top-color:#c55500; background:transparent;}
+
+.icons .shrink:before{left:5px; margin-top:-3px; width:7px; height:7px; border:3px solid #c55500; border-width:0 3px 3px 0;}
+.icons .shrink a:before{left:9px; margin-top:-7px; border:5px solid transparent; border-width:0 5px 5px 5px; border-bottom-color:#c55500; background:transparent;}
+.icons .shrink a:after{left:2px; margin-top:1px; border:5px solid transparent; border-width:5px 5px 5px 0; border-right-color:#c55500; background:transparent;}
+
+
+.icons .toggle-size a:before{left:3px; margin-top:-4px;border-width:6px; border-color:#c55500 transparent transparent #c55500; border-style:solid; background:transparent;}
+.icons .toggle-size a:after{left:8px; margin-top:1px;border-width:4px; border-color:transparent #c55500 #c55500 transparent ; border-style:solid; background:transparent;}
+
+.icons .pop a:before, .icons .pop a:after{left:3px; margin-top:-1px; width:12px; height:8px; border:1px solid #c55500; background:#fff;}
+.icons .pop a:after{left:6px; margin-top:-4px;}
+
+.icons .enlarge a:before{width:7px; height:6px; border:1px solid #c55500; border-width:1px 8px 8px 1px; background:transparent;}
+
+.icons .full:before, .icons .full:after{left:3px; margin-top:-8px; width:6px; border:6px solid #c55500; border-width:0 6px 6px; border-bottom-color:transparent;}
+.icons .full:after{margin-top:4px; border-width:6px 6px 0; border-top-color:transparent;}
+/* 画两对箭头上的角 */
+.icons .full a:before, .icons .full a:after{width:8px; height:4px; left:3px; margin-top:-1px; border-width:0 5px; border-style:solid; border-color:#c55500; background:transparent;}
+.icons .full a:before{
+	 -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg);}
+.icons .full a:after{
+	 -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg);}
+	
+.icons .exit:before, .icons .exit:after{margin-top:-5px; left:4px; width:6px; border-width:5px; border-style:solid; border-color:transparent #c55500; background:transparent;}
+.icons .exit a:before, .icons .exit a:after{width:14px; height:4px; left:0; margin-top:-2px; border-width:0 5px; border-style:solid; border-color:#c55500; background:transparent;}
+.icons .exit a:before, .icons .exit:before{
+	 -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg);}
+.icons .exit a:after, .icons .exit:after{
+	 -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg);}
+
+.icons .eject a:before{left:5px; margin-top:-7px; border-width:0 7px 8px; border-style:solid; border-color:transparent; border-bottom-color:#c55500; background:transparent;}
+.icons .eject a:after{left:5px; margin-top:2px; width:14px; height:2px; background:#c55500;}
+
+</style>
+</head>
+
+<body>
+<h1>纯CSS 3 画icon</h1>
+<div class="w icon_draw">
+	<h2>84 GUI Icons created from semantic HTML.</h2>
+    <h3>Learn from <a href="http://nicolasgallagher.com/pure-css-gui-icons/demo/" target="_blank">http://nicolasgallagher.com/pure-css-gui-icons/demo/</a></h3>
+    <section>
+    	<h4>用户交互</h4>
+        <ul class="icons">
+        	<li class="search"><a href="#">Search</a></li>
+            <li class="comment"><a href="#">Comment</a></li>
+            <li class="like"><a href="#">Like</a></li>
+            <li class="add"><a href="#">Add</a></li>
+            <li class="remove"><a href="#">Remove</a></li>
+            <li class="delete"><a href="#">Delete</a></li>
+            <li class="add-alt"><a href="#">Add</a></li>
+            <li class="remove-alt"><a href="#">Remove</a></li>
+            <li class="delete-alt"><a href="#">Delete</a></li>
+            <li class="report"><a href="#">Report</a></li>
+            <li class="trash"><a href="#">Trash</a></li>
+            <li class="lock"><a href="#">Lock</a></li>
+            <li class="unlock"><a href="#">Unlock</a></li>
+            <li class="update-status"><a href="#">Update status</a></li>
+            <li class="retweet"><a href="#">Retweet</a></li>
+            <li class="save"><a href="#">Save</a></li>
+            <li class="edit"><a href="#">Edit</a></li>
+            <li class="download"><a href="#">Download</a></li>
+            <li class="forward"><a href="#">Forward</a></li>
+            <li class="back"><a href="#">Back</a></li>
+            <li class="up"><a href="#">Up</a></li>
+            <li class="down"><a href="#">Down</a></li>
+            <li class="forward-alt"><a href="#">Forward</a></li>
+            <li class="back-alt"><a href="#">Back</a></li>
+            <li class="up-alt"><a href="#">Up</a></li>
+            <li class="down-alt"><a href="#">Down</a></li>
+            <li class="forward-alt2"><a href="#">Forward</a></li>
+            <li class="back-alt2"><a href="#">Back</a></li>
+            <li class="up-alt2"><a href="#">Up</a></li>
+            <li class="down-alt2"><a href="#">Down</a></li>
+
+        </ul>
+    </section>
+    <section>
+    	<h4>各种各样</h4>
+        <ul class="icons">
+        	<li class="home"><a href="#">Home</a></li>
+            <li class="photo"><a href="#">Photo</a></li>
+            <li class="video"><a href="#">Video</a></li>
+            <li class="music"><a href="#">Music</a></li>
+            <li class="call"><a href="#">Call</a></li>
+            <li class="call-on"><a href="#">Call in progress</a></li>
+            <li class="tags"><a href="#">Tags</a></li>
+            <li class="rss"><a href="#">RSS</a></li>
+            <li class="email"><a href="#">Email</a></li>
+            <li class="profile"><a href="#">Profile</a></li>
+            <li class="file"><a href="#">File</a></li>
+            <li class="folder"><a href="#">Folder</a></li>
+            <li class="list"><a href="#">List view</a></li>
+            <li class="permalink"><a href="#">Permalink</a></li>
+            <li class="history"><a href="#">History</a></li>
+            <li class="tools"><a href="#">Tools</a></li>
+            <li class="player"><a href="#">Player</a></li>
+            <li class="headphone"><a href="#">Headphone</a></li>
+            <li class="ribbon"><a href="#">Ribbon</a></li>
+            <li class="views"><a href="#">Views</a></li>
+            <li class="location"><a href="#">Location</a></li>
+            <li class="info"><a href="#">Info</a></li>
+            <li class="help"><a href="#">Help</a></li>
+            <li class="pie"><a href="#">Pie Chart</a></li>
+            <li class="success"><a href="#">Success</a></li>
+            <li class="success-alt"><a href="#">Success(alt)</a></li>
+            <li class="warning"><a href="#">Warning</a></li>
+            <li class="denied"><a href="#">Denied</a></li>
+        </ul>
+    </section>
+    <section>
+    	<h4>多媒体控制</h4>
+        <ul class="icons">
+        	<li class="power"><a href="#">Power</a></li>
+            <li class="play"><a href="#">Play</a></li>
+            <li class="stop"><a href="#">Stop</a></li>
+            <li class="pause"><a href="#">Pause</a></li>
+            <li class="play-alt"><a href="#">Play</a></li>
+            <li class="stop-alt"><a href="#">Stop</a></li>
+            <li class="pause-alt"><a href="#">Pause</a></li>
+            <li class="volume"><a href="#">Volume</a></li>
+            <li class="volume-on"><a href="#">Volume on</a></li>
+            <li class="mute"><a href="#">Mute</a></li>
+            <li class="volume-up"><a href="#">Volume up</a></li>
+            <li class="volume-down"><a href="#">Volume down</a></li>
+            <li class="mic"><a href="#">Mic</a></li>
+            <li class="fforward"><a href="#">Fast forward</a></li>
+            <li class="frewind"><a href="#">Fast rewind</a></li>
+            <li class="next"><a href="#">Next track</a></li>
+            <li class="prev"><a href="#">Previous track</a></li>
+            <li class="repeat"><a href="#">Repeat</a></li>
+            <li class="expand"><a href="#">Expand</a></li>
+            <li class="shrink"><a href="#">Shrink</a></li>
+            <li class="toggle-size"><a href="#">Toggle video size</a></li>
+            <li class="pop"><a href="#">Pop out</a></li>
+            <li class="enlarge"><a href="#">Enlarge</a></li>
+            <li class="full"><a href="#">Full-screen</a></li>
+            <li class="exit"><a href="#">Exit full-screen</a></li>
+            <li class="eject"><a href="#">Eject</a></li>
+        </ul>
+    </section>
+</div>
+
+
+
+</body>
+</html>

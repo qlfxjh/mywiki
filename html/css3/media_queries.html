@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS3 Media Queries</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<style>
+
+.inform{border:1px solid #ccc; border-width:1px 0; margin-top:20px; padding:10px; line-height:18px; background:#f5f5f5;}
+.inform p{ margin-bottom:10px;}
+.inform s{ color:#999; text-decoration:none;}
+.inform .col_01{ float:left; width:480px; margin-right:10px;}
+.inform .col_02{ float:left; width:488px;}
+.inform table{ margin:10px auto;}
+.inform table thead th{ text-align:center; font-weight:bold; background:#ddd;}
+.inform table td,.inform table th{ padding:5px; line-height:18px; border:1px solid #bbb; font-size:13px;}
+
+
+.example{width:960px; margin:0 auto; padding:20px; border:1px solid #ccc; border-radius:10px; overflow:hidden; margin-bottom:10px; -webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;	/*Chrome, Safari*/
+-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;	/*Firefox*/
+box-shadow: rgba(0,0,0,0.3) 0 1px 3px;	/*IE9,Opera*/}
+
+</style>
+</head>
+
+<body>
+
+
+
+	<div class="w">
+    	<h1>CSS3 Media Queries</h1>
+        <h2></h2>
+        <div class="inform clearfix">
+        	<h3>媒体类型</h3>
+        	<p>Media Type媒体类型一般有all, screen, print等</p>
+            <p><strong>页面中引用媒体类型的方式</strong></p>
+            <p>1. link方式引入</p>
+        	<pre>&lt;link rel="stylesheet" <span class="red">media="screen and (max-width: 600px)"</span> href="small.css" /&gt;</pre>
+            <p>2. xml方式引入</p>
+        	<pre>&lt?xml-stylesheet rel="stylesheet" <span class="red">media="screen"</span> href="css/style.css" ?&gt;</pre>
+            <p>3. @import方式引入</p>
+        	<pre>@import url("css/reset.css") <span class="red">screen</span>;
+@import url("css/print.css") <span class="red">print</span>;</pre>
+			<p>3. @media方式引入</p>
+<pre class="f_pink">@<span class="red">media</span> screen and (max-width:600px){
+	...这里是样式语句...
+    .page_left{display:none;}
+}
+</pre>
+			<h3>媒体特性</h3>
+            <table border="1" cellpadding="0" cellpadding="3">
+            	<thead>
+                	<tr>
+                    	<th>属性</th>
+                        <th>值</th>
+                        <th>Min/Max</th>
+                        <th>描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr>
+                    	<td>color</td>
+                        <td>int</td>
+                        <td>yes</td>
+                        <td>每种色彩的字节数</td>
+                    </tr>
+                    <tr>
+                    	<td>color-index</td>
+                        <td>int</td>
+                        <td>yes</td>
+                        <td>色彩表中的色彩数</td>
+                    </tr>
+                    <tr>
+                    	<td>device-aspect-ratio</td>
+                        <td>int/int</td>
+                        <td>yes</td>
+                        <td>宽高比例</td>
+                    </tr>
+                    <tr>
+                    	<td>device-height</td>
+                        <td>length</td>
+                        <td>yes</td>
+                        <td>设备屏幕的输出高度</td>
+                    </tr>
+                    <tr>
+                    	<td>device-width</td>
+                        <td>length</td>
+                        <td>yes</td>
+                        <td>设备屏幕输出的宽度</td>
+                    </tr>
+                    <tr>
+                    	<td>grid</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td>是否是基于格栅的设备</td>
+                    </tr>
+                    <tr>
+                    	<td>height</td>
+                        <td>length</td>
+                        <td>yes</td>
+                        <td>渲染界面的高度</td>
+                    </tr>
+                    <tr>
+                    	<td>width</td>
+                        <td>length</td>
+                        <td>yes</td>
+                        <td>渲染界面的宽度</td>
+                    </tr>
+                    <tr>
+                    	<td>monochrome</td>
+                        <td>int</td>
+                        <td>yes</td>
+                        <td>单色帧缓冲器中每像素字节</td>
+                    </tr>
+                    <tr>
+                    	<td>resolution</td>
+                        <td>分辨率("dpi/dpcm")</td>
+                        <td>yes</td>
+                        <td>分辨率</td>
+                    </tr>
+                    <tr>
+                    	<td>scan</td>
+                        <td>Progressive interlaced</td>
+                        <td>no</td>
+                        <td>tv媒体类型的扫描方式</td>
+                    </tr>
+                    <tr>
+                    	<td>orientation</td>
+                        <td>Protrait/landscape</td>
+                        <td>no</td>
+                        <td>横屏或竖屏</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>用法</h3>
+			<p>1.最大宽度Max Width</p>
+            <pre>&lt;link rel="stylesheet" media="screen and (max-width:600px)" href="small.css" type="text/css" /&gt;</pre>
+            <p>2.最小宽度Min Width</p>
+            <pre>&lt;link rel="stylesheet" media="screen and (min-width:600px)" href="big.css" type="text/css" /&gt;</pre>
+            <p>3.多个media queries使用</p>
+            <pre>&lt;link rel="stylesheet" media="screen and (min-width:600px) and (max-width:900px)" href="big.css" type="text/css" /&gt;</pre>
+            <p>4.设置屏幕的输出宽度Device Width</p>
+            <pre>&lt;link rel="stylesheet" media="screen and (max-device-width: 480px)" href="iphone.css" type="text/css" /&gt;</pre>
+            <p>5.针对iphone 4</p>
+            <pre>&lt;link rel="stylesheet" media="only screen and (-webkit-min-device-pixel-ratio: 2)" type="text/css" href="iphone4.css" /&gt;</pre>
+            <p>6.针对iPad</p>
+            <pre>&lt;link rel="stylesheet" media="all and (orientation:portrait)" href="portrait.css" type="text/css" /&gt; 
+&lt;link rel="stylesheet" media="all and (orientation:landscape)" href="landscape.css"  type="text/css" /&gt;</pre>
+			<p>7.only关键字</p>
+            <pre>&lt;link rel="stylesheet" media="not print and (max-width: 1200px)" href="print.css" type="text/css" /&gt;</pre>
+            <p>8.not关键字</p>
+            <pre>&lt;link rel="stylesheet" media="only screen and (max-width: 1200px)" href="print.css" type="text/css" /&gt;</pre>
+            <p>9.逗号分格表示并列或者表示或,如下</p>
+            <pre>&lt;link rel="stylesheet" type="text/css" href="style.css" media="handheld and (max-width:480px), screen and (min-width:960px)" /&gt;</pre>
+        </div>
+    </div>
+    
+	
+
+</div>
+
+<script>
+
+
+
+</script>
+
+</body>
+</html>

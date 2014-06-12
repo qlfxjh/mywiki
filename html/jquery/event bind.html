@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>事件绑定的方法与区别</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="js/jquery_fullscreen.js"></script>
+<style>
+
+
+</style>
+
+</head>
+
+<body>
+<h1>事件绑定的方法与区别</h1>
+
+<div class="inform">
+	<table>
+    	<thead>
+        	<tr>
+            	<th>方法</th>
+                <th>说明</th>
+                <th>优点</th>
+                <th>缺点</th>
+                <th width="100">支持版本</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<tr>
+            	<th>Bind()<br />(.click(), .hover()等是bind的简化写法)</th>
+                <td>最直接的绑定方法。事件直接绑定在对应的元素上。</td>
+                <td>这个方法提供了一种在各种浏览器之间对事件处理的兼容性解决方案；<br />非常方便简单的绑定事件到元素上；<br />对于利用ID选出来的元素是非常好的，不仅仅是很快的可以hook上去(因为一个页面只有一个id),而且当事件发生时，handler可以立即被执行(相对于后面的live, delegate)实现方式；</td>
+                <td>它会绑定事件到所有的选出来的元素上；<br />它不会绑定到在它执行完后动态添加的那些元素上；<br />当元素很多时，会出现效率问题；当页面加载完的时候，你才可以进行bind()，所以可能产生效率问题； </td>
+                <td>所有jquery版本</td>
+            </tr>
+            <tr>
+            	<th>live()</th>
+                <td>live()方法会绑定相应的事件到你所选择的元素的根元素document上。那么所有通过冒泡上来的事件都可以用这个相同的handler来处理了。它的处理机制是这样的，一旦事件冒泡到document上，jQuery将会查找selector/event metadata,然后决定那个handler应该被调用。</td>
+                <td>这里仅有一次的事件绑定，绑定到document上而不像.bind()那样给所有的元素挨个绑定；那些动态添加的elemtns依然可以触发那些早先绑定的事件，因为事件真正的绑定是在document上；<br />你可以在document ready之前就可以绑定那些需要的事件；</td>
+                <td>从1.7开始已经不被推荐了，所以你也要开始逐步淘汰它了；<br />Chaining没有被正确的支持；当使用event.stopPropagation()是没用的，因为都要到达document；<br />因为所有的selector/event都被绑定到document, 所以当我们使用matchSelector方法来选出那个事件被调用时，会非常慢；<br />当发生事件的元素在你的DOM树中很深的时候，会有performance问题；</td>
+                <td>1.4版本加入<br />1.7版本开始不赞成使用此方法</td>
+            </tr>
+            <tr>
+            	<th>delegate()</th>
+                <td>.delegate()有点像.live(),不同于.live()的地方在于，它不会把所有的event全部绑定到document,而是由你决定把它放在哪儿。而和.live()相同的地方在于都是用event delegation.<br />
+                格式:$( elements ).delegate( selector, events, data, handler );
+                	<pre style="padding:3px;">$( "#members" ).delegate( "li a", "click", function( e ) {} );</pre>
+                </td>
+                <td>你可以选择你把这个事件放到那个元素上了；<br />chaining被正确的支持了；<br />jQuery仍然需要迭代查找所有的selector/event data来决定那个子元素来匹配，但是因为你可以决定放在那个根元素上，所以可以有效的减小你所要查找的元素；<br />可以用在动态添加的元素上；</td>
+                <td>需要查找那个那个元素上发生了那个事件了，尽管比document少很多了，不过，你还是得浪费时间来查找；</td>
+                <td>1.7后被.on()替代</td>
+            </tr>
+            <tr>
+            	<th>on()</th>
+                <td>其实.bind(), .live(), .delegate()都是通过.on()来实现的，.unbind(), .die(), .undelegate(),也是一样的都是通过.off()来实现的</td>
+                <td>提供了一种统一绑定事件的方法；<br />仍然提供了.delegate()的优点，当然如果需要你也可以直接用.bind()；</td>
+                <td>也许会对你产生一些困扰，因为它隐藏了一前面我们所介绍的三种方法的细节；</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>结论</h3>
+    <ul>
+    	<li>用.bind()的代价是非常大的，它会把相同的一个事件处理程序hook到所有匹配的DOM元素上；</li>
+        <li>不要再用.live()了，它已经不再被推荐了，而且还有许多问题；</li>
+        <li>.delegate()会提供很好的方法来提高效率，同时我们可以添加一事件处理方法到动态添加的元素上；</li>
+        <li class="f_darkred">我们可以用.on()来代替上述的3种方法；</li>
+    </ul>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS 3 摘要</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<style>
+
+</style>
+<h1>Counter的使用</h1>
+<div class="inform">
+	<h2>介绍</h2>
+    <p class="pt_30">本质上CSS计数器是由CSS维护的变量，这些变量可能根据CSS规则增加以跟踪使用次数。这允许你根据文档位置来调整内容表现。 CSS计数器是CSS2.1中自动计数编号部分的实现。</p>
+    <p>计数器的值通过使用counter-reset 和 counter-increment 操作，在 content 上应用 counter() 或 counters()函数来显示在页面上。</p>
+    <p>counter-reset用来重置计数器, counter-increment:li; 表示需要计数的元素</p>
+</div>
+
+<div class="example">
+	<h2>计数器基本用法</h2>
+<style>
+.list_example_01{padding-left:3em; counter-reset:li;}
+.list_example_01 li{ position:relative;}
+.list_example_01 li:before{ position:absolute; left:-3em; top:0; width:3em; height:20px; content:"第" counter(li) ":"; counter-increment:li;}
+</style>
+	<ol class="list_example_01">
+    	<li>这里是列表的标题一</li>
+        <li>这里是列表的标题二</li>
+        <li>这里是列表的标题三</li>
+        <li>这里是列表的标题四</li>
+        <li>这里是列表的标题五</li>
+    </ol>
+</div>
+
+<div class="example">
+	<h2>计数器嵌套</h2>
+    
+    
+<style>
+.list_example_02, .list_example_02 ol{ counter-reset:li;}
+.list_example_02 li{ position:relative; padding-left:2em;}
+.list_example_02 li:before{ padding-right:5px; counter-increment:li; content:counters(li, ".") " ";}
+</style>
+    
+    <ol class="list_example_02">
+    	<li>item level 1</li>
+        <li>item level 1
+        	<ol>
+	        	<li>item level 2
+                	<ol>
+                    	<li>item level 3</li>
+                        <li>item level 3</li>
+                        <li>item level 3</li>
+                        <li>item level 3</li>
+                    </ol>
+                </li>
+                <li>item level 2</li>
+                <li>item level 2</li>
+            </ol>
+        </li>
+        <li>item level 1
+        	<ol>
+	        	<li>item level 2
+                	<ol>
+                    	<li>item level 3</li>
+                        <li>item level 3</li>
+                        <li>item level 3</li>
+                        <li>item level 3</li>
+                    </ol>
+                </li>
+                <li>item level 2</li>
+                <li>item level 2</li>
+            </ol>
+        </li>
+        <li>item level 1
+        	<ol>
+                <li>item level 2</li>
+                <li>item level 2</li>
+                <li>item level 2</li>
+            </ol>
+        </li>
+        <li>item level 1</li>
+        <li>item level 1</li>
+    </ol>
+</div>
+
+
+
+
+
+</body>
+</html>

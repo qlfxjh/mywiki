@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS3 background类属性</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1>CSS3 background类属性</h1>
+<style>
+	.inform .table_01 tbody th{ text-align:center; background:#eee;}
+	.inform .table_01 tbody th, .inform .table_01 tbody td{ height:40px;}
+	.inform .table_01 tbody .even th{ text-align:center; background:#c7cee2;}
+	
+</style>
+
+<div class="inform">
+	<h2>background属性的定义</h2>
+	<table width="100%" cellpadding="0" cellspacing="0" border="0" class="table_01">
+        <thead>
+            <tr>
+                <th>属性名</th>
+                <th>值</th>
+                <th>备注</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th width="165">background</th>
+                <td width="500">url() repeat left top</td>
+                <td>总设置背景</td>
+            </tr>
+            <tr class="even">
+                <th>background-image</th>
+                <td>url(../images/bg.png)</td>
+                <td>设置背景图片,可以设置多个背景图片background-image:url(),url(),url();</td>
+            </tr>
+            <tr>
+                <th>background-repeat</th>
+                <td>no-repeat | repeat | repeat-x | repeat-y</td>
+                <td>设置背景图片的重复类型,与background-image一样。有几个背景图片就要设置几个repeat类型</td>
+            </tr>
+            <tr class="even">
+                <th>background-color</th>
+                <td>#bbbbb | rgba(0,0,0,0.6) | transparent | none</td>
+                <td>设置背景颜色</td>
+            </tr>
+            <tr>
+                <th>background-position</th>
+                <td>left top | 2px -50px</td>
+                <td>设置背景平铺的开始方位</td>
+            </tr>
+            <tr class="even">
+                <th>background-attach</th>
+                <td>scroll(默认) | fixed</td>
+                <td>设置背景图像是否固定或者随着页面的其余部分滚动</td>
+            </tr>
+            <tr >
+                <th>background-size</th>
+                <td>60px 80px(设置背景图像的高度和宽度。)<br>50% 60%(以父元素的百分比来设置背景图像的宽度和高度。) <br>cover (把背景图像扩展至足够大，以使背景图像完全覆盖背景区域)<br>contain (把图像图像扩展至最大尺寸，以使其宽度和高度完全适应内容区域。)</td>
+                <td>背景图片的铺展方式</td>
+            </tr>
+            
+            <tr class="even">
+                <th>background-origin</th>
+                <td>content-box | padding-box | border-box</td>
+                <td>规定背景图片的定位区域。</td>
+            </tr>
+            <tr>
+                <th>background-clip</th>
+                <td>content-box | padding-box | border-box</td>
+                <td>规定背景的绘制区域。</td>
+            </tr>
+        </tbody>
+        
+    </table>
+	背景渐变色
+    <pre>
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.8)), to(rgba(200,200,200,0.9)));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,200,200,0.9));
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,200,200,0.9));
+    background: -ms-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,200,200,0.9));
+    background: -o-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,200,200,0.9));
+	</pre>
+
+</div>
+
+
+
+
+<style>
+
+.box{width:200px; height:200px; margin:10px auto;
+background-image:url(images/bg_tl.png),url(images/bg_tr.png),url(images/bg_bl.png),url(images/bg_br.png);
+background-repeat:no-repeat,no-repeat,no-repeat,no-repeat;
+background-position:left 0,right 0,left bottom, right bottom;
+}
+.box02{width:200px; height:200px; margin:0 auto; border:1px solid #ccc;
+background-image:url(images/box_bg.png),url(images/box_bg.png),url(images/box_bg.png),url(images/box_bg.png);
+background-repeat:no-repeat,no-repeat,no-repeat,no-repeat;
+background-size:20px,20px,20px,20px;
+background-position:left 0,right 0,left bottom, right bottom;
+}
+</style>
+<div class="example">
+	<h2>实例</h2>
+	<div class="box">
+    	实例1:四张图片放在四个角
+	</div>
+    <div class="box02">
+    	实例1:一张图片放在四个角
+	</div>
+    
+</div>
+
+<script>
+
+
+
+</script>
+
+</body>
+</html>

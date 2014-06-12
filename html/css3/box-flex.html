@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>boxFlex</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1>target伪类</h1>
+<style>
+.con_menu a{ display:inline-block; padding:2px 8px; background:#ccc;}
+.example .content{ display:none;}
+.example:target{ background:#300}
+.example:target h2{ color:#f99;}
+.example:target .content{ display:block; color:#fff;} 
+</style>
+
+<div class="inform">
+	<h2 class="mb_15">说明</h2>
+    <p class="ti2">弹性盒子是css3的新特性，支持的浏览器有：IE10+, Firefox 2+, Chrome 4+, Safari 3.1+。</p>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <thead>
+            <tr>
+                <th>属性</th>
+                <th>描述</th>
+                <th>备选参数/备注</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>display:box;</td>
+                <td>把父元素设为盒子元素</td>
+                <td>不同浏览器需要加前缀：display:-webkit-box; display:-moz-box; display:-o-box; display:-ms-box; display:box;</td>
+            </tr>
+            <tr>
+                <td>box-flex</td>
+                <td>宽高分配比例，为1的整数才起效，</td>
+                <td>如果横向排列时并列的块里有设了宽的话，那么宽的分配比例就失效，其它块按比例分配剩下的空间。竖向排列时高也类同</td>
+            </tr>
+            <tr>
+                <td>box-orient</td>
+                <td>确定子元素的方向。是横着排还是竖着走</td>
+                <td>horizontal | vertical | inline-axis | block-axis | inherit</td>
+            </tr>
+            <tr>
+                <td>box-direction</td>
+                <td>确定子元素的排列顺序</td>
+                <td>normal | reverse | inherit</td>
+            </tr>
+            <tr>
+                <td>box-align</td>
+                <td>垂直方向对齐。box-align与box-pack都是决定盒子内部剩余空间怎么使用的。在行为效果上就是表现为"对齐"</td>
+                <td>start | end | center | baseline | stretch</td>
+            </tr>
+            <tr>
+                <td>box-pack</td>
+                <td>横向对齐方式</td>
+                <td>start | end | center | justify</td>
+            </tr>
+            <tr>
+                <td>box-lines</td>
+                <td>决定子元素是可以换行显示呢</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>box-flex-group</td>
+                <td>作用不详</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>box-ordinal-group</td>
+                <td>分组排序，序号小的排在前面</td>
+                <td><a href="#example4">实例</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        
+    </table>
+    
+</div>
+<style>
+	.father{ position:relative; width:600px; margin:10px auto; border:1px solid #ccc; background:#ccc; display:-webkit-box; display:-moz-box; display:box; text-align:center; line-height:32px;}
+	.father .son1{-webkit-box-flex:2; -moz-box-flex:2; box-flex:2; margin-right:10px; height:200px; background:#00C;}
+	.father .son2{-webkit-box-flex:1; -moz-box-flex:1; box-flex:1; margin-right:10px; background:#9C0;}
+	.father .son3{-webkit-box-flex:1; -moz-box-flex:1; box-flex:1; background:#3CF;}
+	
+
+</style>
+<div class="example">
+	<h2>横向排列</h2>
+	<div class="father">
+    	<div class="son1">儿子块1</div>
+        <div class="son2">儿子块2</div>
+        <div class="son3">儿子块3</div>
+    </div>
+</div>
+
+<style>
+	.father2{ position:relative; width:600px; height:200px; margin:10px auto; border:1px solid #ccc; background:#ccc; display:-webkit-box; display:-moz-box; display:box; -webkit-box-orient:vertical; text-align:center; line-height:32px;}
+	.father2 .son1{-webkit-box-flex:2; -moz-box-flex:2; box-flex:2; background:#00C;}
+	.father2 .son2{-webkit-box-flex:1; -moz-box-flex:1; box-flex:1; background:#9C0;}
+	.father2 .son3{-webkit-box-flex:1; -moz-box-flex:1; box-flex:1; background:#3CF;}
+	
+
+</style>
+<div class="example">
+	<h2>竖向排列</h2>
+	<div class="father2">
+    	<div class="son1">儿子块1</div>
+        <div class="son2">儿子块2</div>
+        <div class="son3">儿子块3</div>
+    </div>
+</div>
+
+
+<style>
+	.pic_wrap{ position:relative; width:600px; height:600px; margin:10px auto; border:1px solid #ccc; background:#ccc; display:-webkit-box; display:-moz-box; display:box; text-align:center; -webkit-box-align:center; -webkit-box-pack:center; line-height:32px;}
+	.pic_wrap
+
+</style>
+<div class="example">
+	<h2>竖向排列</h2>
+	<div class="pic_wrap">
+    	<img src="images/box_bg.png" />
+    </div>
+</div>
+
+<style>
+	.father3{ position:relative; width:600px; height:200px; margin:10px auto; border:1px solid #ccc; background:#ccc; display:-webkit-box; display:-moz-box; display:box; text-align:center; line-height:32px;}
+	.father3 .son1{-webkit-box-flex:2; -moz-box-flex:2; box-flex:2; background:#00C; -webkit-box-ordinal-group:2;}
+	.father3 .son2{-webkit-box-flex:1; -moz-box-flex:1; box-flex:1; background:#9C0; -webkit-box-ordinal-group:1;}
+	.father3 .son3{-webkit-box-flex:1; -moz-box-flex:1; box-flex:1; background:#3CF; -webkit-box-ordinal-group:1;}
+
+</style>
+<div class="example" id="example4">
+	<h2>分组排序</h2>
+	<div class="father3">
+    	<div class="son1">儿子块1,<br>-webkit-box-ordinal-group:2;</div>
+        <div class="son2">儿子块2,<br>-webkit-box-ordinal-group:1;</div>
+        <div class="son3">儿子块3,<br>-webkit-box-ordinal-group:1;</div>
+    </div>
+</div>
+
+</body>
+</html>

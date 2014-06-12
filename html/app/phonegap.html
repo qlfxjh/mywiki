@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>PhoneGap 开发摘要</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1 class="pt_20">PhoneGap 开发摘要</h1>
+<div class="page_info">最后更新时间：2013.09.03</div>
+<div class="inform">
+	<h2>新建一个项目</h2>
+    <ol>
+    	<li>打开cmd</li>
+        <li>通过"D:"  -> "cd phonegap", ...打到phonegap->lib->android->bin目录</li>
+        <li>Type in ./create <project_folder_path> <package_name> <project_name> then press "Enter" (命令中的斜杠换成反斜杠)</li>
+        <li>打开Android Develop Tool</li>
+        <li>New -> Project -> Android Project from Existing Code 然后打到刚才新键项目的目录。</li>
+        <li>打开项目的包视图里的src里的文件改名，改成com.xxxxx.</li>
+        <li>在项目目录下新建libs文件夹。里面放入cordova-2.7.0.jar</li>
+        <li>改掉AndroidManifest.xml里的错误。一般是未定义变量引用，如appName,换成现有的名字就行; 并改变package的名字，加上新改的前缀如"com.xxxxxx"。</li>
+        <li>打开项目的.java文件，super.loadUrl()语句，改成super.loadUrl("file:///android_asset/www/index.html");</li>
+    </ol>
+	<p>样式中的透明设置：filter:alpha(opacity=50);opacity:0.5;</p>
+    <p>样式中的透明设置：filter:alpha(opacity=50);opacity:0.5;</p>
+    	
+    <h2>替换icon</h2>
+    <ol>
+    	<li>替掉项目包中的res中的所有文件夹内的图标。</li>
+        <li>删除bin/res/下面的文件。这样编译时才会重新生成替换掉旧的icon.</li>
+    </ol>
+    
+    <h2 class="pt_20">splash Screen设置</h2>
+    <ol>
+    	<li>放一张叫splash.png的图片到res/drawable/下</li>
+        <li>super.setIntegerProperty("splashscreen", R.drawable.splash);<br /> super.loadUrl(Config.getStartUrl(), 5000);</li>
+        <li>在合适的地方，放navigator.splashscreen.hide() 方法，来关闭splash screen.</li>
+    </ol>
+    
+    <h2>后期优化</h2>
+    <ol>
+    	<li>替换图标</li>
+        <li>横屏显示优化(或屏蔽横屏)</li>
+        <li>不同分辨率优化</li>
+        <li>去除没用到的软件权限</li>
+        <li>优化软件运行速度</li>
+        <li>样式里加去除文字选中的样式</li>
+        <li>不同语言优化</li>
+    </ol>
+    
+    <h2>屏蔽程序横屏(竖屏)显示</h2>
+    <p>在.xml文件里设置</p>
+    <pre>&lt;activity android:name="DailyJudge" android:label="DailyJudge"
+    android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+    android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+    <span class="f_pink">android:screenOrientation="portrait"&gt;</span>
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.intent.action.MAIN" /&gt;
+        &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+	</pre>
+    <p>如果是要<strong class="f_green">保持横屏</strong>的话，那么是<span class="f_pink">android:screenOrientation="landscape"</span></p>
+    
+    <h2 class="mb_20">App全屏显示</h2>
+    <pre>
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    
+    <span class="f_pink">getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);</span>
+    <span class="f_pink">getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,</span>
+    <span class="f_pink">WindowManager.LayoutParams.FLAG_FULLSCREEN);</span>
+
+    super.loadUrl("file:///android_asset/www/index.html");
+}
+
+    </pre>
+</div>
+    
+</body>
+</html>

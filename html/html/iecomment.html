@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>IE条件注释</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+
+</head>
+
+<body>
+<style>
+.audio_wrap{ position:relative; width:800px; margin:20px auto;}
+div#button_div{width:800px;}
+.progress_wrap{width:800px;}
+progress#play_percent{width:800px;}
+div#progress{ display:block; width:800px; height:20px; left:0px; background:#ccc;}
+div#progress_value{width:0%; height:20px; background:#green; cursor:default;}
+#show_time{z-index:2; position:absolute; right:0; top:20px;}
+
+</style>
+<h1>IE条件注释</h1>
+<div class="inform">
+	<h2 class="mb_15">说明</h2>
+    <h3 class="f_darkred">(IE10版本不再支持)</h3>
+    <h3>条件注释的语法</h3>
+    <table class="dataintable"> 
+  <tbody><tr>
+    <th style="width:30%;">Comment 类型</th>
+    <th>语法或可能的值</th>
+  </tr>
+  <tr>
+    <td>standard HTML comment</td>
+    <td>&lt;!-- Comment content  --&gt;</td>
+  </tr>
+  <tr>
+    <td>downlevel-hidden</td>
+    <td>&lt;!--[if expression]&gt; HTML &lt;![endif]--&gt;</td>
+  </tr>
+  <tr>
+    <td>downlevel-revealed</td>
+    <td>&lt;![if expression]&gt; HTML &lt;![endif]&gt;</td>
+  </tr>
+  
+  
+</tbody></table>
+<h3>条件表达式可以是组合的形式由以下元素构成：特殊字符，操作符，and/or value。下面表格显示了支持的字符。</h3>
+<table class="dataintable"> 
+  <tbody><tr>
+    <th style="width:20%;">Item</th>
+    <th style="width:20%;">Example</th>
+    <th>Comment</th>
+  </tr>
+  <tr>
+    <td>IE </td>
+    <td>[if IE] </td>
+    <td>用所有版本的IE浏览器查看都符合 </td>
+  </tr>
+  <tr>
+    <td>value </td>
+    <td>[if IE 7] </td>
+    <td>IE后面跟一个数字，表示只符合这个版本号的IE。 </td>
+  </tr>
+  <tr>
+    <td>WindowsEdition </td>
+    <td>[if WindowsEdition] </td>
+    <td>Windows Internet Explorer 8 on Windows 7。 字符串"WindowsEdition"是一个特殊字符用来表示用这个版本的window系统来查看网页时符合。</td>
+  </tr>
+  <tr>
+    <td>value </td>
+    <td>[if WindowsEdition 1] </td>
+    <td>WindowEdition后面跟一个数字，表示用这个版本的Window浏览网页时，符合条件 </td>
+  </tr>
+  <tr>
+    <td>true </td>
+    <td>[if true] </td>
+    <td>永远是真 </td>
+  </tr>
+  <tr>
+    <td>false </td>
+    <td>[if false] </td>
+    <td>永远是假 </td>
+  </tr>
+  
+  
+</tbody></table>
+
+<h3>下面列出来了可以使用的操作符</h3>
+<table class="dataintable"> 
+  <tbody><tr>
+    <th style="width:20%;">Item</th>
+    <th style="width:20%;">Example</th>
+    <th>Comment</th>
+  </tr>
+  <tr>
+    <td>!</td>
+    <td>[if !IE]</td>
+    <td>否操作符，表示符合相反的情况。此表示式表示不是IE的所有浏览器都符合</td>
+  </tr>
+  <tr>
+    <td>lt</td>
+    <td>[if lt IE 5.5]</td>
+    <td>小于操作符，当第一个参数比第二个参数小时，返回true。此实例表示低于5.5版本的IE浏览网页面符合</td>
+  </tr>
+  <tr>
+    <td>lte</td>
+    <td>[if lte IE 6]</td>
+    <td>小于等于操作符. 此实例表示小于或等于IE6的版本浏览器符合</td>
+  </tr>
+  <tr>
+    <td>gt</td>
+    <td>[if gt IE 5]</td>
+    <td>大于操作符。表示大于版本5的IE都符合</td>
+  </tr>
+  <tr>
+    <td>gte</td>
+    <td>[if gte IE 7]</td>
+    <td>大于等于操作符</td>
+  </tr>
+  <tr>
+    <td>( )</td>
+    <td>[if !(IE 7)]</td>
+    <td>子表达式操作符，用于生成更复杂的表达式</td>
+  </tr>
+  <tr>
+    <td>&amp;</td>
+    <td>[if (gt IE 5)&(lt IE 7)]</td>
+    <td>与操作符</td>
+  </tr>
+  <tr>
+    <td>|</td>
+    <td>[if (IE 6)|(IE 7)]</td>
+    <td>或操作符</td>
+  </tr>
+  
+  
+  
+</tbody></table>
+
+
+</div>
+
+<div class="example">
+	&lt;!--[if gte IE 7]&gt;<br>
+&lt;script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;alert("Congratulations! You are running Internet Explorer 7 or a later version of Internet Explorer.");<br>
+&lt;/script&gt;<br>
+&lt;p&gt;Thank you for closing the message box.&lt;/p&gt;<br>
+&lt;![endif]--&gt;
+</div>
+
+<!--[if gte IE 7]>
+<script>
+    alert("Congratulations! You are running Internet Explorer 7 or a later version of Internet Explorer.");
+</script>
+<p>Thank you for closing the message box.</p>
+<![endif]--> 
+
+
+
+
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

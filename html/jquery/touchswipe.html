@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>touchswipe的使用</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.touchswipe.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<style>
+#swipe_01{ position:relative; height:274px; width:100%; border-radius:10px; background:#98e0e6 url(images/gestures-swipe.png) no-repeat center bottom; line-height:120px; font-size:24px; color:#fff; text-align:center; font-family:Verdana, Geneva, sans-serif;}
+
+#swipe_02{ position:relative; height:274px; width:100%; border-radius:10px; background:#9fe0c7 url(images/gestures-swipe-100b.png) no-repeat center bottom; line-height:120px; font-size:24px; color:#fff; text-align:center; font-family:Verdana, Geneva, sans-serif;}
+
+#swipe_03{ position:relative; height:274px; width:100%; border-radius:10px; background:#e33f3d url(images/gestures-swipe-fingers.png) no-repeat center bottom; line-height:120px; font-size:24px; color:#fff; text-align:center; font-family:Verdana, Geneva, sans-serif;}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="inform">
+	<h1>touchswipe.js的使用</h1>
+    <p>touchswipe 是一个基于jquery的多点触控手势交互按件。用来侦测swipe事件，并且能判断出方向和距离</p>
+
+
+<pre>
+$("#swipe").<span class="f_green">swipe</span>({
+  swipe:<span class="f_pink">function</span>(event, direction, distance, duration, fingerCount) {
+    $(<span class="keyword">this</span>).text("You swiped " + direction );
+  }
+});
+</pre>
+
+<div id="swipe_01" class="mb_20">
+	<div id="text1">You swiped left</div>
+</div>
+<script>
+$("#swipe_01").swipe({
+	swipe:function(event, direction, distance, duration, fingerCount){
+		$(this).text("You swiped "+ direction);
+	}
+});
+</script>
+
+<p>为了方便，我们能添加句柄只用来侦查特定方向的swipe: swipeLeft, swipeRight, swipeUp, swipeDown. 每个方法都会传进去以下参数：event, direction, distance, duration, fingerCount;</p>
+<pre>
+$(<span class="string">"#swipe"</span>).<span class="f_green">swipe</span>({
+  swipeLeft:<span class="f_pink">function</span>(event, direction, distance, duration, fingerCount) {
+    <span class="f_gray">//This only fires when the user swipes left</span>
+  }
+});
+</pre>
+
+	<h2>距离门槛</h2>
+<p>为了保证手势是故意的swipe，一个最小距离门槛被添加，默认是75px。 假如用户移动少于这个值，那么就不会触发swipe句柄</p>
+<pre>
+$(<span class="string">"#threshold"</span>).<span class="f_green">swipe</span>({
+  swipe:<span class="f_pink">function</span>(event, direction, distance, duration, fingerCount){
+    $(<span class="keyword">this</span>).<span class="function call">text</span>(<span class="string">"You swiped "</span> <span class="keyword operator">+</span> direction <span class="keyword operator">+</span> <span class="string">" for "</span> <span class="keyword operator">+</span> distance <span class="keyword operator">+</span> <span class="string">"px"</span> );
+  },
+  threshold:<span class="constant numeric">100</span>
+});
+</code>
+</pre>
+
+<div id="swipe_02">
+	<div id="text2">Swipe me more than 100 pixels</div>
+</div>
+
+<script>
+$("#swipe_02").swipe({
+	swipe:function(event, direction, distance, duration, fingerCount){
+		$(this).text("You swiped "+ direction + "for distance" + distance +"px");
+	}
+});
+</script>
+
+</p>
+<h2>Fingers</h2>
+<p>
+我们可以限制swipe为1,2,3或所有组合的手指才能触发。当fingers==0时，将在非触摸设备上有用，如桌面电脑</p>
+<pre>
+$(<span class="string">"#fingers"</span>).<span class="f_green">swipe</span>({
+  swipe:<span class="f_pink">function</span>(event, direction, distance, duration, fingerCount){
+    $(<span class="keyword">this</span>).<span class="function call">text</span>(<span class="string">"You swiped "</span> <span class="keyword operator">+</span> direction <span class="keyword operator">+</span> <span class="string">" with "</span> <span class="keyword operator">+</span> fingerCount <span class="keyword operator">+</span> <span class="string">" fingers"</span> );
+  },
+  fingers:<span class="string">'all'</span>
+});
+</pre>
+<p><!-- fingers demo --></p>
+<div id="swipe_03" >Swipe me with different combinations of fingers</div>
+<script>
+$("#swipe_03").swipe({
+	swipe:function(event, direction, distance, duration, fingerCount){
+		$(this).text("You swiped "+ direction + " with " + fingerCount+" fingers");
+	}
+});
+</script>
+
+<h2>Swipe状态</h2>
+<p>为了能够实现更复杂的UI交到，你可以接收swipe的每一个阶段的事件，通过用swipeStatus句柄</p>
+<pre>
+$(<span class="string">"#status"</span>).<span class="f_green">swipe</span>( {
+swipeStatus:<span class="f_pink">function</span>(event, phase, direction, distance, duration, fingerCount)
+{
+  <span class="f_gray">//Here we can check the:</span>
+  <span class="f_gray">//phase : 'start', 'move', 'end', 'cancel'</span>
+  <span class="f_gray">//direction : 'left', 'right', 'up', 'down'</span>
+  <span class="f_gray">//distance : Distance finger is from initial touch point in px</span>
+  <span class="f_gray">//duration : Length of swipe in MS </span>
+  <span class="f_gray">//fingerCount : the number of fingers used</span>
+  },
+  threshold:<span class="constant numeric">100</span>,
+  maxTimeThreshold:<span class="constant numeric">2500</span>,
+  fingers:<span class="string">'all'</span>
+});
+</pre>
+
+<h2>Simple image scroller demo</h2>
+<p>
+This simple example uses the swipe status to detect when the user is moving, but hasn't yet reached the swipe threshold.<br>
+The images are dragged until the threshold is met, and then they are scrolled to the next image.<br>
+If the swipe is not completed, the image snaps back to where it started.
+</p>
+<h2><a href="http://www.awwwards.com/demo/touchSwipe-gallery-demo.html">Open to Demo Gallery</a></h2>
+<div id="threshold" class="boxTouch color5">
+</div>
+
+<h2>More info</h2>
+<p>
+For the source, documentation, detailed demos, or to contribute, see: </p>
+demos : <a href="http://labs.skinkers.com/content/touchSwipe/demo">http://labs.skinkers.com/content/touchSwipe/demo</a><br>docs : <a href="http://labs.skinkers.com/content/touchSwipe/docs">http://labs.skinkers.com/content/touchSwipe/docs</a><br>github : <a href="https://github.com/mattbryson/TouchSwipe-Jquery-Plugin">https://github.com/mattbryson/TouchSwipe-Jquery-Plugin</a><br>
+
+    
+</div>
+
+
+<script type="application/javascript" src="js/hammer.js"></script>
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>
+

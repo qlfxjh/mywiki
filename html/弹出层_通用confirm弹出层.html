@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>弹出层</title>
+<meta name="description" content=" 内容介绍不超过100个中文">
+<meta name="keywords" content=" 内容相关关键词3-5个">
+<link href="../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.4.3.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+
+
+</head>
+
+<body>
+<div style=" position:relative; width:1000px; margin:0 auto; height:400px;"><a href="javascript:popConfirm('提示','提示内容')">弹出一个confirm</a></div>
+
+
+<script type="text/javascript">
+	//有四个参数，前两个为必填，后二个为选填，按顺序分别为：1.提示标题; 2.提示内容(为html字符串，可含有链接和加粗等样式); 3.确认按钮的回调函数; 4.取消按钮的回调函数
+	popConfirm('确认订阅','订阅此条资讯将每月扣费5元，详情查看<a href=\"http://www.suqiu.com\" target=\"_blank\">收费条例</a>',doBooking,doCancel);
+	
+	function doBooking(){
+		alert('定阅成功');
+	}
+	function doCancel(){
+		alert('取消定阅');
+	}
+	
+</script>
+
+
+</body>
+</html>

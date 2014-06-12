@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS 3 渐变按钮</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1>CSS 3 渐变按钮</h1>
+
+<div class="inform w">
+	<h2>说明</h2>
+    <p>使用CSS3 的Gradient属性来制作按钮，并且用padding和font-size来控制按钮的大小。可以适用按钮的各种标签形式。如：input[type="button"], button, span, a</p>
+    <p>按钮定义了三种状态：normal, hover, active</p>
+    <ol>
+    	<li>正常状态（Normal State）:使用了渐变，圆角，阴影效果；</li>
+        <li>悬浮状态（Hover State）：渐变色变深；</li>
+        <li>点击状态（Active State）：返转渐变色，向下移1px，以及加深字体色。</li>
+    </ol>
+    <p>参考网站：<a href="http://www.webdesignerwall.com/demo/css-buttons.html" target="_blank">http://www.webdesignerwall.com/demo/css-buttons.html</a></p>
+</div>
+
+<style>
+.example div{margin-bottom:5px;}
+
+.btn_orange, .btn_red, .btn_gray, .btn_pink, .btn_white, .btn_blue, .btn_green, .btn_rosy, .btn_black{
+	display:inline-block;
+	zoom:1;
+	*display:inline;
+	vertical-align:baseline;
+	margin:0 2px;
+	outline:0;
+	overflow:visible;
+	width:auto;
+	*width:1px;
+	cursor:pointer;
+	text-align:center;
+	text-decoration:none;
+	font:14px/100% Arial, Helvetica;
+	padding:.5em 2em .55em;
+	text-shadow:0 1px 1px rgba(0,0,0,.3);
+	border:0 none;	/*去除button的边框*/
+	-webkit-border-radius:.5em;
+	-moz-border-radius:.5em;
+	-o-border-radius:.5em;
+	border-radius:.5em;
+	-webkit-box-shadow:0 1px 1px rgba(0,0,0,.2);
+	-moz-box-shadow:0 1px 1px rgba(0,0,0,.2);
+	-o-box-shadow:0 1px 1px rgba(0,0,0,.2);
+	box-shadow:0 1px 1px rgba(0,0,0,.2);
+}
+.btn_orange:hover, .btn_red:hover, .btn_gray:hover, .btn_pink:hover, .btn_white:hover, .btn_blue:hover, .btn_green:hover, .btn_rosy:hover, .btn_black:hover{
+	text-decoration: none;
+}
+.btn_orange:active, .btn_red:active, .btn_gray:active, .btn_pink:active, .btn_white:active, .btn_blue:active, .btn_green:active, .btn_rosy:active, .btn_black:active{
+	position: relative;
+	top: 1px;
+}
+
+/* btn_black*/
+.btn_black{
+	background: #333333;
+	background: -moz-linear-gradient(center top , #474646, #000000) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#474646), to(#000000));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#474646, endColorstr=#000000);
+	color:#fff;
+	border:1px solid #000000;
+}
+
+.btn_black:hover{
+	text-decoration:none;
+	color:#fff;
+	background: #000000;
+	background: -moz-linear-gradient(center top , #292929, #000000) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#292929), to(#000000));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#292929, endColorstr=#000000);
+}
+.btn_black:active{
+	color:#cccccc;
+	background: -moz-linear-gradient(center top , #000000, #474646) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#474646));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000, endColorstr=#474646);
+}
+
+/* btn gray */
+.btn_gray{
+	background: #575757;
+	background: -moz-linear-gradient(center top , #888, #575757) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#888888), to(#575757));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#888888, endColorstr=#575757);
+	color:#fff;
+	border:1px solid #575757;
+}
+.btn_gray:hover{
+	text-decoration:none;
+	color:#fff;
+	background: #656565;
+	background: -moz-linear-gradient(center top , #808080, #494949) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#808080), to(#494949));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#808080, endColorstr=#494949);
+}
+.btn_gray:active{
+	color:#ccc;
+	background: -moz-linear-gradient(center top , #575757, #888888) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#575757), to(#888888));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#575757, endColorstr=#888888);
+}
+
+/* btn white */
+.btn_white{
+	background: #eeeeee;
+	background: -moz-linear-gradient(center top , #ffffff, #ededed) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#ededed);
+	color:#666;
+	border:1px solid #cdcdcd;
+}
+.btn_white:hover{
+	text-decoration:none;
+	color:#666;
+	background: #dedede;
+	background: -moz-linear-gradient(center top , #fafafa, #dedede) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#dedede));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#fafafa, endColorstr=#dedede);
+}
+.btn_white:active{
+	color:#888;
+	background: #e27b0e;
+	background: -moz-linear-gradient(center top , #ededed, #ffffff) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ffffff));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#ededed, endColorstr=#ffffff);
+}
+
+/* btn orange */
+.btn_orange{
+	background: #f78d1d;
+	background: -moz-linear-gradient(center top , #FAA51A, #F47A20) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#faa51a, endColorstr=#f47a20);
+	color:#fff;
+	border:1px solid #da7c0c;
+}
+.btn_orange:hover{
+	text-decoration:none;
+	color:#fff;
+	background: #e27b0e;
+	background: -moz-linear-gradient(center top , #f9950b, #f2620f) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9950b), to(#f2620f));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#f9950b, endColorstr=#f2620f);
+}
+.btn_orange:active{
+	color:#fedfb4;
+	background: #e27b0e;
+	background: -moz-linear-gradient(center top , #F47A20, #FAA51A) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#F47A20), to(#FAA51A));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#F47A20, endColorstr=#FAA51A);
+}
+
+/* btn red */
+.btn_red{
+	background: #d81b21;
+	background: -moz-linear-gradient(center top , #ED1C24, #AA1317) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ED1C24), to(#AA1317));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#ED1C24, endColorstr=#AA1317);
+	color:#faddde;
+	border:1px solid #980c10;
+}
+.btn_red:hover{
+	text-decoration:none;
+	color:#faddde;
+	background: #b61318;
+	background: -moz-linear-gradient(center top , #c9151b, #a11115) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#c9151b), to(#a11115));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#c9151b, endColorstr=#a11115);
+}
+.btn_red:active{
+	color:#de898c;
+	background: #d81b21;
+	background: -moz-linear-gradient(center top , #AA1317, #ED1C24) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#AA1317), to(#ED1C24));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#AA1317, endColorstr=#ED1C24);
+}
+
+/* btn rosy */
+.btn_rosy{
+	background: #da5867;
+	background: -moz-linear-gradient(center top , #f16c7c, #bf404f) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f16c7c), to(#bf404f));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#f16c7c, endColorstr=#bf404f);
+	color:#fae7e9;
+	border:1px solid #b73948;
+}
+.btn_rosy:hover{
+	text-decoration:none;
+	background: #ba4b58;
+	color:#fae7e9;
+	background: -moz-linear-gradient(center top , #cf5d6a, #a53845) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#cf5d6a), to(#a53845));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#cf5d6a, endColorstr=#a53845);
+}
+.btn_rosy:active{
+	color:#dca4ab;
+	background: -moz-linear-gradient(center top , #bf404f, #f16c7c) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#bf404f), to(#f16c7c));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#bf404f, endColorstr=#f16c7c);
+}
+
+/* btn blue */
+.btn_blue{
+	background: #0095cd;
+	background: -moz-linear-gradient(center top , #00adee, #0078a5) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#00adee, endColorstr=#0078a5);
+	color:#d9eef7;
+	border:1px solid #0076a3;
+}
+.btn_blue:hover{
+	text-decoration:none;
+	background: #007ead;
+	color:#d9eef7;
+	background: -moz-linear-gradient(center top , #0095cc, #00678e) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#0095cc, endColorstr=#00678e);
+}
+.btn_blue:active{
+	color:#80bed6;
+	background: -moz-linear-gradient(center top , #0078a5, #00adee) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#0078a5, endColorstr=#00adee);
+}
+
+/* btn green */
+.btn_green{
+	background: #64991e;
+	background: -moz-linear-gradient(center top , #7db72f, #4e7d0e) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#7db72f, endColorstr=#4e7d0e);
+	color:#e8f0de;
+	border:1px solid #538312;
+}
+.btn_green:hover{
+	color:#e8f0de;
+	background: #538018;
+	background: -moz-linear-gradient(center top , #6b9d28, #436b0c) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6b9d28), to(#436b0c));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#6b9d28, endColorstr=#436b0c);
+}
+.btn_green:active{
+	color:#a9c08c;
+	background: -moz-linear-gradient(center top , #4e7d0e, #7db72f) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#4e7d0e), to(#7db72f));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#4e7d0e, endColorstr=#7db72f);
+}
+
+/* btn pink */
+.btn_pink{
+	background: #f8c1ec;
+	background: -moz-linear-gradient(center top , #fdcbf2, #eba2db) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fdcbf2), to(#eba2db));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#fdcbf2, endColorstr=#eba2db);
+	color:#fff;
+	border:1px solid #ef97dc;
+}
+.btn_pink:hover{
+	text-decoration:none;
+	color:#fff;
+	background: #f3a8e3;
+	background: -moz-linear-gradient(center top , #fcbcee, #e58ad1) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fcbcee), to(#e58ad1));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#fcbcee, endColorstr=#e58ad1);
+}
+.btn_pink:active{
+	color:#f9e3f4;
+	background: #f8c1ec;
+	background: -moz-linear-gradient(center top , #eba2db, #fdcbf2) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#eba2db), to(#fdcbf2));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#eba2db, endColorstr=#fdcbf2);
+}
+
+</style>
+<div class="example">
+	<h3>实例1</h3>
+    <div>
+    	<a href="#" class="btn_black">Black</a>
+        <button type="button" class="btn_black">Black</button>
+        <input type="button" value="Black" class="btn_black" />
+    </div>
+    <div>
+    	<a href="#" class="btn_gray">Gray</a>
+        <button type="button" class="btn_gray">Gray</button>
+        <input type="button" value="Gray" class="btn_gray" />
+    </div>
+    <div>
+    	<a href="#" class="btn_white">White</a>
+        <button type="button" class="btn_white">White</button>
+        <input type="button" value="White" class="btn_white" />
+    </div>
+    <div>
+    	<a href="#" class="btn_orange">Orange</a>
+        <button type="button" class="btn_orange">Orange</button>
+        <input type="button" value="Orange" class="btn_orange" />
+    </div>
+    <div>
+    	<a href="#" class="btn_red">Red</a>
+        <button type="button" class="btn_red">Red</button>
+        <input type="button" value="Red" class="btn_red" />
+    </div>
+    <div>
+    	<a href="#" class="btn_rosy">Rosy</a>
+        <button type="button" class="btn_rosy">Rosy</button>
+        <input type="button" value="Rosy" class="btn_rosy" />
+    </div>
+    <div>
+    	<a href="#" class="btn_blue">Blue</a>
+        <button type="button" class="btn_blue">Blue</button>
+        <input type="button" value="Blue" class="btn_blue" />
+    </div>
+    <div>
+    	<a href="#" class="btn_green">Green</a>
+        <button type="button" class="btn_green">Green</button>
+        <input type="button" value="Green" class="btn_green" />
+    </div>
+    <div>
+    	<a href="#" class="btn_pink">Pink</a>
+        <button type="button" class="btn_pink">Pink</button>
+        <input type="button" value="Pink" class="btn_pink" />
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>弹出层</title>
+<meta name="description" content=" 内容介绍不超过100个中文">
+<meta name="keywords" content=" 内容相关关键词3-5个">
+<link href="../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.4.3.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+
+<style type="text/css">
+/*  DEMO样式，此页面展示用，不要放到正式页面中 */
+body{font-size:12px;}
+.input_txt_tmp{ padding:3px; width:200px; line-height:18px; border:1px solid #cccccc;}
+p{ line-height:26px;}
+
+
+
+</style>
+
+</head>
+
+<body>
+<div style=" position:relative; width:1000px; margin:0 auto; height:200px;">
+	<p>下面为单选引用</p>
+    <div style=" padding:20px; border:1px solid #999999;">
+    
+	<input type="text" class="input_txt_tmp" readonly="readonly" placeholder = "点击选择行业" onclick="tradeSelector.show(false,event,'input_hidden_trade',doPostBack);" />
+    <input type="hidden" value="" id="input_hidden_trade" />
+    <!-- tradeSelector.show(false); 参数false表示为单选，参数三为存放行业id的隐藏域的id;参数4为回调函数，里面传里来选中行业的value和text -->
+    </div>
+    
+    <script type="text/javascript">
+		function doPostBack(id,text){
+			alert(id+'_'+text);
+		
+		}
+	</script>
+	
+</div>
+<div style=" position:relative; width:1000px; margin:0 auto; height:400px;">
+	<p>下面为多选引用</p>
+     <div style=" padding:20px; border:1px solid #999999;">
+     	<ul id="trade_result_ul">
+        	
+        </ul>
+		<input type="text" class="input_txt_tmp" readonly="readonly" placeholder = "点击选择行业" onclick = "tradeSelector.show(true,event,addToResult);" />
+        <!-- tradeSelector.show(false); 参数true表示为多选,参数3为回调函数 -->
+    </div>
+</div>
+<script type="text/javascript">
+function addToResult(data){
+	var wrap = $('#trade_result_ul');
+	var tmp = '';
+	for(var i =0; i<data.length; i++){
+		tmp +='<li id="'+data[i][0]+'">'+data[i][1]+'</li>';
+	}
+	wrap.html(tmp);
+}
+</script>
+
+
+
+
+
+
+<div class="pop_xl pop_trade_selector" id="pop_trade_selector">
+	<div class="p_t">
+    	<h4>行业选择</h4>
+        <a href="javascript:;" onclick="oPop.close()" class="btn_close"></a>
+    </div>
+    <div class="p_c clearfix">
+        <table border="0" cellpadding="0" cellspacing="0" id="pop_trade_selector_radios" class="trade_selector_table">
+        	<tbody>
+            	<tr>
+                	<th>IT|互联网|通信|电子
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="radio_trade_type_1"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_1" id="radio_trade_type_1" />计算机硬件及网络设备</label></li>
+                            <li><label for="radio_trade_type_2"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_2" id="radio_trade_type_2" />计算机软件</label></li>
+                            <li><label for="radio_trade_type_3"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_3" id="radio_trade_type_3" />IT服务（系统/数据/维护）/多领域经营</label></li>
+                            <li><label for="radio_trade_type_4"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_4" id="radio_trade_type_4" />互联网/电子商务</label></li>
+                            <li><label for="radio_trade_type_5"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_5" id="radio_trade_type_5" />网络游戏</label></li>
+                            <li><label for="radio_trade_type_6"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_6" id="radio_trade_type_6" />通讯（设备/运营/增值服务）</label></li>
+                            <li><label for="radio_trade_type_7"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_7" id="radio_trade_type_7" />电子技术/半导体/集成电路</label></li>
+                    	</ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>金融|银行|保险
+                    </th>
+                    <td>
+                    	<ul>
+                    		<li><label for="radio_trade_type_8"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_8" id="radio_trade_type_8" />金融/银行/投资/基金/证券</label></li>
+                        	<li><label for="radio_trade_type_9"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_9" id="radio_trade_type_9" />保险</label></li>
+                    	</ul>
+                    </td>
+                </tr>
+                <tr>
+                	<th>房产|建筑建设|物业
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="radio_trade_type_10"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_10" id="radio_trade_type_10" />房地产/建筑/建材/工程</label></li>
+                            <li><label for="radio_trade_type_11"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_11" id="radio_trade_type_11" />家居/室内设计/装饰装潢</label></li>
+                            <li><label for="radio_trade_type_12"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_12" id="radio_trade_type_12" />物业管理/商业中心</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>广告|传媒|印刷出版
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="radio_trade_type_13"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_13" id="radio_trade_type_13" />广告/会展/公关/市场推广</label></li>
+                            <li><label for="radio_trade_type_14"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_14" id="radio_trade_type_14" />媒体/出版/影视/文化/艺术</label></li>
+                            <li><label for="radio_trade_type_15"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_15" id="radio_trade_type_15" />印刷/包装/造纸</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                	<th>消费零售|贸易|交通物流
+                    </th>
+                    <td>
+                        <ul>
+                            <li><label for="radio_trade_type_16"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_16" id="radio_trade_type_16" />快速消费品（食品/饮料/烟酒/化妆品）</label></li>
+                            <li><label for="radio_trade_type_17"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_17" id="radio_trade_type_17" />耐用消费品（服装服饰/纺织/皮革/家具/家电）</label></li>
+                            <li><label for="radio_trade_type_18"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_18" id="radio_trade_type_18" />零售/批发</label></li>
+                            <li><label for="radio_trade_type_19"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_19" id="radio_trade_type_19" />礼品/玩具/工艺美术/收藏品</label></li>
+                            <li><label for="radio_trade_type_20"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_20" id="radio_trade_type_20" />贸易/进出口</label></li>
+                            <li><label for="radio_trade_type_21"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_21" id="radio_trade_type_21" />交通/运输/物流</label></li>
+                            <li><label for="radio_trade_type_22"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_22" id="radio_trade_type_22" />航空/航天</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>加工制造|仪表设备
+                    </th>
+                    <td>
+                        <ul>
+                            <li><label for="radio_trade_type_23"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_23" id="radio_trade_type_23" />加工制造（原料加工/模具）</label></li>
+                            <li><label for="radio_trade_type_24"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_24" id="radio_trade_type_24" />大型设备/机电设备/重工业</label></li>
+                            <li><label for="radio_trade_type_25"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_25" id="radio_trade_type_25" />汽车/摩托车（制造/维护/配件/销售/服务）</label></li>
+                            <li><label for="radio_trade_type_26"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_26" id="radio_trade_type_26" />检验/检测/认证</label></li>
+                            <li><label for="radio_trade_type_27"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_27" id="radio_trade_type_27" />仪器仪表及工业自动化</label></li>
+                            <li><label for="radio_trade_type_28"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_28" id="radio_trade_type_28" />办公用品及设备</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                	<th>管理咨询|教育科研|中介服务
+                    </th>
+                    <td>
+                        <ul>
+                            <li><label for="radio_trade_type_29"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_29" id="radio_trade_type_29" />咨询/管理产业/法律/财会</label></li>
+                            <li><label for="radio_trade_type_30"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_30" id="radio_trade_type_30" />教育/培训</label></li>
+                            <li><label for="radio_trade_type_31"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_31" id="radio_trade_type_31" />中介服务</label></li>
+                            <li><label for="radio_trade_type_32"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_32" id="radio_trade_type_32" />学术/科研</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>医药生物|医疗保健
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="radio_trade_type_33"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_33" id="radio_trade_type_33" />医药/生物工程</label></li>
+                            <li><label for="radio_trade_type_34"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_34" id="radio_trade_type_34" />医疗/护理/美容/保健</label></li>
+                            <li><label for="radio_trade_type_35"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_35" id="radio_trade_type_35" />医疗设备/器械</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                	<th>酒店旅游
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="radio_trade_type_36"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_36" id="radio_trade_type_36" />酒店/餐饮</label></li>
+                            <li><label for="radio_trade_type_37"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_37" id="radio_trade_type_37" />娱乐/体育/休闲</label></li>
+                            <li><label for="radio_trade_type_38"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_38" id="radio_trade_type_38" />旅游/度假</label></li>
+                            
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>能源矿产|石油化工
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="radio_trade_type_39"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_39" id="radio_trade_type_39" />石油/石化/化工</label></li>
+                            <li><label for="radio_trade_type_40"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_40" id="radio_trade_type_40" />能源/矿产/采掘/冶炼</label></li>
+                            <li><label for="radio_trade_type_41"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_41" id="radio_trade_type_41" />电气/电力/水利</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                	<th>农林业|科研
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="radio_trade_type_42"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_42" id="radio_trade_type_42" />环保</label></li>
+                            <li><label for="radio_trade_type_43"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_43" id="radio_trade_type_43" />农/林/牧/渔</label></li>
+                            <li><label for="radio_trade_type_44"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_44" id="radio_trade_type_44" />跨领域经营</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>其他
+                    </th>
+                    <td>
+                    	<div class="othertype">
+                        	<label for="radio_trade_type_other"><input type="radio" class="radiobox" name="radio_trade_type" value="trade_type_other" id="radio_trade_type_other" />其它</label><input type="text" class="input_txt" style="display:none;" />
+                            
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" id="pop_trade_selector_chks" class="trade_selector_table" style="display:none;">
+        	<tbody>
+            	<tr>
+                	<th>IT|互联网|通信|电子
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="chk_trade_type_1"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_1" id="chk_trade_type_1" />计算机硬件及网络设备</label></li>
+                            <li><label for="chk_trade_type_2"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_2" id="chk_trade_type_2" />计算机软件</label></li>
+                            <li><label for="chk_trade_type_3"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_3" id="chk_trade_type_3" />IT服务（系统/数据/维护）/多领域经营</label></li>
+                            <li><label for="chk_trade_type_4"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_4" id="chk_trade_type_4" />互联网/电子商务</label></li>
+                            <li><label for="chk_trade_type_5"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_5" id="chk_trade_type_5" />网络游戏</label></li>
+                            <li><label for="chk_trade_type_6"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_6" id="chk_trade_type_6" />通讯（设备/运营/增值服务）</label></li>
+                            <li><label for="chk_trade_type_7"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_7" id="chk_trade_type_7" />电子技术/半导体/集成电路</label></li>
+                    	</ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>金融|银行|保险
+                    </th>
+                    <td>
+                    	<ul>
+                    		<li><label for="chk_trade_type_8"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_8" id="chk_trade_type_8" />金融/银行/投资/基金/证券</label></li>
+                        	<li><label for="chk_trade_type_9"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_9" id="chk_trade_type_9" />保险</label></li>
+                    	</ul>
+                    </td>
+                </tr>
+                <tr>
+                	<th>房产|建筑建设|物业
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="chk_trade_type_10"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_10" id="chk_trade_type_10" />房地产/建筑/建材/工程</label></li>
+                            <li><label for="chk_trade_type_11"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_11" id="chk_trade_type_11" />家居/室内设计/装饰装潢</label></li>
+                            <li><label for="chk_trade_type_12"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_12" id="chk_trade_type_12" />物业管理/商业中心</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>广告|传媒|印刷出版
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="chk_trade_type_13"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_13" id="chk_trade_type_13" />广告/会展/公关/市场推广</label></li>
+                            <li><label for="chk_trade_type_14"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_14" id="chk_trade_type_14" />媒体/出版/影视/文化/艺术</label></li>
+                            <li><label for="chk_trade_type_15"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_15" id="chk_trade_type_15" />印刷/包装/造纸</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                	<th>消费零售|贸易|交通物流
+                    </th>
+                    <td>
+                        <ul>
+                            <li><label for="chk_trade_type_16"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_16" id="chk_trade_type_16" />快速消费品（食品/饮料/烟酒/化妆品）</label></li>
+                            <li><label for="chk_trade_type_17"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_17" id="chk_trade_type_17" />耐用消费品（服装服饰/纺织/皮革/家具/家电）</label></li>
+                            <li><label for="chk_trade_type_18"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_18" id="chk_trade_type_18" />零售/批发</label></li>
+                            <li><label for="chk_trade_type_19"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_19" id="chk_trade_type_19" />礼品/玩具/工艺美术/收藏品</label></li>
+                            <li><label for="chk_trade_type_20"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_20" id="chk_trade_type_20" />贸易/进出口</label></li>
+                            <li><label for="chk_trade_type_21"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_21" id="chk_trade_type_21" />交通/运输/物流</label></li>
+                            <li><label for="chk_trade_type_22"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_22" id="chk_trade_type_22" />航空/航天</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>加工制造|仪表设备
+                    </th>
+                    <td>
+                        <ul>
+                            <li><label for="chk_trade_type_23"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_23" id="chk_trade_type_23" />加工制造（原料加工/模具）</label></li>
+                            <li><label for="chk_trade_type_24"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_24" id="chk_trade_type_24" />大型设备/机电设备/重工业</label></li>
+                            <li><label for="chk_trade_type_25"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_25" id="chk_trade_type_25" />汽车/摩托车（制造/维护/配件/销售/服务）</label></li>
+                            <li><label for="chk_trade_type_26"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_26" id="chk_trade_type_26" />检验/检测/认证</label></li>
+                            <li><label for="chk_trade_type_27"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_27" id="chk_trade_type_27" />仪器仪表及工业自动化</label></li>
+                            <li><label for="chk_trade_type_28"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_28" id="chk_trade_type_28" />办公用品及设备</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                	<th>管理咨询|教育科研|中介服务
+                    </th>
+                    <td>
+                        <ul>
+                            <li><label for="chk_trade_type_29"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_29" id="chk_trade_type_29" />咨询/管理产业/法律/财会</label></li>
+                            <li><label for="chk_trade_type_30"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_30" id="chk_trade_type_30" />教育/培训</label></li>
+                            <li><label for="chk_trade_type_31"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_31" id="chk_trade_type_31" />中介服务</label></li>
+                            <li><label for="chk_trade_type_32"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_32" id="chk_trade_type_32" />学术/科研</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>医药生物|医疗保健
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="chk_trade_type_33"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_33" id="chk_trade_type_33" />医药/生物工程</label></li>
+                            <li><label for="chk_trade_type_34"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_34" id="chk_trade_type_34" />医疗/护理/美容/保健</label></li>
+                            <li><label for="chk_trade_type_35"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_35" id="chk_trade_type_35" />医疗设备/器械</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                	<th>酒店旅游
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="chk_trade_type_36"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_36" id="chk_trade_type_36" />酒店/餐饮</label></li>
+                            <li><label for="chk_trade_type_37"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_37" id="chk_trade_type_37" />娱乐/体育/休闲</label></li>
+                            <li><label for="chk_trade_type_38"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_38" id="chk_trade_type_38" />旅游/度假</label></li>
+                            
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>能源矿产|石油化工
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="chk_trade_type_39"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_39" id="chk_trade_type_39" />石油/石化/化工</label></li>
+                            <li><label for="chk_trade_type_40"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_40" id="chk_trade_type_40" />能源/矿产/采掘/冶炼</label></li>
+                            <li><label for="chk_trade_type_41"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_41" id="chk_trade_type_41" />电气/电力/水利</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                	<th>农林业|科研
+                    </th>
+                    <td>
+                    	<ul>
+                            <li><label for="chk_trade_type_42"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_42" id="chk_trade_type_42" />环保</label></li>
+                            <li><label for="chk_trade_type_43"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_43" id="chk_trade_type_43" />农/林/牧/渔</label></li>
+                            <li><label for="chk_trade_type_44"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_44" id="chk_trade_type_44" />跨领域经营</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="even">
+                	<th>其他
+                    </th>
+                    <td>
+                    	<div class="othertype">
+                        	<label for="chk_trade_type_other"><input type="checkbox" class="chkbox" name="chk_trade_type" value="trade_type_other" id="chk_trade_type_other" />其它</label><input type="text" class="input_txt" style="display:none;" />
+                            
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="btns">
+        	<a href="javascript:;" class="btn_blue mr_10">确认</a>
+            <a href="javascript:oPop.close();" class="btn_gray_01">取消</a>
+        </div>
+    </div>
+</div>
+
+
+<!--要引用这个弹层需同时引用这个JS，注意为在页尾引用。-->
+<script type="text/javascript" src="../js/pop_trade_selector.js"></script>
+<script type="text/javascript">
+	tradeSelector.setData(['trade_type_2'],'add');
+</script>
+
+
+</body>
+</html>

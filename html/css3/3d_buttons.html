@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS 3 3D按钮</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1>CSS 3 3D按钮</h1>
+
+<div class="inform w">
+	<h2>说明</h2>
+</div>
+
+<style>
+.example div{margin-bottom:5px; position:relative;}
+
+.btn_3d{
+	display:inline-block;
+	position:relative;
+	margin-left:35px;
+	zoom:1;
+	vertical-align:baseline;
+	outline:0;
+	cursor:pointer;
+	text-align:center;
+	text-decoration:none;
+	height:40px;
+	padding:0 20px;
+	font:14px/40px Arial, Helvetica;
+	border:0 none;	/*去除button的边框*/
+	color:#fff;
+	-webkit-border-radius:0 10px 10px 0;
+	-moz-border-radius:0 10px 10px 0;
+	-o-border-radius:0 10px 10px 0;
+	border-radius:0 10px 10px 0;
+	-webkit-box-shadow:0 1px 1px rgba(0,0,0,.2);
+	-moz-box-shadow:0 1px 1px rgba(0,0,0,.2);
+	-o-box-shadow:0 1px 1px rgba(0,0,0,.2);
+	box-shadow:0 1px 1px rgba(0,0,0,.2);
+	background: #3db7e8;
+	background: -moz-linear-gradient(center top , #3db7e8, #2c9fcb) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3db7e8), to(#2c9fcb));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#3db7e8, endColorstr=#2c9fcb);
+	-webkit-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #166687, 0px 10px 5px #999 ;
+	-moz-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #166687, 0px 10px 5px #999 ;
+	-o-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #166687, 0px 10px 5px #999 ;
+	box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #166687, 0px 10px 5px #999 ;
+}
+.btn_3d:before{
+	position:absolute;
+	width:34px;
+	left:-35px;
+	height:40px;
+	content:"1";
+	border-right:1px solid #0a5568;
+	-webkit-border-radius:10px 0 0 10px;
+	-moz-border-radius:10px 0 0 10px;
+	-o-border-radius:10px 0 0 10px;
+	border-radius:10px 0 0 10px;
+	box-shadow:0 1px 1px rgba(0,0,0,.2);
+	background: #0c86b5;
+	background: -moz-linear-gradient(center top , #0c86b5, #0b5d82) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0c86b5), to(#0b5d82));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#0c86b5, endColorstr=#0b5d82);
+	-webkit-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 0px 10px 5px #999 ;
+	-moz-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 0px 10px 5px #999 ;
+	-o-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 0px 10px 5px #999 ;
+	box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 0px 10px 5px #999 ;
+}
+
+.btn_3d:hover{ color:#fff; text-decoration:none;}
+.btn_3d:active{top:3px; border-bottom-width:2px;
+	-webkit-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #166687, 0px 7px 5px #999 ;
+	-moz-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #166687, 0px 7px 5px #999 ;
+	-o-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #166687, 0px 7px 5px #999 ;
+	box-shadow:inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #166687, 0px 7px 5px #999 ;
+}
+.btn_3d:active:before{top:-3px;
+-webkit-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 1px 1px 0px 0px #044a64, 2px 2px 0px 0px #044a64, 2px 5px 0px 0px #044a64, 6px 4px 2px #0b698b, 0px 10px 5px #999 ;
+				-moz-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 1px 1px 0px 0px #044a64, 2px 2px 0px 0px #044a64, 2px 5px 0px 0px #044a64, 6px 4px 2px #0b698b, 0px 10px 5px #999 ;
+				-o-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 1px 1px 0px 0px #044a64, 2px 2px 0px 0px #044a64, 2px 5px 0px 0px #044a64, 6px 4px 2px #0b698b, 0px 10px 5px #999 ;
+				box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 1px 1px 0px 0px #044a64, 2px 2px 0px 0px #044a64, 2px 5px 0px 0px #044a64, 6px 4px 2px #0b698b, 0px 10px 5px #999 ;}
+				
+				
+				
+				
+.btn_3d2{
+	position:relative;
+	display:inline-block;
+	padding:0 50px 0 20px;
+	height:40px;
+	line-height:40px;
+	color:#fff;
+	font-size:16px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	border-radius:5px;
+	background: #3db7e8;
+	background: -moz-linear-gradient(center top , #2fb8ef, #2ca3ce) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, left top, left bottom, from(#2fb8ef), to(#2ca3ce));
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#2fb8ef, endColorstr=#2ca3ce);
+	-webkit-box-shadow:0px 5px 0px 0px #166782, 0px 10px 5px #999;
+	-moz-box-shadow:0px 5px 0px 0px #166782, 0px 10px 5px #999;
+	-o-box-shadow:0px 5px 0px 0px #166782, 0px 10px 5px #999;
+	box-shadow:0px 5px 0px 0px #166782, 0px 10px 5px #999;
+}
+.btn_3d2:active{
+	top:3px;
+	-webkit-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #166782, 0px 7px 5px #999;
+	-moz-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #166782, 0px 7px 5px #999;
+	-o-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #166782, 0px 7px 5px #999;
+	box-shadow:inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #166782, 0px 7px 5px #999;
+	background-image: linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, rgb(62,184,229)),color-stop(1, rgb(44,160,202)));
+}
+.btn_3d2:hover{
+	color:#fff;
+	text-decoration:none;
+}
+.btn_3d2:before{ position:absolute; right:5px; top:5px; width:30px; height:30px;
+	-webkit-border-radius:30px;
+	-moz-border-radius:30px;
+	-o-border-radius:30px;
+	border-radius:30px;
+	content:"";
+	background:#2294ac url(images/ico_arrow.png) no-repeat center;
+	-webkit-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
+	-moz-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
+	-o-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
+	box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
+}
+.btn_3d2:active:before{
+	top:2px;
+	-webkit-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+	-moz-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+	-o-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+	box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+}
+	
+</style>
+<div class="example">
+	<h3>实例1</h3>
+    <div>
+    	<a href="#" class="btn_3d">LIKE ME</a>
+    </div>
+    <div style="padding-top:20px;">
+    	<a href="#" class="btn_3d2">LIKE ME</a>
+    </div>
+    
+</div>
+
+
+</body>
+</html>

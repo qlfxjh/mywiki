@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>创建条件样式</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1 class="pt_20">创建条件样式</h1>
+<div class="inform">
+	<h4 class="mb_10">在style link外面套条件</h4>
+	<pre>&lt;!--[if IE]&gt;
+	...
+&lt;![endif]--&gt;</pre>
+
+	<h4>选择条件的语法</h4>
+	<ul>
+    	<li><strong>gt(greate than)</strong> :选择条件版本以上版本，不包含条件版本本身；</li>
+		<li><strong>lt(less than)</strong> :这个刚好与gt相反，表示的是选择条件版本以下的版本，不包含条件版本自身；</li>
+		<li><strong>gte(greate than or equal)</strong> :选择条件版本以上版本，并包含条件版本自身；</li>
+		<li><strong>lte(less than or equal)</strong> :选择条件版本以下的版本，并包含条件版本自身；</li>
+		<li><strong>!</strong> :选择条件版本以外所有版本，无论高低。</li>
+	</ul>
+
+	<h3 class="mb_10 f_green">使用示范</h3>
+    <h4 class="mb_10">1、支持所有IE浏览器</h4>
+	<pre>&lt;!--[if <span class="f_pink">IE</span>]&gt;
+	&lt;link rel="stylesheet" href="all-ie-only.css"  type="<span class="f_green">text/css</span>"/&gt;
+&lt;![endif]--&gt;</pre>
+	<h4 class="mb_10">2、支持除IE外的所有浏览器</h4>
+	<pre>&lt;!--[if <span class="f_pink">!IE</span>]&gt;
+	&lt;link rel="stylesheet" href="not-ie.css"  type="<span class="f_green">text/css</span>"/&gt;
+&lt;![endif]--&gt;</pre>
+	<h4 class="mb_10">3、仅仅支持IE10</h4>
+	<pre>&lt;!--[if <span class="f_pink">IE 10</span>]&gt;
+	&lt;link rel="stylesheet" type="text/css" href="<span class="f_green">ie10.css</span>"&gt;
+&lt;![endif]--&gt;</pre>
+	<h4 class="mb_10">4. 仅仅支持IE7</h4>
+	<pre>&lt;!--[if <span class="f_pink">IE 7</span>]&gt;
+	&lt;link rel="stylesheet" type="text/css" href="<span class="f_green">ie7.css</span>"&gt;
+&lt;![endif]--&gt;</pre>
+	<h4 class="mb_10">5、支持IE9以下版本（IE8以及IE8以下版本）</h4>
+	<pre>&lt;!--[if <span class="f_pink">lt IE 9</span>]&gt;
+	&lt;link rel="stylesheet" type="text/css" href="<span class="f_green">ie8-and-down.css</span>"&gt;
+&lt;![endif]--&gt;</pre>
+	<p>或是</p>
+    <pre>&lt;!--[if <span class="f_pink">lte IE 8</span>]&gt;
+	&lt;link rel="stylesheet" type="text/css" href="<span class="f_green">ie8-and-down.css</span>"&gt;
+&lt;![endif]--&gt;
+    </pre>
+	<h4 class="mb_10">6、高于IE8的版本(IE9以及IE9以上版本)</h4>
+	<pre>&lt;!--[if <span class="f_pink">gt IE 8</span>]&gt;
+	&lt;link rel="stylesheet" type="text/css" href="<span class="f_green">ie9-and-up.css</span>"&gt;
+&lt;![endif]--&gt;</pre>
+	<p>或是</p>
+    <pre>&lt;!--[if <span class="f_pink">gte IE 7</span>]&gt;
+&lt;link rel="stylesheet" type="text/css" href="<span class="f_green">ie9-and-up.css</span>"&gt;
+&lt;![endif]--&gt;</pre>
+
+	
+
+</div>
+    
+</body>
+</html>

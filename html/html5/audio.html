@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Audio 标签</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+
+</head>
+
+<body>
+<style>
+.audio_wrap{ position:relative; width:800px; margin:20px auto;}
+div#button_div{width:800px;}
+.progress_wrap{width:800px;}
+progress#play_percent{width:800px;}
+div#progress{ display:block; width:800px; height:20px; left:0px; background:#ccc;}
+div#progress_value{width:0%; height:20px; background:#green; cursor:default;}
+#show_time{z-index:2; position:absolute; right:0; top:20px;}
+
+</style>
+<h1>Audio 标签</h1>
+<div class="inform">
+	<h2 class="mb_15">说明</h2>
+    <p class="text_center">&lt;audio src="someaudio.wav"&gt;您的浏览器不支持 audio 标签。&lt;/audio&gt;</p>
+    <table class="dataintable"> 
+  <tbody><tr>
+    <th style="width:20%;">属性</th>
+    <th>值</th>
+    <th>描述</th>
+  </tr>
+  <tr>
+    <td class="html5_new"><a href="/html5/att_audio_autoplay.asp" title="HTML5 &lt;audio&gt; autoplay 属性">autoplay</a></td>
+    <td>autoplay</td>
+    <td>如果出现该属性，则音频在就绪后马上播放。</td>
+  </tr>
+  <tr>
+    <td class="html5_new"><a href="/html5/att_audio_controls.asp" title="HTML5 &lt;audio&gt; controls 属性">controls</a></td>
+    <td>controls</td>
+    <td>如果出现该属性，则向用户显示控件，比如播放按钮。</td>
+  </tr>
+    <tr>
+    <td class="html5_new"><a href="/html5/att_audio_loop.asp" title="HTML5 &lt;audio&gt; loop 属性">loop</a></td>
+    <td>loop</td>
+    <td>如果出现该属性，则每当音频结束时重新开始播放。</td>
+  </tr>
+  <tr>
+    <td class="html5_new"><a href="/html5/att_audio_preload.asp" title="HTML5 &lt;audio&gt; preload 属性">preload</a></td>
+    <td>preload</td>
+    <td><p>如果出现该属性，则音频在页面加载时进行加载，并预备播放。</p><p>如果使用 "autoplay"，则忽略该属性。</p></td>
+  </tr>
+  <tr>
+    <td class="html5_new"><a href="/html5/att_audio_src.asp" title="HTML5 &lt;audio&gt; src 属性">src</a></td>
+    <td><i>url</i></td>
+    <td>要播放的音频的 URL。</td>
+  </tr>
+</tbody></table>
+</div>
+
+
+
+
+<div class="example">
+	<h2>实例</h2>
+    <div class="audio_wrap">
+        <audio id="audio" src="images/song.mp3">
+        您的浏览器不支持audio元素
+        </audio>
+        <div class="progress_wrap">
+            <progress id="play_percent" max="100"></progress>
+        </div>
+        <div id="show_time">00:00:00</div>
+        <div id="button_div">
+            <button type="button" id="btn_play" onClick="audio.play()">播放</button>
+            <button type="button" onClick="audio.restart()">重新开始</button>
+            <button type="button" onClick="audio.volumeUp()">增大音量</button>
+            <button type="button" onClick="audio.volumeDown()">减小音量</button>
+            <button type="button" onClick="audio.setMute()">静音</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+function Audio(){
+	var audio;
+	var showTime;
+	var progress;
+	var btnPlay;
+	var volume;
+	function init(){
+		audio = document.getElementById('audio');
+		progress = document.getElementById('play_percent');
+		progress.onclick = progress_click;
+		btnPlay = document.getElementById('btn_play');
+		showTime = document.getElementById('show_time');
+		audio.addEventListener('error', catchError, false);
+		audio.addEventListener('loadedmetadata', loadedmetadata, false);
+	}
+	function catchError(){
+		var error = audio.error;
+		switch(error.code){
+			case 1:
+				alert('視頻的下載過程被中止');
+				break;
+			case 2:
+				alert('网络发生故障，视频的下载过程被中止');
+				break;
+			case 3:
+				alert('解码失败');
+				break;
+			case 4:
+				alert('媒体资源不可用，或媒体格式不被支持');
+				break;
+		}
+	}
+	function loadedmetadata(){
+		btnPlay.innerHTML = "暂停";
+		play();
+		volume = audio.volume;
+	}
+	function play(){
+		if(audio.paused){
+			audio.play();
+		}else{
+			audio.pause();
+		}
+		audio.addEventListener('ended',audioEnded,false);
+		audio.addEventListener('play',audioPlay,false);
+		audio.addEventListener('pause',audioPause,false);
+		audio.addEventListener('timeupdate',updateProgress,false);
+	}
+	this.play = play;
+	function audioEnded(ev){
+		audio.currentTime = 0;
+		audio.pause();
+	}
+	function audioPlay(ev){
+		btnPlay.innerHTML = "暂停";
+	}
+	function audioPause(){
+		btnPlay.innerHTML = "播放";
+	}
+	function updateProgress(){
+		var value = Math.round((Math.floor(audio.currentTime)/Math.floor(audio.duration))*100,0);
+		progress.value = value;
+		showTime.innerHTML = calcTime(Math.floor(audio.currentTime))+'/'+calcTime(Math.floor(audio.duration));
+	}
+
+	function progress_click(ev){
+		audio.currentTime = audio.duration * (ev.offsetX/progress.clientWidth);
+	}
+	this.progress_click = progress_click;
+	function restart(){
+		audio.currentTime = 0;
+	}
+	this.restart = restart;
+	function setMute(){
+		if(!audio.muted){
+			audio.muted = true;
+		}else{
+			audio.muted = false;
+		}
+	}
+	this.setMute = setMute;
+	function volumeUp(){
+		if(audio.volume<1){
+			audio.volume+=0.1;
+		}
+		volume = audio.volume;
+	}
+	this.volumeUp = volumeUp;
+	function volumeDown(){
+		volume-=0.1;
+		if(volume<0){
+			volume = 0;
+		}
+		audio.volume = volume;
+	}
+	this.volumeDown = volumeDown;
+	init();
+}
+
+var audio = new Audio();
+
+function calcTime(time){
+	var hour;
+	var minute;
+	var second;
+	hour = String(parseInt(time/3600,10));
+	if(hour.length == 1){
+		hour = "0" + hour;
+	}
+	minute = String(parseInt((time%3600)/60, 10));
+	if(minute.length == 1){
+		minute = "0"+ minute;
+	}
+	second = String(parseInt(time%60, 10));
+	if(second.length == 1) {
+		second = '0' + second;
+	}
+	return hour+":"+minute+":"+second;
+}
+</script>
+
+</body>
+</html>

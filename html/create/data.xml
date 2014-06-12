@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<employees>
+	<employee name="J. Doe"><job>Programmer</job><sallary>2012</sallary></employee>
+	<employee name="John. Wong"><job>analyser</job><sallary>1252</sallary></employee>
+	<employee name="Ming. LI"><job>Programmer</job><sallary>156878</sallary></employee>
+	<employee name="Chun. Chong"><job>fucker</job><sallary>25457</sallary></employee>
+	<employee name="King. Jong"><job>Programmer</job><sallary>5000</sallary></employee>
+</employees>

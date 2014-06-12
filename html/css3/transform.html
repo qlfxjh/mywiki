@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS3 Transform变形</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<style>
+
+
+
+.menu{width:1200px; margin:10px auto;}
+
+.menu ul li a{ float:left; color:#fff; margin:0 5px; font-size:14px; height:50px; border:1px solid #999; border-radius:5px; line-height:50px; text-align:center; width:70px; padding:10px 5px; background:#ccc; text-decoration:none; transition:all 0.2s linear 0s;} 
+.menu li.translate a{ background:#db3737;}
+.menu li.translate a:hover{
+	-moz-transform: translate(-10px,-10px);
+     -webkit-transform: translate(-10px,-10px); /*for chrome, can't work without this*/
+     -o-transform: translate(-10px,-10px);
+     -ms-transform: translate(-10px, -10px);
+	transform:translate(-10px,-10px);
+}
+.menu li.translate-x a{ background:#db3797;}
+.menu li.translate-x a:hover{
+	-moz-transform: translateX(-10px);
+     -webkit-transform: translateX(-10px); /*for chrome, can't work without this*/
+     -o-transform: translateX(-10px);
+     -ms-transform: translateX(-10px);
+	transform:translateX(-10px);
+}
+
+.menu li.translate-y a{ background:#db37d9;}
+.menu li.translate-y a:hover{
+	-moz-transform: translateY(-10px);
+     -webkit-transform: translateY(-10px); /*for chrome, can't work without this*/
+     -o-transform: translateY(-10px);
+     -ms-transform: translateY(-10px);
+	transform:translateY(-10px);
+}
+
+.menu li.rotate a{ background:#b325e2;}
+.menu li.rotate a:hover{
+	-moz-transform: rotate(-45deg);
+     -webkit-transform: rotate(-45deg); /*for chrome, can't work without this*/
+     -o-transform: rotate(-45deg);
+     -ms-transform: rotate(-45deg);
+	transform:rotate(-45deg);
+}
+
+.menu li.scale a{ background:#8022ff;}
+.menu li.scale a:hover{
+	-moz-transform: scale(0.8,0.8);
+     -webkit-transform: scale(0.8,0.8); /*for chrome, can't work without this*/
+     -o-transform: scale(0.8,0.8);
+     -ms-transform: scale(0.8,0.8);
+	transform:scale(0.8,0.8);
+}
+
+.menu li.scale-x a{ background:#676bf2;}
+.menu li.scale-x a:hover{
+	-moz-transform: scaleX(0.8);
+     -webkit-transform: scaleX(0.8); /*for chrome, can't work without this*/
+     -o-transform: scaleX(0.8);
+     -ms-transform: scaleX(0.8);
+	transform:scaleX(0.8);
+}
+
+.menu li.scale-y a{ background:#0060ff;}
+.menu li.scale-y a:hover{
+	-moz-transform: scaleY(0.8);
+     -webkit-transform: scaleY(0.8); /*for chrome, can't work without this*/
+     -o-transform: scaleY(0.8);
+     -ms-transform: scaleY(0.8);
+	transform:scaleY(0.8);
+}
+
+.menu li.skew a{ background:#1dd2e2;}
+.menu li.skew a:hover{
+	-moz-transform: skew(45deg,15deg);
+     -webkit-transform: skew(45deg,15deg); /*for chrome, can't work without this*/
+     -o-transform: skew(45deg,15deg);
+     -ms-transform: skew(45deg,15deg);
+	transform:skew(45deg,15deg);
+}
+
+.menu li.skew-x a{ background:#1de29a;}
+.menu li.skew-x a:hover{
+	-moz-transform: skewX(45deg);
+     -webkit-transform: skewX(45deg); /*for chrome, can't work without this*/
+     -o-transform: skewX(45deg);
+     -ms-transform: skewX(45deg);
+	transform:skewX(45deg);
+}
+
+.menu li.skew-y a{ background:#4ae36a;}
+.menu li.skew-y a:hover{
+	-moz-transform: skewY(45deg);
+     -webkit-transform: skewY(45deg); /*for chrome, can't work without this*/
+     -o-transform: skewY(45deg);
+     -ms-transform: skewY(45deg);
+	transform:skewY(45deg);
+}
+
+.menu li.matrix a{ background:#dae34a;}
+.menu li.matrix a:hover{
+	-moz-transform: matrix(0.5,0,0,-1,0,0);
+     -webkit-transform: matrix(1,0,0,-1,0,0); /*for chrome, can't work without this*/
+     -o-transform: matrix(1,0,0,-1,0,0);
+     -ms-transform: matrix(1,0,0,-1,0,0);
+	transform:matrix(-1.5,0,0,1,0,0);
+}
+
+</style>
+</head>
+
+<body>
+
+
+    	<h1>CSS3 Transform变形</h1>
+	    <h2>鼠标经过下面的菜单时，会有变形操作</h2>
+        <div class="inform clearfix">
+        	<div style=" float:left; width:50%;">
+              <s>//Mozilla内核浏览器：firefox3.5+</s><br />
+              -moz-transform: rotate | scale | skew | translate ;<br />
+             <s>//Webkit内核浏览器：Safari and Chrome</s><br />
+              -webkit-transform: rotate | scale | skew | translate ;<br />
+             <s>//Opera</s><br />
+              -o-transform: rotate | scale | skew | translate ;<br />
+             <s>//IE9</s><br />
+              -ms-transform: rotate | scale | skew | translate ;<br />
+             <s>//W3C标准</s><br />
+              transform: rotate | scale | skew | translate ;<br />
+            </div>
+            <div style="float:left; width:50%;">
+            	<s>//Mozilla内核浏览器：firefox3.5+</s><br />
+              -moz-transform: rotate(-45deg);<br />
+             <s>//Webkit内核浏览器：Safari and Chrome</s><br />
+              -webkit-transform: rotate(-45deg);<br />
+             <s>//Opera</s><br />
+              -o-transform: rotate(-45deg);<br />
+             <s>//IE9</s><br />
+              -ms-transform:rotate(-45deg);<br />
+             <s>//W3C标准</s><br />
+              transform:rotate(-45deg);<br />
+            </div>
+            
+            <div class="clr"></div>
+            <div class="pt_30">
+            	<span class="f_green">transform-origin:bottom left;</span> <s>//用来设定旋转变形的基点位置</s>。<br />
+                transform-origin:0 100%; <s>//表示基点为左下角效果同上</s>
+                
+            </div>
+            
+            <div style="margin-top:10px; padding-top:10px; border-top:1px dashed #aaa; color:#bd2d8c;">
+            	matrix的参数有6个标示为(a,b,c,d,e,f);
+                a表示宽度为原来宽度的倍数。如果为负数，那么层会横向反过来。
+                b表示Y轴方向的斜切
+                c表示X轴方向的斜切
+                d表示高度为原来的倍数。如果为负数，那么层会竖向反过来。
+                e表示X方向的位移
+                f表示Y方向的位移
+            </div>
+        </div>
+    </div>
+    
+	
+	<div class="menu">
+    	<ul>
+        	<li class="item translate"><a href="#">Translate</a></li>
+            <li class="item translate-x"><a href="#">TranslateX</a></li>
+            <li class="item translate-y"><a href="#">TranslateY</a></li>
+            <li class="item rotate"><a href="#">Rotate</a></li>
+            <li class="item scale"><a href="#">Scale</a></li>
+            <li class="item scale-x"><a href="#">ScaleX</a></li>
+            <li class="item scale-y"><a href="#">ScaleY</a></li>
+            <li class="item skew"><a href="#">Skew</a></li>
+            <li class="item skew-x"><a href="#">SkewX</a></li>
+            <li class="item skew-y"><a href="#">SkewY</a></li>
+            <li class="item matrix"><a href="#">Matrix</a></li>
+        </ul>
+    </div>
+
+<script>
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>target伪类</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1>target伪类</h1>
+<style>
+.con_menu a{ display:inline-block; padding:2px 8px; background:#ccc;}
+.example .content{ display:none;}
+.example:target{ background:#300}
+.example:target h2{ color:#f99;}
+.example:target .content{ display:block; color:#fff;} 
+</style>
+
+<div class="inform">
+	<h2 class="mb_15">说明</h2>
+    <p class="ti2">CSS3 target伪类是众多实用的CSS3特性中的一个。它用来匹配文档(页面)的URI中某个标志符的目标元素。具体来说，URI中的标志符通常会包含一个"#"字符，然后后面带有一个标志符名称，比如"#brand"，target就是用来匹配ID为"brand"的元素的。
+
+	<p>现在在页面中，点击一个ID链接后，页面只会跳转到相应的位置，但是并不会有比较明显的UI标识，使用:target伪类可以像:hover等伪类一样对目标元素定义样式。</p>
+
+	<p>因为我们讨论的是有关于CSS3的属性，它支持所有现代浏览器，但在IE6-8下无法运行</p>
+    
+</div>
+
+<div class="example">
+	<div class="con_menu">这里是页面内导航：<a href="#part01">part one</a>, <a href="#part02">part two</a>, <a href="#part03">part three</a></div>
+</div>
+<div class="example" id="part01">
+	<h2>Part01</h2>
+    <div class="content">这里是显示的内容</div>
+</div>
+<div class="example" id="part02">
+	<h2>Part02</h2>
+    <div class="content">这里是显示的内容</div>
+</div>
+<div class="example"  id="part03">
+	<h2>Part03</h2>
+    <div class="content">这里是显示的内容</div>
+</div>
+    
+    
+
+
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>面向对象实例复数</title>
+
+</head>
+
+<body>
+
+<style type="text/css">
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+fieldset, img {
+    border: 0 none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+ol, ul, li {
+    list-style: none outside none;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+strong{ font-weight:bold;}
+caption, th {
+    text-align: left;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+}
+q:before, q:after {
+    content: "";
+}
+pre{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+	font-family:sumsun,arial;
+	*white-space:inherit;
+}
+.clearfix {
+    display: block;
+    height: 1%;
+}
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+.clear{
+	clear:both;
+	width:100%;
+	height:0;
+	overflow:hidden;
+	font-size:0;
+}
+body{ 
+	font-size:12px; 
+	font-family:simsun,arial;
+	color:#666666;
+	background:#FFFFFF;
+}
+
+.wrap{position:relative; width:1000px; margin:0 auto;}
+.header{ position:relative; width:1000px; height:300px; margin-top:20px; border:1px solid #ccc; background:#eee;}
+.header .search{ position:absolute; left:500px; top:100px; width:260px; height:30px; padding:5px; background:#ddd; border:1px solid #ccc;}
+.header .search input{ padding:3px; width:200px; border:1px solid #ccc; height:18px; line-height:18px;}
+#cover{width:2px; height:2px; background:#f00; position:absolute;}
+</style>
+
+
+
+
+
+					
+<div class="wrap">
+	<div class="header">
+    	<div class="search">
+        	<input type="text" placeholder="点击本输入框触发" onclick="setCover(this)" /><button>搜索</button>
+        </div>
+    </div>
+</div>
+
+<div id="cover"></div>
+<script type="text/javascript">
+
+
+function getOffset(target){
+	var left = 0, top = 0;
+	var targetTmp = target;
+	var borderWidthLeft, borderWidthTop, style;
+	if(document.all){
+		//IE
+		while(targetTmp!=document.body){
+			style = targetTmp.currentStyle;
+			
+			borderWidthLeft = parseInt(style.borderLeftWidth);
+			if(isNaN(borderWidthLeft)){
+				borderWidthLeft=0;
+			}
+			borderWidthTop = parseInt(style.borderTopWidth);
+			if(isNaN(borderWidthTop)){
+				borderWidthTop=0;
+			}
+			
+			left += targetTmp.offsetLeft + borderWidthLeft ;
+			top += targetTmp.offsetTop + borderWidthTop;
+			targetTmp = targetTmp.parentNode;
+		}
+	}else{
+		//not IE
+		while(targetTmp!=document.body){
+			style = window.getComputedStyle(targetTmp,null);
+			left += targetTmp.offsetLeft + parseInt(style.borderLeftWidth);
+			top += targetTmp.offsetTop + parseInt(style.borderTopWidth);
+			targetTmp = targetTmp.parentNode;
+		}
+	}
+	return {left:left,top:top};
+}
+
+function setCover(target){
+	var offset = getOffset(target);
+	var cover = document.getElementById("cover");
+	cover.style.left = offset.left+'px';
+	cover.style.top = offset.top+'px';
+}
+
+</script>
+</div>
+</body>
+</html>

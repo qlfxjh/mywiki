@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>apple的动态search bar</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1>apple的动态search bar</h1>
+<style>
+.w{background:#666; padding:30px;}
+.search_form{ position:relative; }
+.search_form:before{ position:absolute; left:8px; top:7px; content:""; width:5px; height:5px; overflow:hidden; border:2px solid #aaa; border-radius:10px; z-index:3;}
+.search_form:after{ position:absolute; left:14px; top:14px; content:""; width:4px; border:1px solid #aaa; border-width:1px 1px 2px; z-index:3;
+	-moz-transform:rotate(45deg);
+	-webkit-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	transform:rotate(45deg);
+}
+.search_form .search{position:relative; padding:3px 3px 3px 25px; width:160px; height:18px; overflow:hidden; background:#444; border:0; border-radius:20px; color:#eee; font-family:Verdana, Geneva, sans-serif; z-index:1;
+	  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset; 
+	  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;  
+	  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset; 
+	  transition:all 0.5s ease-in-out .2s;
+}
+.search_form .search:focus{
+	-webkit-box-shadow:0 1px 0 rgba(255,255,255,0.1), 0 1px 0 rgba(0,0,0,0.9) inset;
+	-moz-box-shadow:0 1px 0 rgba(255,255,255,0.1), 0 1px 0 rgba(0,0,0,0.9) inset;
+	box-shadow:0 1px 0 rgba(255,255,255,0.1), 0 1px 0 rgba(0,0,0,0.9) inset; 
+	width:200px;
+	background:#fcfcfc;
+	color:#6a6f75;
+}
+
+
+        
+        /*==============Apple.com Search Box效果====================*/
+        .appleSearch input[type="text"] {
+            background-color: #444;
+            color: #d7d7d7;
+            text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+            -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;    
+        }
+        
+        .appleSearch input[type="text"]:focus {
+            background-color: #fcfcfc;
+            color: #6a6f75;
+            -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(0, 0, 0, 0.9) inset;
+            -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(0, 0, 0, 0.9) inset;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(0, 0, 0, 0.9) inset;
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    }
+
+
+</style>
+<div class="w pt_30 pb_30" >
+	<div class="search_form">
+    	<input type="text" class="search" name="search" placeholder="search..." size="40" />
+    </div>
+</div>
+
+
+
+</body>
+</html>

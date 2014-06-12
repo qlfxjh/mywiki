@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>弹出层</title>
+<meta name="description" content=" 内容介绍不超过100个中文">
+<meta name="keywords" content=" 内容相关关键词3-5个">
+<link href="../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/pop.css" rel="stylesheet" type="text/css" />
+<link href="../css/find_gov.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="../js/jquery-1.4.3.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+
+
+</head>
+
+<body>
+<div style=" position:relative; width:1000px; margin:0 auto; height:400px;">asdfadfasd</div>
+
+
+<div class="pop_t pop_com_reply" id="pop_catch_ask">
+	<div class="p_t">
+    	<h4>我要质疑</h4>
+        <a href="javascript:;" onclick="oPop.close()" class="btn_close"></a>
+    </div>
+    <div class="p_c clearfix">
+    	<div class="pop_add_note_form">
+        	<div class="con_txt">
+            	<div class="tip_txt">如您对该部门的回应有所怀疑或其他的意见，可以提交您的质疑；您的质疑将以站内信的形式发送给该部门，只允许在您的会员中心内查看。</div>
+        		<textarea id="textarea_catch_ask" onfocus="fed_inputMaxLength(this,200,'catchask_con_counter_num')" ></textarea>
+                <div class="textarea_con_counter">还能输入<strong id="catchask_con_counter_num" class="f_orange">200</strong>字</div>
+            </div>
+            <div class="btns">
+            	<a href="#" class="btn_yel_01 mr_10">确认</a>
+                <a href="javascript:;" onclick="oPop.close()" class="btn_gray_01">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+var oPop = new Pop();
+oPop.show('pop_catch_ask');
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>call&apply 的使用</title>
+<link type="text/css" rel="stylesheet" href="../../css/base.css" />
+<link type="text/css" rel="stylesheet" href="../../css/common.css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+
+</head>
+
+<body>
+
+<style type="text/css">
+.table a{color:#}
+.table a:hover{color:#}
+</style>
+
+<div class="inform">
+	<h2>Call和Apply 的学习与使用</h2>
+	<p></p>
+</div>
+
+
+<script type="text/javascript">
+
+//作用一：类的继承
+function Person(name, age){
+	this.name = name;
+	this.age = age;
+	this.alertName = function(){
+		alert(this.name);
+	}
+	this.alertAge = function(){
+		alert(this.age);
+	}
+	
+}
+
+function WebDever(name, age, sex){
+	Person.call(this,name,age);	//Person里构造的this.name,this.age,this.alertName方法都附在了this上面
+	//如果是Person.call(window,name,age);那么Person里构造的this.name,this.age,this.alertName方法都附在了window上面
+	this.sex = sex;
+	this.alertSex = function(){
+		alert(this.sex);
+	}
+}
+
+
+
+var test = new WebDever("好男人",28,"男");
+
+test.alertName();
+
+//作用二：回调函数
+//call 和 apply在回调行数中也非常有用，很多时候我们在开发过程中需要对改变回调函数的执行上下文，最常用的比如ajax或者定时什么的，一般情况下，Ajax都是全局的，也就是window对象下的，来看这个例子：
+function Album(id, title, owner_id){
+	this.id = id;
+	this.name = title;
+	this.owner_id = owner_id;
+}
+Album.prototype.get_owner = function(callback){
+	var self = this;
+	$.get('/owners/'+this.owner_id,function(data){
+		callback&&callback.call(self,data.name);
+	});
+}
+
+var album = new Album(1,"life","a1");
+
+album.get_owner(function(owner){
+	alert('The album' + this.name + 'belongs to ' + owner);
+});
+//用了call, this.name就能直接取到album对象中的name属性了。
+
+
+
+
+
+
+
+
+</script>
+</div>
+</body>
+</html>

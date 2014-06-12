@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>表格通用结构</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+<body>
+
+<style type="text/css">
+
+
+</style>
+
+<h1>Load XML JS方法</h1>
+<div class="inform">
+	<h3>JS源码</h3>
+	<pre>
+function loadXML(url, handler){
+	if(window.ActiveXObject){
+		//IE
+		var xmldoc = new ActiveXObject ("Microsoft.XMLDOM");
+		xmldoc.onreadystatechange = function(){
+			if(xmldoc.readyState == 4) handler(xmldoc, url);
+		}
+		xmldoc.load(url);
+	}else{
+		try //Firefox, Mozilla, Opera, etc.
+		{
+			xmldoc=document.implementation.createDocument("","",null);
+			xmldoc.async=false;
+			xmldoc.onload = function(){
+				handler(xmldoc, url);
+			}
+			xmldoc.load(url);
+			
+		}
+		catch(e)
+		{
+			try //Google Chrome
+			{
+				var xmlhttp = new window.XMLHttpRequest();
+				xmlhttp.open("GET",url,false);
+				xmlhttp.send(null);
+				xmldoc = xmlhttp.responseXML.documentElement;
+				handler(xmldoc, url);
+			}
+			catch(e)
+			{
+				error=e.message;
+			}
+		}
+		
+	}
+	
+}
+
+loadXML("data.xml",readThis);
+function readThis(xmldoc, url){
+	var employees = xmldoc.getElementsByTagName('employee');
+	alert(employees.length);
+}
+    </pre>
+
+</div>
+					
+
+<script type="text/javascript">
+
+function loadXML(url, handler){
+	if(window.ActiveXObject){
+		//IE
+		var xmldoc = new ActiveXObject ("Microsoft.XMLDOM");
+		xmldoc.onreadystatechange = function(){
+			if(xmldoc.readyState == 4) handler(xmldoc, url);
+		}
+		xmldoc.load(url);
+	}else{
+		try //Firefox, Mozilla, Opera, etc.
+		{
+			xmldoc=document.implementation.createDocument("","",null);
+			xmldoc.async=false;
+			xmldoc.onload = function(){
+				handler(xmldoc, url);
+			}
+			xmldoc.load(url);
+			
+		}
+		catch(e)
+		{
+			try //Google Chrome
+			{
+				var xmlhttp = new window.XMLHttpRequest();
+				xmlhttp.open("GET",url,false);
+				xmlhttp.send(null);
+				xmldoc = xmlhttp.responseXML.documentElement;
+				handler(xmldoc, url);
+			}
+			catch(e)
+			{
+				error=e.message;
+			}
+		}
+		
+	}
+	
+}
+
+loadXML("data.xml",readThis);
+function readThis(xmldoc, url){
+	var employees = xmldoc.getElementsByTagName('employee');
+	alert(employees.length);
+}
+
+
+
+</script>
+</body>
+</html>

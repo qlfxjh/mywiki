@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS 3 摘要</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<style>
+.center {
+  width: 300px;
+  height: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 20px auto;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  display: -o-box;
+  -o-box-orient: horizontal;
+  -o-box-pack: center;
+  -o-box-align: center;
+  display: -ms-box;
+  -ms-box-orient: horizontal;
+  -ms-box-pack: center;
+  -ms-box-align: center;
+  display: box;
+  box-orient: horizontal;
+  box-pack: center;
+  box-align: center;
+}
+.center img,
+.text {
+  border: 1px solid #dedede;
+  padding: 2px;
+}
+
+
+</style>
+<h1>flexbox实现未知高度垂直居中</h1>
+<div class="inform">
+	<h3>HTML代码</h3>
+    <pre>&lt;div class="center"&gt;
+  &lt;img src="images/130.png" alt="" /&gt;
+&lt;/div&gt;
+&lt;div class="center"&gt;
+  &lt;div class="text"&gt;我就一行文字&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="center"&gt;
+  &lt;div class="text"&gt;
+    我是多行文字&lt;br /&gt;
+    我是多行文字
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+	<h3>CSS代码</h3>
+<pre><span class="f_pink">.center {</span>
+  width: 300px;
+  height: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 20px auto;
+  display: <span class="f_green">-webkit-box;</span>
+  -webkit-box-orient: <span class="f_green">horizontal;</span>
+  -webkit-box-pack: <span class="f_green">center;</span>
+  -webkit-box-align: <span class="f_green">center;</span>
+  display: <span class="f_green">-moz-box;</span>
+  -moz-box-orient: <span class="f_green">horizontal;</span>
+  -moz-box-pack: <span class="f_green">center;</span>
+  -moz-box-align: <span class="f_green">center;</span>
+  display: <span class="f_green">-o-box;</span>
+  -o-box-orient: <span class="f_green">horizontal;</span>
+  -o-box-pack: <span class="f_green">center;</span>
+  -o-box-align: <span class="f_green">center;</span>
+  display: <span class="f_green">-ms-box;</span>
+  -ms-box-orient: <span class="f_green">horizontal;</span>
+  -ms-box-pack: <span class="f_green">center;</span>
+  -ms-box-align: <span class="f_green">center;</span>
+  display: <span class="f_green">box;</span>
+  box-orient: <span class="f_green">horizontal;</span>
+  box-pack: <span class="f_green">center;</span>
+  box-align: <span class="f_green">center;</span>
+<span class="f_pink">}</span>
+<span class="f_pink">.center img, .text {</span>
+  border: 1px solid #dedede;
+  padding: 2px;
+<span class="f_pink">}</span>
+</pre>
+
+
+<p>由于flexbox是CSS3的一个新属性，目前支持的浏览器仅：IE10+, Firefox 2+, Chrome 4+, Safari 3.1+。其他实现方法，大家感兴趣可以参阅：《CSS制作图片水平垂直居中》和《CSS制作水平垂直居中对齐》两篇文章。</p>
+
+</div>
+
+<div class="example">
+	<h2>实例</h2>
+    
+    <div class="center">
+      <img src="images/130.png" alt="" />
+    </div>
+    <br />
+    <div class="center">
+      <div class="text">我就一行文字</div>
+    </div>
+    <br />
+    <div class="center">
+      <div class="text">
+        我是多行文字<br />
+        我是多行文字
+      </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

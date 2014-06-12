@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>面象对象的复数类</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+</head>
+
+<body>
+<h1>面象对象的复数类</h1>
+<div class="inform">
+	<h3>代码如下</h3>
+    <pre>
+function Complex(real, imaginary){
+	this.x = real;
+	this.y = imaginary;
+}
+
+<span class="f_gray">/* 下面定义实例方法*/</span>
+<span class="f_gray">//返回复数的大小，定义是从原点0,0到复平面的距离。</span>
+Complex.prototype.magnitude = function(){
+	return Math.sqrt(this.x * this.x + this.y*this.y);
+}
+
+<span class="f_gray">//返回复数的相反数。</span>
+Complex.prototype.negative = function(){
+	return new Complex(-this.x, -this.y);
+}
+
+<span class="f_gray">//以一种有效的方式将一个Complex对象转换成一个字符串</span>
+Complex.prototype.toString = function(){
+	return "{" + this.x +","+ this.y +"}";
+}
+
+<span class="f_gray">/*下面定义类方法*/
+//计算两个复数的和并返回结果</span>
+Complex.add = function(a, b){
+	return new Complex(a.x + b.x, a.y + b.y);
+}
+<span class="f_gray">//用一个复数减去另一个复数<</span>
+ Complex.subtract = function(a,b){
+	return new Complex(a.x - b.x, a.y - b.y);	
+}
+
+<span class="f_gray">//下面是一些有用的预定义复数</span>
+Complex.zero = new Complex(0,0);
+Complex.one = new Complex(1,0);
+Complex.i = new Complex(0,1);
+
+
+<span class="f_gray">/* 构建一个Complex的子类 */
+//子类的构造函数</span>
+function MoreComplex(real, imaginary){
+	this.x = real;
+	this.y = imaginary;
+}
+<span class="f_gray">//我们将它的原型作为Complex的对象，这意味着新类的实例将继承MoreComplex.prototype,而MoreComplex.prototype又来自Complex.prototype继承而来。</span>
+MoreComplex.prototype = new Complex(0,0);
+
+<span class="f_gray">//由于我们明确把MoreComplex.prototype设成了我们所创建的一个对象，所以就覆盖了Javascript提供的原型对象，而且抛弃了给定的constructor属性，该属性引用的是创建这个对象的构造函数。但是MoreComplex对象继承了它的超类的constructor属性，它自已并没有这个属性，明确地设置这一属性可以解决这一问题：</span>
+MoreComplex.prototype.constructor = MoreComplex;
+
+<span class="f_gray">//下面给子类添加一个新方法或新特性</span>
+MoreComplex.prototype.swap = function(){
+	var tmp = this.x;
+	this.x = this.y;
+	this.y = tmp;
+}
+    </pre>
+</div>
+
+<script type="text/javascript">
+function Complex(real, imaginary){
+	this.x = real;
+	this.y = imaginary;
+}
+
+/* 下面定义实例方法*/
+//返回复数的大小，定义是从原点0,0到复平面的距离。
+Complex.prototype.magnitude = function(){
+	return Math.sqrt(this.x * this.x + this.y*this.y);
+}
+
+//返回复数的相反数。
+Complex.prototype.negative = function(){
+	return new Complex(-this.x, -this.y);
+}
+
+//以一种有效的方式将一个Complex对象转换成一个字符串
+Complex.prototype.toString = function(){
+	return "{" + this.x +","+ this.y +"}";
+}
+
+/*下面定义类方法*/
+//计算两个复数的和并返回结果
+Complex.add = function(a, b){
+	return new Complex(a.x + b.x, a.y + b.y);
+}
+//用一个复数减去另一个复数
+ Complex.subtract = function(a,b){
+	return new Complex(a.x - b.x, a.y - b.y);	
+}
+
+//下面是一些有用的预定义复数
+Complex.zero = new Complex(0,0);
+Complex.one = new Complex(1,0);
+Complex.i = new Complex(0,1);
+
+
+/* 构建一个Complex的子类 */
+//子类的构造函数
+function MoreComplex(real, imaginary){
+	this.x = real;
+	this.y = imaginary;
+}
+//我们将它的原型作为Complex的对象，这意味着新类的实例将继承MoreComplex.prototype,而MoreComplex.prototype又来自Complex.prototype继承而来。
+MoreComplex.prototype = new Complex(0,0);
+
+//由于我们明确把MoreComplex.prototype设成了我们所创建的一个对象，所以就覆盖了Javascript提供的原型对象，而且抛弃了给定的constructor属性，该属性引用的是创建这个对象的构造函数。但是MoreComplex对象继承了它的超类的constructor属性，它自已并没有这个属性，明确地设置这一属性可以解决这一问题：
+MoreComplex.prototype.constructor = MoreComplex;
+
+//下面给子类添加一个新方法或新特性
+MoreComplex.prototype.swap = function(){
+	var tmp = this.x;
+	this.x = this.y;
+	this.y = tmp;
+}
+
+
+
+
+</script>
+</body>
+</html>

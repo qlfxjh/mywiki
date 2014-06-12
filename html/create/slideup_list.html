@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="John Wong, qlfxjh@gmail.com, 20120626" />
+<title>TEST</title>
+
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<style type="text/css">
+
+
+</style>
+</head>
+
+<body>
+
+
+<style>
+.slideup_list{width:500px; margin:30px auto; border:1px solid #ccc; border-bottom:0;}
+.slideup_list dt{ position:relative; height:40px; border-bottom:1px solid #ccc; line-height:40px; padding:0 20px; cursor:pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none;}
+.slideup_list dt s{ position:absolute; right:10px; top:16px; width:12px; height:12px; background:url(images/arrow_01.png) no-repeat;}
+.slideup_list dt h4{ font-size:16px; line-height:40px;}
+.slideup_list dt:hover{ background:#d1e6f3;}
+.slideup_list dd{ border-bottom:1px solid #ccc; line-height:22px; color:#666; text-indent:2em; background:#f5f5f5; display:none;}
+.slideup_list dd .con{padding:10px; }
+</style>
+
+	<div class="slideup_list" id="slideup_list">
+    	<dl>
+        	<dt><h4>ABOUT US</h4><s></s></dt>
+            <dd><div class="con">Hi, This is a example of slideup list. welcome to John's house. we will some see each other again, bla bla</div></dd>
+        </dl>
+        <dl>
+        	<dt><h4>OUR WORKS</h4><s></s></dt>
+            <dd><div class="con">Hi, This is a example of slideup list. welcome to John's house. we will some see each other again, bla bla</div></dd>
+        </dl>
+        <dl>
+        	<dt><h4>HOW ABOUT COFFEE</h4><s></s></dt>
+            <dd><div class="con">Hi, This is a example of slideup list. welcome to John's house. we will some see each other again, bla bla</div></dd>
+        </dl>
+        <dl>
+        	<dt><h4>CONTACT ME</h4><s></s></dt>
+            <dd><div class="con">Hi, This is a example of slideup list. welcome to John's house. we will some see each other again, bla bla</div></dd>
+        </dl>
+    </div>
+
+
+
+<script language="JavaScript">
+$("#slideup_list dt").bind('click',function(){
+	var dl = $(this).parent();
+	var dd = $(this).next("dd");
+	if(dl.hasClass("show")){
+		dl.removeClass("show");
+		dd.slideUp(200);
+	}else{
+		dl.addClass("show");
+		dd.slideDown(200);
+	}
+});
+
+</script>
+
+
+</body>
+</html>
+
+	

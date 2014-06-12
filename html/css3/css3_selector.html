@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS3 选择器</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<style>
+
+.inform{border:1px solid #ccc; border-width:1px 0; margin-top:20px; padding:10px; line-height:18px; background:#f5f5f5;}
+.inform p{ margin-bottom:10px;}
+.inform s{ color:#999; text-decoration:none;}
+.inform .col_01{ float:left; width:480px; margin-right:10px;}
+.inform .col_02{ float:left; width:488px;}
+.inform table{ margin:10px auto;}
+.inform table thead th{ text-align:center; font-weight:bold; background:#ddd;}
+.inform table td,.inform table th{ padding:5px; line-height:18px; border:1px solid #bbb; font-size:13px;}
+.inform a{ color:#f60;}
+
+
+
+</style>
+</head>
+
+<body>
+
+	<div class="w">
+    	<h1>CSS3 选择器</h1>
+        <h2></h2>
+        <div class="inform clearfix">
+            
+            <table width="100%" border="1" cellpadding="0" cellspacing="3">
+            	<thead>
+                	<tr>
+                    	<th width="17%">选择器</th>
+                        <th>说明</th>
+                        <th width="17%">选择器</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr>
+                    	<th>*</th>
+                        <td>通配符选择器</td>
+                        <th>E</th>
+                        <td>元素选择器，如em, div, p, body</td>
+                    </tr>
+                    <tr>
+                    	<th>.class</th>
+                        <td>类选择器,如current; 多类选择器.classA.classB不被IE6支持</td>
+                        <th>#id</th>
+                        <td>ID选择器</td>
+                    </tr>
+                    <tr>
+                    	<th>E F</th>
+                        <td>后代选择器。如ul li, ul a</td>
+                        <th>E > F</th>
+                        <td>子元素选择器：在子结点中筛选.<span class="f_darkred">(IE6不支持)</span></td>
+                    </tr>
+                    <tr>
+                    	<th>E + F</th>
+                        <td>相邻兄弟元素选择器,可以选择紧接在另一元素后的元素<span class="f_darkred">(IE6不支持)</span></td>
+                        <th>E ~ F</th>
+                        <td>通用兄弟选择器:选中的是元素相邻的后面所有兄弟元素<span class="f_darkred">(IE6不支持)</span> </td>
+                    </tr>
+                    <tr>
+                    	<th>selector1,...,selectorN   </th>
+                        <td>群组选择器</td>
+                        <th>E[attribute]</th>
+                        <td>属性选择器<span class="f_darkred">(IE6不支持)</span> </td>
+                    </tr>
+                    <tr>
+                    	<th>E[attribute=value]</th>
+                        <td>指定属性名，并指定了该属性的属性值； </td>
+                        <th>E[attribute~=value] </th>
+                        <td>指定属性名，并且具有属性值，此属性值是一个词列表，并且以空格隔开，其中词列表中包含了一个value词，而且等号前面的"〜"不能不写； </td>
+                    </tr>
+                    <tr>
+                    	<th>E[attribute^=value] </th>
+                        <td>指定了属性名，并且有属性值，属性值是以value开头的； <a href="#p_02">实例</a></td>
+                        <th>E[attribute$=value] </th>
+                        <td>指定了属性名，并且有属性值，而且属性值是以value结束的； <a href="#p_03">实例</a></td>
+                    </tr>
+                    <tr>
+                    	<th>E[attribute*=value]  </th>
+                        <td>指定了属性名，并且有属性值，而且属值中包含了value； </td>
+                        <th>E[attribute|=value] </th>
+                        <td>指定了属性名，并且属性值是value或者以"value-"开头的值（比如说zh-cn）; </td>
+                    </tr>
+                    
+                    
+                    <tr>
+                        <th>:first-child</th>
+                        <td>选择某个元素的第一个子元素； </td>
+                        <th>:last-child </th>
+                        <td>选择某个元素的最后一个子元素； </td>
+                    </tr>
+                    <tr>
+                    	<th>:nth-child() </th>
+                        <td>选择某个元素的一个或多个特定的子元素；可以用参数n,n:0-max; 你在li中使用":nth-child(n)",那么将选中所有的"li" <a href="#p_05">实例</a></td>
+                        <th>:nth-last-child() </th>
+                        <td>选择某个元素的一个或多个特定的子元素，从这个元素的最后一个子元素开始算； </td>
+                    </tr>
+                    <tr>
+                    	<th>:nth-of-type </th>
+                        <td>选择指定的元素； </td>
+                        <th>:nth-last-of-type </th>
+                        <td>选择指定的元素，从元素的最后一个开始计算； </td>
+                    </tr>
+                    <tr>
+                    	<th>:first-of-type </th>
+                        <td>选择一个上级元素下的第一个同类子元素； </td>
+                        <th>:last-of-type </th>
+                        <td>选择一个上级元素的最后一个同类子元素； </td>
+                    </tr>
+                    <tr>
+                        <th>:only-child </th>
+                        <td>选择的元素是它的父元素的唯一一个了元素； </td>
+                        <th>:only-of-type </th>
+                        <td>选择一个元素是它的上级元素的唯一一个相同类型的子元素； </td>
+                    </tr>
+                    <tr>
+                        <th>:empty </th>
+                        <td>选择的元素里面没有任何内容。 <a href="#p_01">实例</a></td>
+                        <th>:root </th>
+                        <td>匹配文档的根元素。在HTML中，根元素永远是HTML</td>
+                    </tr>
+                    <tr>
+                    	<th>:not() </th>
+                        <td>反向选择<a href="#p_06">实例</a> </td>
+                        <th>:target </th>
+                        <td>它用来匹配文档(页面)的URI中某个标志符的目标元素<a href="target.html">实例</a> </td>
+                    </tr>
+                    <tr>
+                    	<th>:enabled </th>
+                        <td>匹配有效元素 </td>
+                        <th>:disabled </th>
+                        <td>匹配无效元素 </td>
+                    </tr>
+                    <tr>
+                    	<th>:checked </th>
+                        <td>匹配选中元素，一般指checkbox, radio. </td>
+                        <th>:lang() </th>
+                        <td>根据元素的语言编码匹配元素 </td>
+                    </tr>
+                    
+                    <tr>
+                        <th>:before </th>
+                        <td>每个元素都有一个before伪类，可以用来写样式的容器 </td>
+                        <th>::before </th>
+                        <td>CSS3对伪元素进行了一定的调整，变成了"::first-letter,::first-line,::before,::after"另外他还增加了一个"::selection",两个"：："和一个"："主要用来区分伪类和伪元素，到目前来说，这两种方式都是被接受的  </td>
+                    </tr>
+                    <tr>
+                        <th>:after </th>
+                        <td>每个元素都有一个after伪类，可以用来写样式的容器 </td>
+                        <th>::after </th>
+                        <td>作用同:after </td>
+                    </tr>
+                    <tr>
+                        <th>:first-letter </th>
+                        <td>匹配文本的第一个字母<a href="#p_04">实例</a> </td>
+                        <th>::first-letter </th>
+                        <td>作用同:first-letter</td>
+                    </tr>
+                    <tr>
+                        <th>:first-line </th>
+                        <td>匹配文本的第一行<a href="#p_04">实例</a> </td>
+                        <th>::first-line </th>
+                        <td>作用同:first-line </td>
+                    </tr>
+
+                </tbody>
+            </table>
+    </div>
+    
+	
+
+</div>
+<style>
+	.example01 li{ float:left; margin-right:5px;}
+	.example01 li a{ float:left; display:block; width:14px; height:14px; border:1px solid #cc0; border-radius:14px; overflow:hidden; line-height:14px; background:#ff0; text-align:center;}
+	.example01 li a:empty{ background:#f00; border-color:#c00;}
+</style>
+<div class="example example01" id="p_01">
+	<pre>.example01 li <span class="f_green">a:empty</span>{ background:#f00; border-color:#c00;}</pre>
+	<ul>
+    	<li><a href="#" target="_blank">1</a></li>
+        <li class="current"><a href="#" target="_blank">2</a></li>
+        <li><a href="#" target="_blank">3</a></li>
+        <li><a href="#" target="_blank"></a></li>
+        <li><a href="#" target="_blank">5</a></li>
+        <li><a href="#" target="_blank">6</a></li>
+        <li><a href="#" target="_blank">7</a></li>
+    </ul>
+</div>
+
+<style>
+	.example02 li{ float:left; margin-right:5px;}
+	.example02 li a{ float:left; display:block; width:14px; height:14px; border:1px solid #cc0; border-radius:14px; overflow:hidden; line-height:14px; background:#ff0; text-align:center;}
+	.example02 li a[href^="ftp:"]{ background:#f00; border-color:#fff;}
+</style>
+<div class="example example02" id="p_02">
+	<pre>.example02 li <span class="f_green">a[href^="ftp:"]</span>{ background:#f00; border-color:#c00;}</pre>
+	<ul>
+    	<li><a href="#" target="_blank">1</a></li>
+        <li class="current"><a href="http://www.baidu.com" target="_blank">2</a></li>
+        <li><a href="ftp://www.ssss.com" target="_blank">3</a></li>
+        <li><a href="#" target="_blank">4</a></li>
+        <li><a href="#" target="_blank">5</a></li>
+        <li><a href="#" target="_blank">6</a></li>
+        <li><a href="#" target="_blank">7</a></li>
+    </ul>
+</div>
+
+<style>
+	.example03 li{ float:none;}
+	.example03 li a{ float:none; border:none; width:auto; display:inline; padding-right:20px; height:16px; line-height:16px;}
+	.example03 li a[href$="jpg"]{ background:url(images/130.png) no-repeat right center; background-size:contain; }
+	.example03 li a[href$="mp3"]{ background:url(images/156.png) no-repeat right center; background-size:contain; }
+</style>
+<div class="example example03" id="p_03">
+	<pre>.example03 li <span class="f_green">a[href$="jpg"]</span>{
+    background:url(images/130.png) no-repeat right center;
+    background-size:contain;
+}
+.example03 li <span class="f_green">a[href$="mp3"]</span>{ 
+    background:url(images/156.png) no-repeat right center; 
+    background-size:contain; 
+}</pre>
+	<ul>
+    	<li><a href="#" target="_blank">1下载链接</a></li>
+        <li><a href="http://www.baidu.com/images/ss.jpg" target="_blank">图片链接</a></li>
+        <li><a href="ftp://www.ssss.com/song.mp3" target="_blank">歌曲下载</a></li>
+        <li><a href="#" target="_blank">4下载链接</a></li>
+        <li><a href="#" target="_blank">5下载链接</a></li>
+    </ul>
+</div>
+
+
+
+<style>
+	.example04 p:first-line{ color:#c00;}
+	.example04 p:first-letter{ font-size:20px;}
+</style>
+<div class="example example04" id="p_04">
+	<pre>.example04 <span class="f_green">p:first-line</span>{ color:#c00;}		<span class="f_gray">//第一行加红</span>
+.example04 <span class="f_green">p:first-letter</span>{ font-size:20px;}	<span class="f_gray">//首字母加大</span>
+    </pre>
+	<p>
+		This is a Article of nothing, just about to show something in html5, it funny and useful. This is a Article of nothing, just about to show something in html5, it funny and useful. This is a Article of nothing, just about to show something in html5, it funny and useful.
+    </p>
+</div>
+
+<style>
+	.example05 li{ float:left; margin-right:5px;}
+	.example05 li a{ float:left; display:block; width:14px; height:14px; border:1px solid #cc0; border-radius:14px; overflow:hidden; line-height:14px; background:#ff0; text-align:center;}
+	.example05 li:nth-child(2n) a{ background:#c00;}
+</style>
+<div class="example example05" id="p_05">
+	<pre>.example05 <span class="f_green">li:nth-child(2n)</span> a{ background:#c00;}	<span class="f_gray">//偶数项li符合,等价于li:nth-child(even)</span></pre>
+	<ul>
+    	<li><a href="#" target="_blank">1</a></li>
+        <li class="current"><a href="http://www.baidu.com" target="_blank">2</a></li>
+        <li><a href="ftp://www.ssss.com" target="_blank">3</a></li>
+        <li><a href="#" target="_blank">4</a></li>
+        <li><a href="#" target="_blank">5</a></li>
+        <li><a href="#" target="_blank">6</a></li>
+        <li><a href="#" target="_blank">7</a></li>
+    </ul>
+</div>
+
+<style>
+	.example06 li{ float:left; margin-right:5px;}
+	.example06 li a{ float:left; display:block; width:14px; height:14px; border:1px solid #cc0; border-radius:14px; overflow:hidden; line-height:14px; background:#ff0; text-align:center;}
+	.example06 li a:not([href^="http"]){ background:#c00;}
+</style>
+<div class="example example06" id="p_06">
+	<pre>.example06 li <span class="f_green">a:not([href^="http"])</span>{ background:#c00;}	<span class="f_gray">//选择不是http开头的链接</span></pre>
+	<ul>
+    	<li><a href="#" target="_blank">1</a></li>
+        <li class="current"><a href="http://www.baidu.com" target="_blank">2</a></li>
+        <li><a href="ftp://www.ssss.com" target="_blank">3</a></li>
+        <li><a href="#" target="_blank">4</a></li>
+        <li><a href="#" target="_blank">5</a></li>
+        <li><a href="#" target="_blank">6</a></li>
+        <li><a href="#" target="_blank">7</a></li>
+    </ul>
+</div>
+
+<script>
+
+
+
+</script>
+
+</body>
+</html>

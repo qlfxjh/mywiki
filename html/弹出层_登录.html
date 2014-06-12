@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>弹出层</title>
+<meta name="description" content=" 内容介绍不超过100个中文">
+<meta name="keywords" content=" 内容相关关键词3-5个">
+<link href="../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.4.3.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/jquery.placeholder.js"></script>
+
+
+</head>
+
+<body>
+<div style=" position:relative; width:1000px; margin:0 auto; height:400px;">asdfadfasd</div>
+
+
+<div class="pop_s pop_login" id="pop_login">
+	<div class="p_t">
+    	<h4>会员登录</h4>
+        <a href="javascript:;" onclick="oPop.close()" class="btn_close"></a>
+    </div>
+    <div class="p_c clearfix">
+    	<div class="pl_form">
+        	<dl>
+            	<dt>用户名:</dt>
+                <dd><input type="text" value="" class="input_txt" placeholder="请输入注册邮箱或昵称" /></dd>
+            </dl>
+            <dl>
+            	<dt>密&nbsp;&nbsp;码:</dt>
+                <dd><input type="password" value="" class="input_psd" placeholder="请输入用户名" /></dd>
+            </dl>
+            <dl>
+            	<dt>&nbsp;</dt>
+                <dd><label><input type="checkbox" class="chkbox" />记往用户名</label></dd>
+            </dl>
+            <dl>
+            	<dt>&nbsp;</dt>
+                <dd><button type="button" class="btn_yel_01">确定</button><a href="#" target="_blank">忘记密码？</a></dd>
+            </dl>
+        </div>
+        <div class="pl_notmemb">
+        	<p class="txt">您还不是会员？</p>
+            <p class="btns">
+            	<a href="#" target="_blank" class="btn_signup"></a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	var oPop = new Pop();
+	oPop.show('pop_login');
+	//初始化输入框的占位符
+$.Placeholder.init();
+</script>
+
+
+</body>
+</html>

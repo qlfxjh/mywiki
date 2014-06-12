@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>表格通用结构</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1 class="pt_20">导航结构</h1>
+
+
+<style type="text/css">
+.main_menu_uc{ position:relative; width:980px; overflow:hidden; margin:0 auto 10px;}
+.main_menu_uc ul{ position:relative; padding-left:40px; height:44px; overflow:hidden; padding-top:6px; background:url(images/uc_bars.png) repeat-x 0 0; z-index:3;}
+.main_menu_uc .menu_top .sub_menu{ display:none;}
+.main_menu_uc .menu_top li{ float:left; margin-right:2px;}
+.main_menu_uc .menu_top li a{ float:left; height:44px; padding-left:45px; line-height:44px; font-size:14px; font-weight:bold; color:#fff;}
+.main_menu_uc .menu_top li a:hover{ text-decoration:none;}
+.main_menu_uc .menu_top li a strong{ float:left; padding-right:45px; height:44px; cursor:pointer;}
+.main_menu_uc .menu_top li.hover a, .main_menu_uc .menu_top li.current a{ background:url(images/uc_btns.png) no-repeat left 0; color:#c00;}
+.main_menu_uc .menu_top li.hover a strong, .main_menu_uc .menu_top li.current a strong{ background:url(images/uc_btns.png) no-repeat right 0;}
+
+.main_menu_uc .sub_menu_wrap{ position:relative; height:45px; z-index:2; background:url(images/uc_bars.png) repeat-x 0 -50px;}
+.main_menu_uc .sub_menu_wrap .sub_menu{padding-left:20px; padding-top:11px;}
+.main_menu_uc .sub_menu_wrap .b_l, .main_menu_uc .sub_menu_wrap .b_r{ position:absolute; height:45px; width:5px; background:url(images/uc_bars.png) no-repeat 0 -97px;}
+.main_menu_uc .sub_menu_wrap .b_l{left:0;}
+.main_menu_uc .sub_menu_wrap .b_r{right:0; background-position:0 -144px;}
+
+
+.main_menu_uc .sub_menu a{ float:left; height:24px; line-height:24px; color:#666666;}
+.main_menu_uc .sub_menu a strong{font-weight:normal;}
+.main_menu_uc .sub_menu a:hover{ color:#c00;}
+.main_menu_uc .sub_menu a.current, .main_menu_uc .sub_menu a.current strong{height:24px; background:url(images/uc_btns.png) no-repeat 0 0; color:#c00;}
+.main_menu_uc .sub_menu a.current{ padding-left:12px; color:#004080; background-position:0 -46px;}
+.main_menu_uc .sub_menu a.current strong{ float:left; height:24px; padding-right:12px; font-weight:normal; background-position:right -46px;}
+.main_menu_uc .sub_menu a.current:hover{ text-decoration:none;}
+.main_menu_uc .sub_menu .spt{ float:left; width:18px; height:24px; overflow:hidden; margin-right:16px; background:url(images/ico_split.png) no-repeat right 5px;}
+
+
+</style>
+
+
+
+
+
+
+<div class="w">
+	<div class="main_menu_uc" id="main_menu_uc">
+        <ul class="menu_top">
+            <li class="current"><a href="#"><strong>首页</strong></a></li>
+            <li>
+                <a href="#"><strong>我的交易</strong></a>
+                <div class="sub_menu">
+                    <a href="" class="current"><strong>购物车</strong></a><span class="spt"></span>
+                    <a href=""><strong>订单管理</strong></a><span class="spt"></span>
+                    <a href=""><strong>合同管理</strong></a><span class="spt"></span>
+                    <a href=""><strong>付款管理</strong></a><span class="spt"></span>
+                    <a href=""><strong>电子提单</strong></a><span class="spt"></span>
+                    <a href=""><strong>收货管理</strong></a><span class="spt"></span>
+                    <a href=""><strong>开票管理</strong></a>
+                </div>
+            </li>
+            <li>
+                <a href="#"><strong>资金帐户管理</strong></a>
+                <div class="sub_menu">
+                    <a href=""><strong>软件项目申报专栏</strong></a><span class="spt"></span>
+                    <a href=""><strong>国家部委项目</strong></a><span class="spt"></span>
+                    <a href=""><strong>地方项目</strong></a><span class="spt"></span>
+                    <a href=""><strong>项目资讯</strong></a><span class="spt"></span>
+                    <a href=""><strong>培训资讯</strong></a>
+                </div>
+            </li>
+            <li>
+                <a href="#"><strong>消息</strong></a>
+                <div class="sub_menu">
+                    <a href=""><strong>采购资讯</strong></a><span class="spt"></span>
+                    <a href=""><strong>采购指导</strong></a>
+                </div>
+            </li>
+            <li>
+                <a href="#"><strong>帐号管理</strong></a>
+                <div class="sub_menu">
+                    <a href=""><strong>新闻中心</strong></a><span class="spt"></span>
+                    <a href=""><strong>体系认证</strong></a><span class="spt"></span>
+                    <a href=""><strong>产品认证</strong></a>
+                </div>
+            </li>
+        </ul>
+        <div class="sub_menu_wrap" id="sub_menu_wrap">
+            <span class="b_l"></span>
+            <span class="b_r"></span>
+            
+            <div class="sub_menu" id="sub_menu_con">
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+function main_menu_4_uc(){
+	var current_index;
+	var menuLi = $('#main_menu_uc li');
+	var subMenuCon = $("#sub_menu_con");
+	var subMenuWrap = $("#sub_menu_wrap");
+	var outHandle = null;
+	var slideHandle = null;
+	var finalTop = 0;
+	function init(){
+		if(!menuLi) return;
+		for(var i=0; i<menuLi.length; i++){
+			if($(menuLi[i]).hasClass('current')){
+				current_index = i;
+			}
+		}
+		$('#main_menu_uc li').hover(onMouseover,onMouseout);
+		subMenuWrap.bind("mouseover",onMouseover);
+		subMenuWrap.bind("mouseout",onMouseout);
+		if(current_index==0){
+			finalTop = -45;
+			if(slideHandle==null){
+				slide();
+			}
+		}else{
+			//初始化时把一级菜单当前项的二级内容放入二级导航中。
+			subMenuCon.html(menuLi.eq(current_index).find(".sub_menu").html());
+		}
+	}
+	
+	
+	function onMouseover(){
+		
+		if(outHandle){
+			clearTimeout(outHandle);
+		}
+		//如果进入一级项单(第一项首页除外) 并且二级菜单是隐藏的，那么展开之。
+		if(this!=menuLi[0]&&subMenuWrap.css("marginTop")!=0){
+			finalTop = 0;
+			if(slideHandle==null){
+				slide();
+			}
+		}
+		
+		
+		//如果进入的是一级导航项则执行以下代码，如果是进入二级导航项则跳过以下代码。
+		if(this.tagName == "LI"){
+			menuLi.removeClass('current').removeClass('hover');
+			$(this).addClass('hover');
+			subMenuCon.html($(this).find(".sub_menu").html());
+		}
+	}
+	
+	function onMouseout(){
+		
+		outHandle = setTimeout((function(){return function(){
+			menuLi.removeClass('hover');
+			if(current_index==0){
+				$(menuLi[current_index]).addClass('current');
+				//subMenuCon.html("");
+				//收起二级菜单位置
+				finalTop = -45;
+				if(slideHandle==null){
+					slide();
+				}
+			}else{
+				$(menuLi[current_index]).addClass('current');
+				subMenuCon.html($(menuLi[current_index]).find(".sub_menu").html());
+			}
+			
+		}})(),200);
+	}
+	
+	function slide(){
+		 var moveDis = parseInt((finalTop-parseInt(subMenuWrap.css("margin-top")))/2);
+		 if(Math.abs(moveDis)<1){
+			subMenuWrap.css("margin-top",finalTop);
+			slideHandle = null;
+		}else{
+			subMenuWrap.css("margin-top",parseInt(subMenuWrap.css("margin-top")) + moveDis);
+			slideHandle = setTimeout(slide, 40);
+		}
+	}
+	
+	init();
+	
+	
+	
+	
+}
+
+//初始化导航
+main_menu_4_uc();
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>弹出层</title>
+<meta name="description" content=" 内容介绍不超过100个中文">
+<meta name="keywords" content=" 内容相关关键词3-5个">
+<link href="../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.4.3.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+
+
+</head>
+
+<body>
+<div style=" position:relative; width:1000px; margin:0 auto; height:400px;">asdfadfasd</div>
+
+
+<div class="pop_s" id="pop_msg_setting">
+	<div class="p_t">
+    	<h4>短信通知设置</h4>
+        <a href="javascript:;" onclick="oPop.close()" class="btn_close"></a>
+    </div>
+    <div class="p_c clearfix">
+    	<div class="p_com_section">
+        	<p class="ti2">为了确保您能更快速地获得问题被解答的信息，我们建议您留下或核对手机号码，问题被回复后，我们将第一时间短信通知您：</p>
+            <dl class="field">
+            	<dt>手机号码：</dt>
+                <dd><input type="text" class="input_txt" /><span class="tip_wrong">这里是错误提示</span></dd>
+            </dl>
+            <dl class="field">
+            	<dt>&nbsp;</dt>
+                <dd><label><input type="checkbox" class="chkbox" />不再提醒</label></dd>
+            </dl>
+        </div>
+        <div class="p_btns_c">
+        	<a href="#" class="btn_yel_01">确定</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	var oPop = new Pop();
+	oPop.show('pop_msg_setting');
+</script>
+
+
+</body>
+</html>

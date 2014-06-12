@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>弹出层</title>
+<meta name="description" content=" 内容介绍不超过100个中文">
+<meta name="keywords" content=" 内容相关关键词3-5个">
+<link href="../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.4.3.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+
+
+</head>
+
+<body>
+<div style=" position:relative; width:1000px; margin:0 auto; height:400px;">asdfadfasd</div>
+
+
+<div class="pop_m pop_needhelp" id="pop_needhelp">
+	<div class="p_t">
+    	<h4>我要求助</h4>
+        <a href="javascript:;" onclick="oPop.close()" class="btn_close"></a>
+    </div>
+    <div class="p_c clearfix">
+    	<div class="pn_form">
+        	<dl class="clearfix">
+            	<dt><span class="ifmust">* </span>您的问题：</dt>
+                <dd><input type="text" value="" placeholder ="不超过25个汉字" id="input_question_title" class="input_txt" /></dd>
+            </dl>
+            <dl class="clearfix">
+            	<dt><span class="ifmust">* </span>补充详情：</dt>
+                <dd><textarea class="textarea" placeholder="不超过500个汉字" id="textarea_detail"></textarea>
+                	<div class="tip_add">请客观描述您的问题！为确保您的信息安全，请不要直接在详细内容里留下您的个人敏感信息，如：
+<em class="f_blue">电话</em>、<em class="f_blue">邮箱</em>、<em class="f_blue">地址</em>等。</div>
+                </dd>
+            </dl>
+            <dl class="clearfix">
+            	<dt><span class="ifmust">* </span>问题类型：</dt>
+                <dd><select><option>---请选择---</option></select><label for="chkbox_anonymous"><input type="checkbox" class="chkbox" id="chkbox_anonymous" />我要匿名
+</label></dd>
+            </dl>
+            <div class="btns">
+            	<a href="#" class="btn_yel_01 mr_10">确认</a>
+                <a href="javascript:;" onclick="oPop.close()" class="btn_gray_01">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+	var oPop = new Pop();
+	oPop.show('pop_needhelp');
+	//控制弹出层输入框的字数
+	$('#input_question_title').keyup(function(){
+		var last = 25-this.value.length;
+		if(last<=0){
+			$(this).attr('value',this.value.toString().substring(0,25));
+			alert('字符已满');
+		}
+	});
+	$('#textarea_detail').keyup(function(){
+		var last = 500-this.value.length;
+		if(last<=0){
+			$(this).attr('value',this.value.toString().substring(0,500));
+			alert('字符已满');
+		}
+	});
+</script>
+
+
+</body>
+</html>

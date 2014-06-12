@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>gradient</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<style>
+	.inform .table_01 tbody th{ text-align:center; background:#eee;}
+	.inform .table_01 tbody th, .inform .table_01 tbody td{ height:40px;}
+	.inform .table_01 tbody .even th{ text-align:center; background:#c7cee2;}
+	
+</style>
+
+<div class="inform">
+	<h2>CSS3 Gradient</h2>
+    <p class="ti2">CSS3 Gradient分为linear-gradient(线性渐变)和radial-gradient(径向渐变)。</p>
+    <h4 class="f_darkred"><strong>Mozilla下用法:</strong></h4>
+    <p class="ti2">-moz-linear-gradient( [ &lt;point&gt; || &lt;angle&gt;,]? &lt;stop&gt;, &lt;stop&gt; [, &lt;stop&gt;]* )<br>参数：其共有三个参数，第一个参数表示线性渐变的方向，top是从上到下、left是从左到右，如果定义成left top，那就是从左上角到右下角。第二个和第三个参数分别是起点颜色和终点颜色。你还可以在它们之间插入更多的参数，表示多种颜色的渐变。如图所示：
+    </p>
+    <p><img src="images/moz-gradient.png" /></p>
+    <h4 class="f_darkred"><strong>webkit下的写法：</strong></h4>
+    <p class="ti2">-webkit-linear-gradient( [&lt;point&gt; || &lt;angle&gt;,]? &lt;stop&gt;, &lt;stop&gt; [, &lt;stop&gt;]* )//最新发布书写语法</p>
+    <h4 class="f_darkred"><strong>Opera下的写法除了前缀外其它与webkit和firefox相同：</strong></h4>
+    <h4 class="f_darkred"><strong>IE下的实现</strong></h4>
+    <pre>
+filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB);<span class="f_999999">/*IE<9>*/</span>
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)";<span class="f_999999">/*IE8+*/></span>
+    </pre>
+    <h4 class="f_darkred"><strong>兼容写法</strong></h4>
+    <pre>
+background:-moz-linear-gradient(left,#ace,#f96);/*Mozilla*/
+background:-webkit-gradient(linear,0 50%,100% 50%,from(#ace),to(#f96));/*Old gradient for webkit*/
+background:-webkit-linear-gradient(left,#ace,#f96);/*new gradient for Webkit*/
+background:-o-linear-gradient(left,#ace,#f96); /*Opera11*/
+    </pre>
+<style>
+.styleblock{
+	width:100px;
+	height:100px;
+	border:1px solid #ccc;
+}
+.bg_01{
+	background:-moz-linear-gradient(left,#ace,#f96);/*Mozilla*/
+	background:-webkit-linear-gradient(left,#ace,#f96);/*new gradient for Webkit*/
+	background:-o-linear-gradient(left,#ace,#f96); /*Opera11*/
+}
+
+</style>
+	<p>效果如下：</p>
+    <div class="styleblock bg_01">
+    	
+    </div>
+    <p class="ti2">起始点（Starting Point）的工作方式类似于background position。您可以设置水平和垂直位置为百分比，或以像素为单位，或在水平方向上可以使用left/center/right，在垂直方向上可以使用top/center/bottom。位置起始于左上角。如果你不指定水平或垂直位置，它将默认为center。其工作方式主要包含：Top → Bottom、Left → Right、bottom → top、right → left等，接着我们主要一种一种来看其实现的效果：</p>
+    <p>斜向方向：</p>
+<style>
+.bg_02{
+	background:-moz-linear-gradient(left top,#ace,#f96);/*Mozilla*/
+	background:-webkit-linear-gradient(left top,#ace,#f96);/*new gradient for Webkit*/
+	background:-o-linear-gradient(left top,#ace,#f96); /*Opera11*/
+}
+
+</style>
+	<p>效果如下：</p>
+    <div class="styleblock bg_02">
+    	
+    </div>
+    
+    <h4 class="f_darkred"><strong>随意添加渐变的stop点</strong></h4>
+    <pre>
+ <span class="f_999999">/* Firefox 3.6+ */ </span>
+ background: -moz-linear-gradient(left, #ace, #f96 5%, #ace, #f96 95%, #ace); 
+ <span class="f_999999">/* Safari 5.1+, Chrome 10+ */ </span>
+ background: -webkit-linear-gradient(left, #ace, #f96 5%, #ace, #f96 95%, #ace); 
+ <span class="f_999999">/* Opera 11.10+ */ </span>
+ background: -o-linear-gradient(left, #ace, #f96 5%, #ace, #f96 95%, #ace);
+    </pre>
+    
+<style>
+.bg_03{
+ /* Firefox 3.6+ */ 
+ background: -moz-linear-gradient(left, #ace, #f96 5%, #ace, #f96 95%, #ace); 
+ /* Safari 5.1+, Chrome 10+ */ 
+ background: -webkit-linear-gradient(left, #ace, #f96 5%, #ace, #f96 95%, #ace); 
+ /* Opera 11.10+ */ 
+ background: -o-linear-gradient(left, #ace, #f96 5%, #ace, #f96 95%, #ace);
+}
+
+</style>
+	<p>效果如下：</p>
+    <div class="styleblock bg_03">
+    	
+    </div>
+    
+    <h4 class="f_darkred"><strong>设置角度</strong></h4>
+    <p>正如上面看到的示例，如果您不指定一个角度，它会根据起始位置自动定义。如果你想更多的控制渐变的方向，您不妨设置角度试试。例如，下面的两个渐变具有相同的起点left center，但是加上一个30度的角度。</p>
+    <pre>
+background: -moz-linear-gradient(left 30deg, #ace, #f96);
+background: -webkit-linear-gradient(30deg, #ace,#f96);
+background: -o-linear-gradient(30deg, #ace, #f96);
+    
+    </pre>
+<style>
+.bg_04{
+background: -moz-linear-gradient(left, #ace, #f96);
+background: -webkit-linear-gradient(left, #ace,#f96);
+background: -o-linear-gradient(left, #ace, #f96);
+}
+.bg_05{
+background: -moz-linear-gradient(30deg, #ace, #f96);
+background: -webkit-linear-gradient(30deg, #ace,#f96);
+background: -o-linear-gradient(30deg, #ace, #f96);
+}
+
+</style>
+	<p>效果如下：</p>
+    <div class="styleblock bg_04">
+    	without deg
+    </div>
+    <div class="styleblock bg_05">
+    	with deg
+    </div>
+    
+    <h4 class="f_darkred"><strong>渐变上应用透明─透明度(Transparency)：</strong></h4>
+    <p>透明度还支持透明渐变。这对于制作一些特殊的效果是相当有用的，例如，当堆叠多个背景时。这里是两个背景的结合：一张图片，一个白色到透明的线性渐变。我们来看一个官网的示例吧：</p>
+    <pre>
+background: -moz-linear-gradient(right, rgba(255,255,255,0), rgba(255,255,255,1)),url(http://demos.hacks.mozilla.org/openweb/resources/images/patterns/flowers-pattern.jpg);
+background: -webkit-linear-gradient(right, rgba(255,255,255,0), rgba(255,255,255,1)),url(http://demos.hacks.mozilla.org/openweb/resources/images/patterns/flowers-pattern.jpg);
+background: -o-linear-gradient(right, rgba(255,255,255,0), rgba(255,255,255,1)),url(http://demos.hacks.mozilla.org/openweb/resources/images/patterns/flowers-pattern.jpg);
+    </pre>
+    
+<style>
+
+.bg_06{
+	background: -moz-linear-gradient(right, rgba(255,255,255,0), rgba(255,255,255,1)),url(images/130.png);
+	background: -webkit-linear-gradient(right, rgba(255,255,255,0), rgba(255,255,255,1)),url(images/130.png);
+	background: -o-linear-gradient(right, rgba(255,255,255,0), rgba(255,255,255,1)),url(images/130.png);
+	background-repeat:no-repeat;
+	background-position:50% 50%;
+}
+
+</style>
+	<p>效果如下：</p>
+    <div class="styleblock bg_06">
+    	
+    </div>
+    
+    <h4 class="f_darkred"><strong>径向渐变</strong></h4>
+    <pre>
+-moz-radial-gradient([&lt;bg-position&gt; || &lt;angle&gt;,]? [&lt;shape&gt; || &lt;size&gt;,]? &lt;color-stop&gt;, &lt;color-stop&gt;[, &lt;color-stop&gt;]*);
+ -webkit-radial-gradient([&lt;bg-position&gt; || &lt;angle&gt;,]? [&lt;shape&gt; || &lt;size&gt;,]? &lt;color-stop&gt;, &lt;color-stop&gt;[, &lt;color-stop&gt;]*);
+    </pre>
+    <p>除了您已经在线性渐变中看到的起始位置，方向，和颜色，径向梯度允许你指定渐变的形状（圆形或椭圆形）和大小（最近端，最近角，最远端，最远角，包含或覆盖 (closest-side, closest-corner, farthest-side, farthest-corner, contain or cover)）。 颜色起止(Color stops)：就像用线性渐变，你应该沿着渐变线定义渐变的起止颜色。下面为了更好的理解其具体的用法，我们主要通过不同的示例来对比CSS3径向渐变的具体用法</p>
+    
+    
+<style>
+
+.bg_07{
+	background: -moz-radial-gradient( rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -webkit-radial-gradient( rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -o-radial-gradient(rgba(255,0,0,0), rgba(255,0,0,1));
+}
+
+</style>
+	<p>效果如下：</p>
+    <div class="styleblock bg_07">
+    	
+    </div>
+    
+    <h4 class="f_darkred"><strong>设置shape:circle/ellipse</strong></h4>
+<style>
+.bg_08{
+	height:40px;
+	background: -moz-radial-gradient(circle, rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -webkit-radial-gradient(circle, rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -o-radial-gradient(circle,rgba(255,0,0,0), rgba(255,0,0,1));
+}
+
+.bg_09{
+	height:40px;
+	background: -moz-radial-gradient(ellipse, rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -webkit-radial-gradient(ellipse, rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -o-radial-gradient(ellipse,rgba(255,0,0,0), rgba(255,0,0,1));
+}
+
+</style>
+	<p>效果如下：</p>
+    <div class="styleblock bg_08">
+    	
+    </div>
+    <div class="styleblock bg_09">
+    	
+    </div>
+    
+    <h4 class="f_darkred"><strong>设置size:closest-side, closest-corner, farthest-side, farthest-corner, contain or cover</strong></h4>
+    
+<style>
+.bg_10{
+	height:40px;
+	background: -moz-radial-gradient(ellipse closest-side, rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -webkit-radial-gradient(ellipse closest-side, rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -o-radial-gradient(ellipse closest-side,rgba(255,0,0,0), rgba(255,0,0,1));
+}
+
+.bg_11{
+	height:40px;
+	background: -moz-radial-gradient(ellipse farthest-corner, rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -webkit-radial-gradient(ellipse farthest-corner, rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -o-radial-gradient(ellipse farthest-corner,rgba(255,0,0,0), rgba(255,0,0,1));
+}
+
+</style>
+	<p>效果如下：</p>
+    <div class="styleblock bg_10">
+    	
+    </div>
+    <div class="styleblock bg_11">
+    	
+    </div>
+    
+    <h4 class="f_darkred"><strong>设置了position和size</strong></h4>
+    <pre>
+background: -moz-radial-gradient(80% 20%, circle closest-side, rgba(255,0,0,0), rgba(255,0,0,1));
+background: -webkit-radial-gradient(80% 20%, circle closest-side, rgba(255,0,0,0), rgba(255,0,0,1));
+background: -o-radial-gradient(80% 20%,circle closest-side,rgba(255,0,0,0), rgba(255,0,0,1));
+    </pre>
+<style>
+.bg_12{
+	height:40px;
+	background: -moz-radial-gradient(80% 20%, circle closest-side, rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -webkit-radial-gradient(80% 20%, circle closest-side, rgba(255,0,0,0), rgba(255,0,0,1));
+	background: -o-radial-gradient(80% 20%,circle closest-side,rgba(255,0,0,0), rgba(255,0,0,1));
+}
+
+
+</style>
+	<p>效果如下：</p>
+    <div class="styleblock bg_12">
+    	
+    </div>
+    
+    <h4 class="f_darkred"><strong>CSS的重复渐变的应用。</strong></h4>
+    <pre>
+background: -moz-repeating-radial-gradient(#ace, #ace 5px, #f96 5px, #f96 10px);
+background: -webkit-repeating-radial-gradient(#ace, #ace 5px, #f96 5px, #f96 10px);
+    </pre>
+<style>
+.bg_13{
+	background: -moz-repeating-radial-gradient(#ace, #ace 5px, #f96 5px, #f96 10px);
+	background: -webkit-repeating-radial-gradient(#ace, #ace 5px, #f96 5px, #f96 10px);
+}
+.bg_14{
+	background: -moz-repeating-radial-gradient(left top,#ace, #ace 5px, #f96 5px, #f96 10px);
+	background: -webkit-repeating-radial-gradient(left top,#ace, #ace 5px, #f96 5px, #f96 10px);
+}
+
+
+</style>
+	<p>效果如下：</p>
+    <div class="styleblock bg_13 fl mr_10">
+    	
+    </div>
+    <div class="styleblock bg_14 fl">
+    	
+    </div>
+    <div class="clear"></div>
+    
+	背景渐变色
+    <pre>
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.8)), to(rgba(200,200,200,0.9)));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,200,200,0.9));
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,200,200,0.9));
+    background: -ms-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,200,200,0.9));
+    background: -o-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,200,200,0.9));
+	</pre>
+
+</div>
+
+
+
+
+<style>
+
+.box{width:200px; height:200px; margin:10px auto;
+background-image:url(images/bg_tl.png),url(images/bg_tr.png),url(images/bg_bl.png),url(images/bg_br.png);
+background-repeat:no-repeat,no-repeat,no-repeat,no-repeat;
+background-position:left 0,right 0,left bottom, right bottom;
+}
+.box02{width:200px; height:200px; margin:0 auto; border:1px solid #ccc;
+background-image:url(images/box_bg.png),url(images/box_bg.png),url(images/box_bg.png),url(images/box_bg.png);
+background-repeat:no-repeat,no-repeat,no-repeat,no-repeat;
+background-size:20px,20px,20px,20px;
+background-position:left 0,right 0,left bottom, right bottom;
+}
+</style>
+<div class="example">
+	<h2>实例</h2>
+	<div class="box">
+    	实例1:四张图片放在四个角
+	</div>
+    <div class="box02">
+    	实例1:一张图片放在四个角
+	</div>
+    
+</div>
+
+<script>
+
+
+
+</script>
+
+</body>
+</html>
+

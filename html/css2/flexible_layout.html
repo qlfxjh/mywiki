@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>创建条件样式</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<style>
+.page_main{width:960px; margin:10px auto;}
+.page_left{ float:left; width:300px; height:500px; overflow:hidden; margin-right:10px; background:#ccc;}
+.page_right{ float:left; width:650px; height:500px; overflow:hidden; background:#caa;}
+@media screen and (max-width:960px){
+	.page_left{display:none;}
+	.page_right{ float:none; width:100%;}
+}
+
+</style>
+<div class="page_main">
+    <div class="page_left">
+        这里是左边框内容
+	</div>
+	<div class="page_right">
+    	<h1>右边的内容</h1>
+        <p>this is the right content. this is the right content. this is the right content. this is the right content. this is the right content. this is the right content</p>
+    </div>
+</div>
+    
+</body>
+</html>

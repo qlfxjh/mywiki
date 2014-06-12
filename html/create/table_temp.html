@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>表格通用结构</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1 class="pt_20">表格通用结构</h1>
+<div class="inform">
+	<h4 class="mb_10">在style link外面套条件</h4>
+    
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<thead>
+    	<tr>
+        	<th>事件</th>
+            <th>产生事件的元素</th>
+            <th>描述</th>
+        </tr>
+    </thead>
+	<tbody>
+    	<tr>
+        	<td>dragstart</td>
+            <td>被拖放的元素</td>
+            <td>开始拖放操作</td>
+        </tr>
+        <tr>
+        	<td>drag</td>
+            <td>被拖放的元素</td>
+            <td>拖放的过程中</td>
+        </tr>
+        <tr>
+        	<td>dragenter</td>
+            <td>拖放过程中鼠标经过的元素</td>
+            <td>被拖放的元素开始进入本元素的范围内</td>
+        </tr>
+    </tbody>
+	
+</table>
+
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<thead>
+    	<tr>
+        	<th>事件</th>
+            <th>产生事件的元素</th>
+            <th>描述</th>
+        </tr>
+    </thead>
+	<tbody>
+    	<tr>
+        	<td>dragstart</td>
+            <td>被拖放的元素</td>
+            <td>开始拖放操作</td>
+        </tr>
+        <tr class="even">
+        	<td>drag</td>
+            <td>被拖放的元素</td>
+            <td>拖放的过程中</td>
+        </tr>
+        <tr>
+        	<td>dragenter</td>
+            <td>拖放过程中鼠标经过的元素</td>
+            <td>被拖放的元素开始进入本元素的范围内</td>
+        </tr>
+        <tr class="even">
+        	<td>dragenter</td>
+            <td>拖放过程中鼠标经过的元素</td>
+            <td>被拖放的元素开始进入本元素的范围内</td>
+        </tr>
+    </tbody>
+	
+</table>
+
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+    </thead>
+	<tbody>
+    	<tr>
+        	<th>用户名：</th>
+            <td>被拖放的元素</td>
+        </tr>
+        <tr>
+        	<th>密码</th>
+            <td>被拖放的元素</td>
+        </tr>
+        <tr>
+        	<th>选择入口</th>
+            <td>拖放过程中鼠标经过的元素</td>
+        </tr>
+    </tbody>
+	
+</table>
+
+
+</div>
+    
+</body>
+</html>

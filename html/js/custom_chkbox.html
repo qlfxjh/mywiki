@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>自定义check box</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+<style>
+.example{}
+
+.form01{width:600px; margin:0 auto; border:1px solid #ccc; border-radius:5px; padding:20px; background:rgba(0,0,0,0.6);}
+.form01 .field{ height:40px; border-bottom:1px solid #ccc; line-height:40px; color:#fff;}
+.form01 .field:last-child{border-bottom:0;}
+.form01 .field label{ display:inline-block; width:400px;}
+.form01 .field input[type=checkbox]{ margin:3px; vertical-align:middle;}
+.form01 .tzCheckBox{}
+.form01 .tzCheckBox{ display:inline-block; position:relative; padding:0 40px 0 0; min-width:30px; margin-left:14px; background:url(images/chkbox_bg.png) no-repeat right -33px; line-height:33px; cursor:pointer; white-space:nowrap; text-align:right;}
+.form01 .tzCheckBox .tzCBPart{ position:absolute; left:-14px; top:0; width:14px; height:33px; background:url(images/chkbox_bg.png) left -33px;}
+.form01 .tzCheckBox.checked{ background-position:left 0; padding:0 0 0 40px; margin:0 14px 0 0; text-align:left;}
+.form01 .tzCheckBox.checked .tzCBPart{left:auto; right:-14px; background-position:right 0;}
+
+
+
+
+</style>
+
+</head>
+
+<body>
+<h1>自定义check box</h1>
+<div class="example">
+	<div class="form01">
+    	<div class="field">
+        	<label for="ch_effects">shut down when sleep</label>
+            <input type="checkbox" id="ch_effects" name="ch_effects" data-on="show effects" data-off="hide effects" />
+        </div>
+        <div class="field">
+        	<label for="ch_location">shut down when sleep</label>
+            <input type="checkbox" id="ch_location" name="ch_location" checked="checked" />
+        </div>
+        <div class="field">
+        	<label for="ch_showsearch">shut down when sleep</label>
+            <input type="checkbox" id="ch_showsearch" name="ch_showsearch" data-on="ON" data-off ="OFF" />
+        </div>
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+
+/*<<<<<<<<<<插件代码<<<<<<<<<<<<*/
+(function($){
+			$.fn.tzCheckbox = function(options){
+				//定义ON/OFF标签
+				//把options并入{labels:...}
+				options = $.extend({
+					labels: ['ON','OFF']
+				},options);
+				
+				return this.each(function(){
+					var originalCheckBox = $(this),
+							labels = [];
+					//检查data-on和data-off属性
+					if(originalCheckBox.data('on')){
+						labels[0] = originalCheckBox.data('on');
+						labels[1] = originalCheckBox.data('off');
+					} else {
+						labels = options.labels;
+					}
+					
+					//创建新的checkbox的html结构
+					var checkBox = $('<span>',{
+						class: 'tzCheckBox ' + (this.checked ? 'checked' : ''),//此处'tzCheckBox '需要加一个空格，不然会和checked连在一起
+						html: '<span class="tzCBContent">' + labels[this.checked ? 0 : 1] + '</span><span class="tzCBPart"></span>'
+					});
+					
+					//插入自定义的checkbox，并隐藏默认的Checkbox
+					checkBox.insertAfter(originalCheckBox.hide());
+						
+					checkBox.click(function(){
+						checkBox.toggleClass('checked');
+						var isChecked = checkBox.hasClass('checked');
+						//同步原复选框
+						originalCheckBox.attr('checked',isChecked);
+						checkBox.find('.tzCBContent').html(labels[isChecked ? 0 : 1]);
+					});
+					
+					//监听改变原checkbox并同步新checkbox效果
+					originalCheckBox.bind('change',function(){
+						checkBox.click();
+					});
+				});
+			}
+		})(jQuery);
+
+
+/*<<<<<<<<<<<<<页面内初始化代码<<<<<<<<<<<<<<<*/
+$(document).ready(function(){
+	$('input[type=checkbox]').tzCheckbox({
+		labels:['Enable','Disable']
+	});
+});
+</script>
+
+
+
+
+
+
+<style>
+.form02 .field{margin-bottom:20px; font-size:26px; font-family:Microsoft yahei; line-height:60px;}
+.form02 .field:after{clear:both; height:1px; overflow:hidden;}
+.form02 .field label{ display:inline-block; width:30%; text-align:right; color:#333;}
+.form02 label.remember_psd{ display:inline; width:auto; position:relative; overflow:hidden; padding-left:60px; line-height:60px;}
+.form02 label.remember_psd:before{ position:absolute; left:10px; top:5px; width:30px; height:30px; border:3px solid #999; border-radius:5px; overflow:hidden; z-index:10px; content:"";}
+.form02 label.remember_psd.checked:after{ position:absolute; left:10px; top:4px; width:40px; height:20px; border:6px solid #0C0; border-width:0 0 6px 6px; z-index:10px; content:""; -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+    transform:rotate(-45deg);}
+	
+.form02 .field label.jw_radio{ width:auto; position:relative; overflow:hidden; padding-left:60px; vertical-align:middle;}
+.form02 .field label.jw_radio:before{ position:absolute; left:10px; top:15px; width:30px; height:30px; border:3px solid #999; border-radius:18px; overflow:hidden; z-index:10px; content:"";}
+.form02 .field label.jw_radio.checked:after{ position:absolute; left:15px; top:20px; width:16px; height:16px; border:5px solid #0C0; border-radius:20px; z-index:10px; content:""; background:#0c0; }
+
+.form02 .field .input_txt{padding:8px; width:50%; height:40px; border:2px solid #ccc; border-radius:10px; line-height:30px; font-size:30px;}
+
+.form02 .btns { text-align:center; font-size:26px; font-family:Microsoft yahei;}
+.form02 .btns .btn_login{ display:inline-block; height:60px; width:200px; border:1px solid transparent; border-radius:10px; overflow:hidden; text-align:center; background:url(../images/btns.png) repeat-x 0 0; line-height:60px; color:#fff; vertical-align:middle;}
+</style>
+
+
+<div class="example">
+	<div class="form02">
+    	<div class="field">
+            <label>登录到</label>
+            <input type="hidden" id="login_type" value="1" />
+            <label class="jw_radio checked" id="login_to_01" logintype="1" name="login_to" onClick="jw_radio_click(this)">集团业务</label>
+            <label class="jw_radio" id="login_to_02" name="login_to"  logintype="2" onClick="jw_radio_click(this)">交易中心</label>
+        </div>
+        <div class="btns">
+            <a href="javascript:;" class="btn_login mr_20">登录</a><label class="remember_psd" id="remember_psd" onClick="jw_chkbox_click(this)">记住密码</label>
+        </div>
+        
+    </div>
+</div>
+<script>
+function jw_chkbox_click(target){
+	if(target.className=="remember_psd"){
+		target.className="remember_psd checked";
+	}else{
+		target.className="remember_psd";
+	}
+}
+
+function jw_radio_click(target){
+	var name = target.name;
+	var radioGroup = $(target.parentNode).find(".jw_radio");
+	radioGroup.removeClass("checked");
+	var loginType = target.getAttribute("logintype");
+	if(target.className=="jw_radio"){
+		target.className="jw_radio checked";
+		$("#login_type").val(loginType);
+	}else{
+		target.className="jw_radio";
+	}
+}
+</script>
+</body>
+</html>

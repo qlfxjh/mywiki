@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS3 box-sizing</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<style>
+
+/* RESET */
+html,body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,fieldset,input,abbr,article,aside,command,details,figcaption,figure,footer,header,hgroup,mark,meter,nav,output,progress,section,summary,time { margin: 0; padding: 0; }
+h1,h2,h3,h4,h5,h6,pre,code,address,caption,cite,code,em,strong,th,figcaption { font-size: 1em; font-weight: normal; font-style: normal; }
+fieldset,iframe { border: none; }
+caption,th { text-align: left; }
+table { border-collapse: collapse; border-spacing: 0; }
+article,aside,footer,header,hgroup,nav,section,figure,figcaption { display: block; }
+body{font-size:12px; font-family:Arial, simsun;}
+img { border: 0; }
+ul, ol, li{ list-style:none;}
+.clear { clear: both; }
+.clearer { clear: both; display: block; margin: 0; padding: 0; height: 0; line-height: 1px; font-size: 1px; }
+.clearfix {
+    display: block;
+    height: 1%;
+}
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+/** RESET END **/
+body{ color:#666; font-size:12px;}
+.w{width:1000px; margin:10px auto;}
+.mb_20{ margin-bottom:20px;}
+pre{ color:#009; font-family:arial;}
+
+
+h1{ font:24px/48px Microsoft yahei; color:#666; text-align:center;}
+h2{ font:18px/30px Microsoft yahei; color:#888; text-align:center;}
+h3{ font:14px/30px Microsoft yahei; color:#666; text-align:center;}
+.inform{border:1px solid #ccc; border-width:1px 0; margin-top:20px; padding:10px; line-height:18px; background:#f5f5f5;}
+.inform s{ color:#999; text-decoration:none;}
+.inform .col_01{ float:left; width:480px; margin-right:10px;}
+.inform .col_02{ float:left; width:488px;}
+
+
+.example{width:960px; margin:0 auto; padding:20px; border:1px solid #ccc; border-radius:10px; overflow:hidden; margin-bottom:10px; -webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;	/*Chrome, Safari*/
+-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;	/*Firefox*/
+box-shadow: rgba(0,0,0,0.3) 0 1px 3px;	/*IE9,Opera*/}
+.wrap{width:998px; margin:0 auto; border:1px solid #ccc;}
+
+.box{width:95%; margin:20px auto; height:200px; padding:10px; background:#aaa; -moz-box-sizing:content-box; -webkit-box-sizing:content-box; -o-box-sizing:content-box; box-sizing:content-box;}
+.box01{width:95%; margin:20px auto; height:200px; padding:10px; background:#aaa; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box;}
+</style>
+</head>
+
+<body>
+
+
+
+<div class="w mb_20">
+	<h1>CSS3 box-sizing</h1>
+    <div class="inform">
+    	box-sizing:content-box | border-box | inherit 是CSS3的一个新加属性，设定盒模型的解释方式。<br>
+        属性的意思分别为：<br>
+        content-box: 是默认值，表示换常规的盒模型解释。宽度width不包括padding,border.<br>
+        border-box:是IE6以下版本的盒模型解释，宽度width内包含了padding,border.<br>
+        <br>
+        记得在box-sizing前面加上各个浏览器的前缀
+    </div>
+    
+</div>
+<div class="w wrap">
+	<div class="box mb_20">
+    	s
+	</div>
+    <div class="box01">
+    	s
+	</div>
+</div>
+
+<script>
+
+
+
+</script>
+
+</body>
+</html>

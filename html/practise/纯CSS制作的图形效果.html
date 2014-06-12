@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>纯CSS制作的图形效果</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1>纯CSS制作的图形效果</h1>
+<style>
+
+.css_arrow_multicolor{
+	margin:0 auto;
+	width:0;
+	height:0;
+	border-width:20px;
+	border-style:solid;
+	border-color:#f00 #0ff #f0f #00f;
+}
+
+.semicircle{
+	width:100px;
+	height:50px;
+	margin:0 auto;
+	background:#f00;
+	border-radius:100px 100px 0 0;
+}
+
+.fan_shaped{
+	width:50px;
+	height:50px;
+	margin:0 auto;
+	border-radius:50px 0 0 0;
+	background:#f00;
+}
+
+.oval{
+	width:200px;
+	height:100px;
+	margin:0 auto;
+	background:#f00;
+	border-radius:100px/50px;
+}
+.trangle{
+	margin:0 auto;
+	width:0;
+	height:0;
+	border:50px solid transparent;
+	border-top-color:#f00;
+}
+
+.trangle02{
+	margin:0 auto;
+	width:0;
+	height:0;
+	border:50px solid transparent;
+	border-color:#f00 #f00 transparent transparent;
+}
+.parallelogram{
+	width:200px;
+	height:100px;
+	margin:0 auto;
+	background:#f00;
+	-moz-transform:skew(20deg);
+	-webkit-transform:skew(20deg);
+	-o-transform:skew(20deg);
+	transform:skew(20deg);
+}
+.star_six{
+	position:relative;
+	width:0;
+	height:0;
+	margin:0 auto;
+	border:50px solid transparent;
+	border-top:0;
+	border-bottom-width:100px;
+	border-bottom-color:#f00;
+}
+.star_six:after{
+	position:absolute;
+	left:-50px;
+	top:35px;
+	width:0;
+	height:0;
+	content:"";
+	border:50px solid transparent;
+	border-bottom:0;
+	border-top-width:100px;
+	border-top-color:#f00;
+}
+
+.star_five{
+	position:relative;
+	width:0;
+	height:0;
+	margin:80px auto;
+	border-style:solid;
+	border-width:70px 100px 0 100px;
+	border-color:#f00 transparent transparent transparent;
+}
+.star_five:before{
+	position:absolute;
+	left:-95px;
+	top:-125px;
+	width:0;
+	height:0;
+	content:"";
+	margin:50px auto;
+	border-style:solid;
+	border-width:0 100px 70px 100px;
+	border-color:transparent transparent rgba(255,0,0,1);
+	transform:rotate(107deg);
+}
+
+.star_five:after{
+	position:absolute;
+	left:-103px;
+	top:-125px;
+	width:0;
+	height:0;
+	content:"";
+	margin:50px auto;
+	border-style:solid;
+	border-width:0 100px 70px 100px;
+	border-color:transparent transparent rgba(255,0,0,1);
+	transform:rotate(-107deg);
+}
+.heart{
+	position:relative;
+	width:100px;
+	height:90px;
+	margin:20px auto;
+}
+.heart:before, .heart:after{
+	position:absolute;
+	width:25px;
+	left:18px;
+	content:"";
+	border:25px solid #f00;
+	border-radius:0 80px 80px 0;
+	background:#f00;
+	transform:rotate(-45deg);
+}
+.heart:after{
+	left:0px;
+	transform:rotate(-135deg);
+}
+
+.pac_man{
+	width:0;
+	height:0;
+	margin:0 auto;
+	border:50px solid #f00;
+	border-radius:50px;
+	border-right-color:transparent;
+}
+.twocolor_circle{
+	position:relative;
+	width:96px;
+	height:48px;
+	margin:0 auto;
+	border:2px solid #f00;
+	border-bottom-width:50px;
+	border-radius:100px;
+	background:#eee;
+}
+
+.yinyang{
+	position:relative;
+	width:96px;
+	height:48px;
+	margin:0 auto;
+	border:2px solid #f00;
+	border-bottom-width:50px;
+	border-radius:100px;
+	background:#eee;
+}
+.yinyang:before{
+	position:absolute;
+	left:48px;
+	top:23px;
+	width:10px;
+	height:10px;
+	border:19px solid #eee;
+	border-radius:50px;
+	background:#f00;
+	content:"";
+	z-index:2;
+}
+.yinyang:after{
+	position:absolute;
+	left:0;
+	top:23px;
+	width:10px;
+	height:10px;
+	border:19px solid #f00;
+	border-radius:50px;
+	background:#eee;
+	content:"";
+	z-index:2;
+}
+
+
+
+</style>
+
+<div class="inform">
+	<h3>四色的正方形</h3>
+	<div class="css_arrow_multicolor"></div>
+    <h3>改变border-style:dotted(<span class="f_gray">firefox下有效,IE十下效果与firefox不同</span>);</h3>
+    <div class="css_arrow_multicolor" style="border-style:dotted;"></div>
+    <h3>改变border-style:dashed(<span class="f_gray">firefox下有效</span>);</h3>
+    <div class="css_arrow_multicolor" style="border-style:dashed;"></div>
+    <h3>半圆形</h3>
+    <div class="semicircle"></div>
+    <h3>扇形</h3>
+    <div class="fan_shaped"></div>
+    <h3>椭圆</h3>
+    <div class="oval"></div>
+    <h3>三角</h3>
+    <div class="trangle"></div>
+    <h3>斜三角</h3>
+    <div class="trangle02"></div>
+    <h3>平行四边形</h3>
+    <div class="parallelogram"></div>
+    <h3>六角星</h3>
+    <div class="star_six"></div>
+    <h3 class="pt_30">五角星</h3>
+    <div class="star_five"></div>
+    <h3>心形</h3>
+    <div class="heart"></div>
+    <h3>Pac Man</h3>
+    <div class="pac_man"></div>
+    <h3>双色圆</h3>
+    <div class="twocolor_circle"></div>
+    <h3>阴阳图</h3>
+    <div class="yinyang"></div>
+</div>
+    
+    
+
+
+
+</body>
+</html>

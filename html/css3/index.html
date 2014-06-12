@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS 3 摘要</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<style>
+
+</style>
+<h1>CSS 3 摘要</h1>
+<div class="inform">
+	<h4 class="f_darkred">盒类型box-sizing:</h4>
+    <p><span class="f_pink">box-sizing:border-box;<br />
+-moz-box-sizing:border-box; /* Firefox */<br></span>
+	值可以是：content-box| border-box | initial | inherit
+	</p>
+
+	<h4 class="f_darkred">圆角边框</h4>
+    <p>圆角边框(其实用border-radius就够了，基本上firefox,chrome,ie9都能识别)<br>
+<span class="f_pink">-webkit-border-radius:10px;<br>
+-moz-border-radius:10px;<br>
+border-radius:10px;</span></p>
+<p>单独圆角：<br>
+<span class="f_pink">-webkit-border-top-left-radius:10px;<br>
+-moz-border-radius-topleft:10px;<br>
+border-top-left-radius:10px;</span></p>
+
+<h4 class="f_darkred">块元素阴影</h4>
+<p>（参数分别为rgba, 向右的偏移量，向下的偏移量，阴影大小）<br>
+<span class="f_pink">-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;	</span>/*Chrome, Safari*/<br>
+<span class="f_pink">-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;</span>	/*Firefox*/<br>
+<span class="f_pink">box-shadow: rgba(0,0,0,0.3) 0 1px 3px;</span>	/*IE9,Opera*/></p>
+<p>内阴影<br>
+box-shadow:5px 5px 5px #999 inset;
+</p>
+<p>设置了阴影的扩展半径( spread )<br>
+box-shadow:5px 5px 5px 8px #999;
+第四个参数就是扩展阴影半径
+</p>
+
+<h4 class="f_darkred">文字阴影</h4>
+<p>(参数为颜色，向右偏移量，向下偏移量，阴影大小)<br>
+<span class="f_pink">text-shadow:black 1px 1px 3px;<br>
+text-shadow:rgba(50,50,50,.3) 1px 1px 3px;</span></p>
+	<h4 class="f_darkred">过渡动画</h4>
+    <p>过渡动画(参数分别为过度的属性color/background..., 过渡完成时间，过渡曲线，过渡的延迟执行时间)<br />
+<span class="f_pink">transition:all .25s linear .1s;</span><br />
+多重变换用逗号隔开：<br>
+<span class="f_pink">transition: color .25s linear, background-color .15s linear .1s;</span><br>
+变形曲线参数可为：ease | linear | ease-in | ease-out | ease-in-out | cubic-bezier(x1, y1, x2, y2) 为自定义，x1,x2,y1,y2的值范围在[0, 1];
+</p>
+
+
+<h4 class="f_darkred">变形之旋转</h4>
+	<p><span class="f_pink">transform:rotate(0deg);</span><br>
+<span class="f_pink">-ms-transform:rotate(0deg);</span> /* IE 9 */<br>
+<span class="f_pink">-webkit-transform:rotate(0deg);</span> /* Safari and Chrome */<br>
+<span class="f_pink">-moz-transform: rotate(-45deg);</span><br>
+<span class="f_pink">-o-transform: rotate(-45deg);</span></p>
+
+<h4 class="f_darkred">鼠标拖动时避免文字被选中</h4>
+<p class="f_pink">-webkit-touch-callout: none;<br>
+-webkit-user-select: none;<br>
+-khtml-user-select: none;<br>
+-moz-user-select: none;<br>
+-ms-user-select: none;<br>
+user-select: none;
+</p>
+
+<h4 class="f_darkred">Canvas设置宽高，一定要是canvas.width,和canvas.height.如果是设了canvas.style.width的话， 会像图片一样等比缩放。</h4>
+
+<h4 class="f_darkred">让图片在firefox跟chrome中不可拖动</h4>
+<p class="f_blue">&lt;img src="img/banner_01.jpg" <span class="f_pink">draggable="false"</span> /&gt;</p>
+
+<h4 class="f_darkred">输入框在chrome中有outline样式，设了外发光。可以在样式里重置为outline:none;来清除。</h4>
+
+<h4 class="f_darkred">跨浏览器的背景色半透明</h4>
+<p>
+<span class="f_gray">/*<br>
+		 * filter 渐变滤镜详细用法，参见这里<br>
+		 * StartColorStr 和 EndColorStr:<br>
+		 *    #4c000000 是 30% 透明度的 #000000 的意思<br>
+		 *    组成: # + 透明度 + 颜色<br>
+		 *    算法: Math.floor(0.6 * 255).toString(16);<br>
+		 */<br></span>
+		<span class="f_pink">.rgba{<br>
+		    background:rgba(0, 0, 0, 0.3);<br>
+		    filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#4c000000', EndColorStr='#4c000000');<br>
+		}</span>
+</p>
+   
+<h4 class="f_darkred">content的值的设置</h4>
+<p>
+	原来content不光可以是指定的字符串，也可以是变量。如在&lt;a href="#" data-icon="3"&gt; 链接上设了data-icon属性，那么就可能在content中引用这个值。content:attr(data-icon);
+</p>   
+    
+</div>
+
+
+
+
+
+</body>
+</html>

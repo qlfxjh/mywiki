@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>引入网络自定义字库</title>
+<link href="../../css/base.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../css/pop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+</head>
+
+<body>
+<h1>引入网络自定义字库</h1>
+<div class="inform">
+	<h2>说明</h2>
+    	@font-face{}是引用字体资源的css语句,格式如下:
+        <pre>
+<span class="f_pink">@font-face</span> {
+    font-family: &lt;YourWebFontName&gt;;
+    src: &lt;source&gt; [&lt;format&gt;][,&lt;source&gt; [&lt;format&gt;]]*;
+    [font-weight: &lt;weight&gt;];
+    [font-style: normal | italic | oblique];
+}
+        </pre>
+	</div>
+
+
+<div class="example">
+	<h2>实例</h2>
+<style>
+
+/*导入字体库*/
+@font-face {
+  font-family: 'Happy Monkey';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://themes.googleusercontent.com/licensed/font?kit=c2o0ps8nkBmaOYctqBq1rWOZC7isdzbMXTMsSNBqOYaruusgsetRaCmkKU2Of3BmMh8Htnga2sTO__4Bgy4aRUbOfyIL9KspCxN8ekvQQBzoq8GLqcC6GrPYOPNC3QDT) format('woff2'), url(https://themes.googleusercontent.com/licensed/font?kit=c2o0ps8nkBmaOYctqBq1rb7uYOTH0fqwR2fK3MMTyiuruusgsetRaCmkKU2Of3BmMh8Htnga2sTO__4Bgy4aRUbOfyIL9KspCxN8ekvQQBzoq8GLqcC6GrPYOPNC3QDT) format('woff');
+}
+
+
+.article{ line-height:26px; padding:10px;}
+.example p{padding:10px; border:1px solid #ccc; line-height:26px; font-size:18px; font-family:Happy Monkey;}
+</style>
+    <p>
+    	This words is format by the font-"Happy Monkey";
+        have a nice day!
+	</p>
+    
+</div>
+
+<script>
+
+
+
+</script>
+
+</body>
+</html>
